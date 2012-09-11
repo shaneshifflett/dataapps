@@ -1,0 +1,57 @@
+<div id="primaryStats">
+{% load generic_tags humanize %}
+<h2 class="bigteal">By the Numbers: {{district.name|title}} District</h2>
+<p>All statistics are for kindergarten enrollment at the start of the 2010-11 school year.</p>
+<table border="0" cellspacing="0" cellpadding="0">
+   <thead>
+       <tr>
+           <th>
+           </th>
+           <th class="value">
+           </th>
+       </tr>
+   </thead>
+   <tbody>
+       <tr>
+           <td>
+           Conditional entrance rate
+           </td>
+           <td class="value">
+           {{total_conditional_percent|floatformat:2}}%
+           </td>
+       </tr>
+       <tr class="odd">
+           <td>
+           Personal belief exemption rate
+           </td>
+           <td class="value">
+           {{total_pbe_percent|floatformat}}%
+           </td>
+       </tr>
+       <tr>
+           <td>
+           Statewide immunization rate
+           </td>
+           <td class="value">
+		   90.76%
+           </td>
+       </tr>
+       <tr class="odd">
+            <td>
+                Enrolled kindergartners
+            </th>
+            <td class="value">
+                {{total_enrollment_number}}
+            </td>
+        </tr>
+       <tr class="tfoot">
+           <td>
+               Up-to-date immunization rate in district
+           </td>
+           <td class="value">
+           {{total_iz_percent|floatformat}}%
+           </td>
+       </tr>
+   </tbody>
+</table>
+</div>

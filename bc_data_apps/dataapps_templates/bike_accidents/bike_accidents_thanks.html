@@ -1,0 +1,78 @@
+{% extends "bike_accidents/bike_accidents_base.html" %}
+{% load content_filters %}
+{% block page_title %}Bike Accidents - The Bay Citizen{% endblock %}
+
+{% block internal_css_includes %}
+    {{block.super}}
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/common/forms.css" type="text/css"/>
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/datepicker/redmond/jquery-ui-1.8.4.custom.css" type="text/css"  />
+{% endblock %}
+
+{% block js %}
+    {{block.super}}
+    <script type="text/javascript" charset="utf-8">
+    </script>
+{% endblock %}
+
+{% block main_column %}
+<div id="bike-app" class="report-accident cf">
+
+    <ul class="bike-tabs cf">
+        <li>
+            <a href="{% url bike_accidents_index %}" title="Reported Accidents">
+                Accident Map
+            </a>
+        </li>
+        <li>
+            <a href="{% url bike_accidents_charts %}" title="Reported Accidents">
+                Charts
+            </a>
+        </li>
+        <li>
+            <a href="{% url bike_accidents_raw %}" title="Reported Accidents">
+                Raw Data
+            </a>
+        </li>
+    </ul>
+    
+    <div id="report-accident" class="two-col tc2">
+        <div class="col c1">
+            <div class="c1pad">
+                <header>
+                    <h1>
+                        Thank you for taking time to help us improve our app!
+                    </h1>
+                </header>
+                <p>
+                    We'll add your report to our map, and include your information in future stories and analysis on street safety in the Bay Area.</p>
+				<p>Thanks for being a good Bay Citizen!
+                </p>
+                <h2>Be sure to check these out</h2>
+                <ul class="thanks">
+                    <li class="acc-map">
+                        <a href="{% url bike_accidents_index %}" title="Slice and dice the numbers" class="vis">
+                            Accident Map
+                            <span>Slice and dice the numbers</span>
+                        </a>
+                    </li>
+                    <li class="charts">
+                        <a href="{% url bike_accidents_charts %}" title="Compare stats by time and place">
+                            Charts
+                            <span>Compare stats by time and place</span>
+                        </a>
+                    </li>
+                    <li class="raw-data">
+                        <a href="{% url bike_accidents_raw %}" title="Drill down to individual accidents">
+                            Raw Data
+                            <span>Drill down to individual accidents</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+
+    </div>
+</div>
+{% endblock %}
+

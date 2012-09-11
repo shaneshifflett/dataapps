@@ -1,0 +1,68 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        var compare_chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'compare_chart',
+                defaultSeriesType: 'column',
+                height: 315,
+                margin: [40, 30, 80, 60]
+            },
+            legend: {
+                align: 'center'
+            },
+            title: {
+                text: '2010-11 School Year Immunization Rates',
+                style: {fontSize: '100%'}
+            },
+            xAxis: {
+                categories: ['{{city.name|title}} vs. {{city.county.name|title}} County vs. California']
+            },
+            yAxis: {
+                title:{
+					text: 'Percent'
+				}
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                         addCommas(this.y) + '%';
+                },
+                style: {
+                    color: '#515151',
+                    fontSize: '9pt',
+                    padding: '5px'
+                }
+            },
+            plotOptions: {
+                series: {
+                     events: {
+                         legendItemClick: function(event) {
+                             event.preventDefault();
+                             return false;
+                         }
+                     }
+                 }
+            },
+          credits: {
+                enabled: false
+            },
+            series: [
+                {
+                    name: 'City Rate',
+                    data: [{{city_data.percent_up_to_date|floatformat:2}}]
+                },
+                {
+                    name: 'Statewide Rate',
+                    data: [90.76]
+                },
+				{
+                    name: 'County Rate',
+                    data: [{{county_data.percent_up_to_date|floatformat:2}}]
+                }
+
+            ]
+        });
+	});
+
+</script>
+<div id="compare_chart"></div>

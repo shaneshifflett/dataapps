@@ -1,0 +1,815 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+
+/*janky ish*/
+#sf-mayor {
+    background:#ffffff;
+    border:1px solid #b4b4b4;
+    border-top:0;
+}
+
+
+#sf-mayor .col.main-column {
+  width: 960px;
+}
+
+/* sliding tabs overrides */
+
+#sf-mayor div.st_vertical div.st_view_container {
+	width: 440px;
+}
+
+
+#loading-tabs {
+    background: url("../../images/datalibrary/ajax-loader.gif") no-repeat scroll 50% 50% #FFFFFF;
+    height: 340px;
+    left: 22px;
+    position: absolute;
+    top: 20px;
+    width: 915px;
+    z-index: 5;
+    border:1px solid #999;
+}
+
+#sf-mayor  #st_vertical {	
+    background:url(../../images/mayor/fet-top1.jpg) 0 0 no-repeat;
+	position:relative;
+	z-index:4; 
+	border:1px solid #d4d4d4;
+	margin:15px 0 20px 20px;
+	*overflow:hidden;
+}
+
+/* tabs */
+
+#sf-mayor ul.st_tabs li a {	
+    border-left:0;
+}
+
+#sf-mayor div.st_vertical ul.st_tabs {
+	width: auto;
+}
+
+
+
+#sf-mayor div.st_vertical ul.st_tabs li a {
+    background: url("http://media.baycitizen.org/images/mayor/tabback.png") repeat-x scroll 0 0 #F4F4F4;
+    border-bottom: 1px solid #D4D4D4;
+    border-left: 0 solid #D4D4D4;
+    border-right: 1px solid #D4D4D4;
+    display:block;
+    font-size: 11px;
+    height: 51px;
+    line-height: normal;
+    overflow: hidden;
+    padding: 4px 8px;
+    position: relative;
+    vertical-align: middle;
+}
+#sf-mayor div.st_vertical ul.st_tabs li a span {
+    color: #0063AE;
+    font-weight: bold;
+}
+
+#sf-mayor div.st_vertical ul.st_tabs a:hover span {
+    color: #333333;
+}
+#sf-mayor div.st_vertical ul.st_tabs a.st_tab_active {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+    position: relative;
+    z-index: 10;
+}
+#sf-mayor div.st_vertical ul.st_tabs li a.st_tab_active span {
+    color: #000000;
+}
+
+/* buttons */
+
+#sf-mayor .st_vertical a.st_prev, 
+#sf-mayor .st_vertical a.st_next {	
+	position:absolute;
+	width: 70px;
+    bottom:0;
+    border-bottom:0;
+}
+#sf-mayor .st_vertical a.st_prev {	
+    left:0;
+	border-left:0;
+}
+#sf-mayor .st_vertical a.st_next {	
+	position:absolute;
+    bottom:0;
+    right:1px;
+}
+
+#sf-mayor .st_tabs_container {	
+	width: 140px;
+    margin-top:60px;
+    height:277px;
+}
+
+#sf-mayor div.st_vertical {
+	width: auto;
+}
+
+#sf-mayor div.st_vertical ul.st_tabs li a {
+	width: 122px;
+}
+
+#sf-mayor div.st_vertical a.st_prev, div.st_vertical a.st_next {
+	width: 70px;
+}
+
+
+/* sliding tab content */
+
+#sf-mayor .st_vertical div.st_view_container {
+    float:right;
+    border:0;
+    height:338px;
+    padding:0;
+}
+
+#sf-mayor div.st_tab_view {
+    height:338px;
+/*    background:url('../../images/mayor/featured-bg.png') 100% 0 no-repeat;*/
+}
+
+#sf-mayor div.st_view {
+    height:300px;
+    margin:15px 0 0 20px;
+    overflow:hidden;
+}
+
+#sf-mayor div.st_view h2 {
+    font-size:21px;
+    line-height:24px;
+    font-family:Georgia, sans-serif;
+    margin: 0 0 10px 0;
+}
+
+#sf-mayor div.st_view .attribution {
+    margin-bottom:10px;
+    font-size: .85em;
+}
+
+#sf-mayor div.st_view .phototeaser {
+    float:left;
+}
+
+#sf-mayor div.st_view .lead-content {
+    margin-left:200px;
+}
+
+#sf-mayor div.st_view .phototeaser img {
+	float: left;
+	margin: 0 15px 0 0;
+	padding: 1px;
+	border: 1px solid #b4b4b4;
+}
+
+#sf-mayor div.st_view .phototeaser .teaser .subscript {
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Helvetica, sans-serif;
+	color: #313131;
+	line-height: 16px;
+}
+
+
+
+
+/* end sliding tabs */
+
+
+
+/* stars */
+#sf-mayor .breadcrumb {
+    height:46px;
+/*    background:url("../../images/mayor/star-banner-960.png") no-repeat;*/
+    background:url("../../images/mayor/star-banner.jpg") no-repeat;
+    position: relative;
+}
+#sf-mayor .banner {
+    height:42px;
+    background:url("../../images/mayor/star-banner-960.png") no-repeat;
+    position: relative;
+}
+
+/* banner */
+#sf-mayor .breadcrumb ul,
+#sf-mayor .breadcrumb ul li {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#sf-mayor .breadcrumb ul li {
+    float:left;
+}
+
+/* stories */
+
+#sf-mayor .stories h2 {
+    background-color: #005293;
+    color: #FFFFFF;
+    font-size: 1em;
+    font-family:arial;
+    font-weight: bold;
+    padding: 3px 20px;
+    text-transform: uppercase;
+    margin:0;
+    clear: both;
+}
+
+#sf-mayor .stories .pad {
+    margin-top:0;
+}
+
+#sf-mayor .intertweet {
+    clear:both;
+}
+
+#sf-mayor .intertweet h4.bc {
+    text-transform:uppercase;
+    font-family:Helvetica,sans-serif;
+    padding-bottom:8px;
+    margin-bottom:8px;
+    border-bottom:1px dotted #999;
+}
+    
+#sf-mayor .intertweet .extended,
+#sf-mayor .intertweet .tweetstream {
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    vertical-align:top;
+    width:48%;
+}
+
+#sf-mayor .intertweet .tweetstream {
+    margin-left:20px;
+}
+
+/* ? */
+#sf-mayor table#contrib-search label {
+	font-weight: bold;
+	display: block;
+	margin: 0 20px;
+}
+
+#sf-mayor #contrib-search {
+	margin: 10px 20px 20px 20px;
+}
+
+#sf-mayor #contrib-search input {
+	width: 126px;
+	margin: 0 10px 0 0;
+	*margin:0;
+}
+
+#sf-mayor #contrib-search label {
+	font-size: .9em;
+	font-weight: bold;
+}
+
+#sf-mayor table#contrib-search tr {
+	padding: 0 20px;
+}
+
+#sf-mayor #contrib-search .ilb {
+	display: inline-block;
+	position:relative;
+	*display:inline;
+	vertical-align: top;
+	zoom: 1;
+}
+
+#sf-mayor #contrib-search .ilb #myContainer{
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:999;
+}
+
+#sf-mayor #contrib-search .ilb #myContainer ul{
+	list-style:none;
+	margin:0;
+	padding:10px 15px 5px 15px;
+	border: 1px solid #b4b4b4;
+	background-color: #fff;
+}
+
+#sf-mayor #contrib-search .ilb #myContainer li {
+	display: block;
+	margin: 0 0 5px 0;
+	color: #005293;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#sf-mayor #contrib-search .ilb.amount input {
+	width: 60px;
+}
+
+#sf-mayor tr.even td {
+	background: #f5f5f5;
+}
+
+#sf-mayor tr td {
+	white-space: inherit;
+}
+
+#sf-mayor tr th,
+#sf-mayor tr td {
+    padding:4px 5px;
+}
+
+#sf-mayor #raw-data-table {
+	font-size: .9em;
+}
+
+#sf-mayor .pagination {
+    width:100%;
+    clear:both;
+    position:relative;
+    left:-20px;
+    margin-top:0;
+}
+
+#sf-mayor #raw-data-table th {
+    font-size: 10px;
+    padding: 3px 0;
+    text-transform: uppercase;
+    background-color:#42ff73;
+	border-width:2px;
+	border-color:#999999;
+	background-image: -moz-linear-gradient(top, #c2d9ff, #8bb6ff);
+	background-image: -webkit-gradient(linear, center top, center bottom, from(#c2d9ff), to(#8bb6ff));
+	background-image: -o-linear-gradient(top, #c2d9ff, #8bb6ff);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c2d9ff', endColorstr='#8bb6ff');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#c2d9ff', endColorstr='#8bb6ff')";
+	background-image: linear-gradient(top, #c2d9ff, #8bb6ff);
+}
+
+/* breadcrumb */
+#sf-mayor .breadcrumb ul li a {
+    display:block;
+    margin:8px 0px 8px 10px;
+    border: 1px solid #48a2d2;
+    background: #1b86bb url('../../images/mayor/bc-back.png') 5px 50% no-repeat;
+    padding: 2px 10px 0px 20px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    box-shadow: rgba(0,0,0,1) 0 0 2px;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    color: white;
+    font-size: 10px;
+    text-transform:uppercase;
+    font-family: Helvetica, Arial, Sans-Serif;
+    text-decoration: none;
+    vertical-align: middle;
+}
+#sf-mayor .breadcrumb ul li a:hover {
+    background-color: #1e94ce;
+}
+
+/* main col edge padding */
+#sf-mayor .pad {
+    margin:20px;
+}
+
+/* listing page */
+#sf-mayor .col.main-column {
+    white-space:normal;
+    width: 960px;
+    border:0 none;
+    background: none;
+    border-right:1px dotted #999;
+}
+
+#sf-mayor .col.right-column {
+    padding: 0 0 0 20px;
+    width: 300px;
+}
+
+#sf-mayor.bd-base .col.right-column {
+    margin-left: 0;
+    white-space: normal;
+}
+#sf-mayor .col.right-column .rctwitter {
+    margin-top:10px;
+}
+
+#sf-mayor .col.right-column h3.bc {
+    text-transform:uppercase;
+    font-family:Helvetica,sans-serif;
+    padding-bottom:8px;
+    margin-bottom:8px;
+    border-bottom:1px dotted #999;
+    font-size:13px;
+}
+
+#sf-mayor header time {
+    display:block;
+    margin:10px 0 20px 0;
+    font-style:italic;
+    color:#000;
+    font-size:90%;
+}
+
+#sf-mayor header time span {
+    color:red;
+}
+
+#sf-mayor header p {
+    width:47%;
+    margin-right:2%;
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    vertical-align:top;
+}
+
+#sf-mayor .candidate-list {
+    white-space:nowrap;
+}
+
+#sf-mayor a.candidate {
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    vertical-align:top;
+    width:179px;
+    margin:0 20px 20px 0;
+}
+
+#sf-mayor .candidate * {
+    display:block;
+}
+
+#sf-mayor .candidate img {
+    background:#ffffff;
+    padding:1px;
+    border:1px solid #999;
+    width: 180px;
+}
+
+#sf-mayor .candidate strong {
+    font-size:18px;
+    text-transform: uppercase;
+    font-family:"Oswald",sans-serif;
+    font-weight: normal;
+    margin-top: 5px;
+}
+
+#sf-mayor .candidate em {
+	white-space: normal;
+    color:#333;
+    font-family:Georgia,serif;
+}
+#sf-mayor ul.interactives {
+}
+
+
+#sf-mayor ul.interactives,
+#sf-mayor ul.interactives li {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#sf-mayor .interactives a.poll {
+    background:#f8f8f8 url(../../images/mayor/poll.png) 5px 50% no-repeat;
+}
+
+#sf-mayor .interactives a.question {
+    background:#f8f8f8 url(../../images/mayor/question.png) 5px 50% no-repeat;
+}
+
+#sf-mayor .interactives a.candidates {
+    background:#f8f8f8 url(../../images/mayor/candies.png) 5px 50% no-repeat;
+}
+
+#sf-mayor .interactives a.contribs{
+    background:#f8f8f8 url(../../images/mayor/piggy.png) 5px 50% no-repeat;
+}
+
+#sf-mayor .interactives a.home{
+    background:#f8f8f8 url(../../images/mayor/icon-home.png) 5px 50% no-repeat;
+}
+
+#sf-mayor .interactives a.consearch{
+    background:#f8f8f8 url(../../images/mayor/icon-search.png) 5px 50% no-repeat;
+}
+
+#sf-mayor .interactives a.tbcusf{
+    background:#f8f8f8 url(../../images/mayor/tbc-usfpoll.png) 5px 50% no-repeat;
+}
+
+#sf-mayor .interactives a.simulator{
+    background:#f8f8f8 url(../../images/mayor/simulator.png) 5px 50% no-repeat;
+}
+
+#sf-mayor .interactives a.poll_map{
+    background:#f8f8f8 url(../../images/mayor/pollplace.png) 5px 50% no-repeat;
+}
+#sf-mayor .interactives a.faq{
+    background:#f8f8f8 url(../../images/mayor/faq.png) 5px 50% no-repeat;
+}
+
+#sf-mayor .interactives a.results{
+    background:#f8f8f8 url(../../images/mayor/results.png) 5px 50% no-repeat;
+}
+
+
+#sf-mayor ul.interactives li a {
+    display:block;
+    padding:5px 26px;
+    background-color:#f8f8f8;
+    border-bottom:1px solid #e7e7e7;
+    border-top:1px solid #fff;
+}
+
+
+/* candidate page*/
+/* profile pic */
+#sf-mayor .main-candidate-image {
+    width:620px;
+}
+
+#profile-pic {
+    border:1px solid #dedede;
+}
+
+/* title text */
+#sf-mayor header.name-topics {
+    margin-left:20px;
+    padding:0 0 10px 0;
+    margin:0 0 10px 218px;
+    border-bottom:1px dotted #b2b2b2;
+}
+
+#sf-mayor header.name-topics strong {
+    text-transform:uppercase;
+    color:#aa1d1e;
+    font-size:10px;
+}
+
+
+/* twitter */
+#sf-mayor .tweets {
+   background:url(../../images/mayor/twitterbg.png) 0 0 repeat;
+   background:url(../../images/mayor/tt-shadow.png) 0 0 repeat-x, url(../../images/mayor/tb-shadow.png) 0 100% repeat-x, url(../../images/mayor/twitterbg.png) 0 0 repeat;
+   padding:20px 0;
+   width:670px;
+   margin-left:-20px;
+   position:relative;
+   min-height:150px;
+   clear: both;
+}
+
+#sf-mayor .tweets h2 {
+   background:url(../../images/mayor/latest-on-twitter.png) 0 0 no-repeat;
+   margin:0;
+   padding:0;
+   height:56px;
+   width:81px;
+   overflow:hidden;
+   text-indent:-999px;
+   position:absolute;
+   top:0;
+   left:10px;
+}
+
+#tfeed {
+   background:url(../../images/mayor/t-vert.gif) 0 0 repeat-y;
+   padding-left:20px;
+   margin-left:110px;
+   margin-right:10px;
+}
+
+#tfeed ul,
+#tfeed ul li {
+   margin:0;
+   padding:0;
+   list-style:none;
+}
+
+#tfeed ul li {
+   padding-bottom:5px;
+   margin-bottom:5px;
+}
+
+#tfeed .tweet_avatar {
+   float:left;
+   margin-right:10px;
+}
+
+#tfeed .tweet_text,
+#tfeed .tweet_time  {
+   display:block;
+   font-style:italic;
+   margin-left:40px;
+   font-size:11px;
+   color:#636363;
+}
+
+#hot-topics {
+    border-bottom:1px dotted #999;
+    padding:8px 0;
+    margin-bottom:10px;
+}
+
+#hot-topics span {
+    font-weight:bold;
+    color:red;
+    font-size:10px;
+}
+
+#candidate-bio .reveal {
+    display:none;
+}
+
+#candidate-bio p {
+	color: #000000;
+}
+
+#candidate-bio h2,
+#candidate-bio h3,
+#candidate-bio h4 {
+    font-family:helvetica,sans-serif;
+    margin-bottom:5px;
+}
+
+a.read-full {
+   display:block;
+   text-align:center;
+   border-bottom:1px solid #d8d8d8;
+   font-size:11px;
+   text-transform:uppercase;
+   font-weight:bold;
+   margin:10px 0 16px 0;
+   height:12px;
+}
+
+a.read-full span {
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    vertical-align:top;
+    padding:2px 5px;
+    background:#fff;
+}
+
+/* two col bio tweet */
+#bio-tweet {
+   margin-top:20px;
+}
+
+#bio-tweet h2 {
+   text-transform:uppercase;
+   font-family:helvetica;
+   font-weight:bold;
+   font-size:13px;
+   margin:0 0 10px 0;
+   padding:0 0 8px 0;
+   border-bottom:1px dotted #555;
+}
+
+.fifty-fifty .c1 td {
+   padding:1px;
+}
+
+.fifty-fifty .c1 td.label {
+   text-align:right;
+   vertical-align:top;
+}
+
+.fifty-fifty .c1 td.info {
+   font-weight:bold;
+   padding-left:10px;
+}
+
+/* more stories */
+
+#more-stories {
+   width:620px;
+   margin-left:-20px;
+}
+
+#more-stories .bd {
+   border:0;
+   background:#ffffff;
+   padding-top:0;
+}
+
+.ui-tabs-panel {
+   margin:0 20px;
+}
+
+/* right col */
+.mod.stars h3 {
+   background:url(../../images/mayor/sidestars.png) 0 0 no-repeat;
+}
+
+.mod.stars ul,
+.mod.stars ul li {
+   list-style:none;
+   margin:0;
+   padding:0;
+   position:relative;
+}
+.mod.stars ul {
+   position:relative;
+   left:-20px;
+   width:240px;
+}
+
+.mod.stars ul li a {
+   display:block;
+   padding:5px 20px;
+   border-bottom:1px solid #e0e0e0;
+   font-weight:bold;
+}
+
+.mod.stars ul li a.odd {
+   background:#fff;
+}
+
+.mod.stars ul li a.even {
+   background:#f9f9f9;
+}
+
+.mod.stars ul li a:hover {
+   background:#e9f3fb;
+   text-decoration:none;
+}
+.mod.stars img {
+    display:block;
+}
+.mod.stars h4 {
+    color:#666666;
+    font-size:10px;
+    font-family:helvetica;
+    text-transform:uppercase;
+    border-bottom:1px dotted #b2b2b2;
+    margin-bottom:0;
+    position:relative;
+    left:-20px;
+    width:240px;
+}
+.mod.stars h4 span, .mod.stars li a span {
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    vertical-align:top;
+    padding:3px;
+}
+
+.mod.stars h4 span {
+    padding: 5px 22px;
+}
+
+
+.mod.stars h4 span.candidate, 
+.mod.stars li a span.candidate {
+    width:120px;
+}
+
+.mod.stars span.money {
+    position:absolute;
+    right:0;
+    top:0;
+    text-align:right;
+    font-size:90%;
+}
+.mod.stars h4 span.money {
+    right:0;
+    top:0;
+    padding:3px;
+}
+
+.mod.stars li span.money, .mod.stars li span.latest {
+    color:#000;
+}
+#sf-mayor .mod.stars .pad {
+    margin-bottom:0px;
+    margin-top:0px;
+}
+
+.item.story-item {
+    border-bottom:1px dotted #999;
+    margin-bottom:10px;
+    padding-bottom:10px;
+}
+
+#sf-mayor .media {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	margin-top: -5px;
+}

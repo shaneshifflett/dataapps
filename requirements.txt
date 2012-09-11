@@ -1,0 +1,9 @@
+Django
+simplegeo==3.0.115
+django-extensions
+geopy
+google
+simplejson
+python-fusiontables
+django-tables
+dj-database-url

@@ -1,0 +1,111 @@
+{% extends "bike_accidents/bike_accidents_base.html" %}
+{% load content_filters %}
+{% block page_title %}Bike Accidents - The Bay Citizen{% endblock %}
+
+{% block internal_css_includes %}
+    {{block.super}}
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/common/forms.css" type="text/css"/>
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/datepicker/redmond/jquery-ui-1.8.4.custom.css" type="text/css"  />
+{% endblock %}
+
+{% block js %}
+    {{block.super}}
+    <script type="text/javascript" charset="utf-8">
+	$(document).ready(function() {
+        
+	});
+    </script>
+{% endblock %}
+
+{% block main_column %}
+<div id="bike-app" class="report-accident cf">
+
+    <ul class="bike-tabs cf">
+        <li>
+            <a href="{% url bike_accidents_index %}" title="Reported Accidents">
+                Accident Map
+            </a>
+        </li>
+        <li>
+            <a href="{% url bike_accidents_charts %}" title="Reported Accidents">
+                Charts
+            </a>
+        </li>
+        <li>
+            <a href="{% url bike_accidents_raw %}" title="Reported Accidents">
+                Raw Data
+            </a>
+        </li>
+    </ul>
+    
+    <div id="report-accident" class="two-col tc2">
+        <div class="col c1">
+            <div class="c1pad">
+                <header>
+                    <h1>
+                        Thanks for helping us improve our app. We app-reciate it!
+                    </h1>
+                </header>
+                <p>
+                    The following questions are designed to help us get a better perspective on the bike accident landscape. All the questions are optional, but the more information you provide, the more you enable us to understand the big picture.
+                </p>
+                <h2>Additional Accident Details <span>Step {{ step }} of {{ step_count }}</span></h2>
+                
+    			{% if step > 0 %}
+                    <strong class="tuwh">The following fields are optional, <a href='{% url bike_accidents_thanks %}'>click here to save your results and quit </a></strong>
+    			{% endif %}
+    			<form action="." method="post">{% csrf_token %}
+
+                    <div class="form-row cf">
+                        <h4>Further Details</h4>
+                        <div class="formcontrol textbox">
+                    		{{form.number_injured.errors}}
+                    		<label for="id_1-number_injured">Number injured:</label>
+                    		{{form.number_injured}}
+                        </div>
+                        <div class="formcontrol textbox">
+                    		{{form.fatalities.errors}}
+                    		<label for="id_1-fatalities">Number killed:</label>
+                    		{{form.fatalities}}
+                        </div>
+                        <div class="formcontrol radiogroup">
+                    		{{form.hit_and_run.errors}}
+                    		<label for="id_1-hit_and_run">Was this a hit and run accident?</label>
+                    		{{form.hit_and_run}}
+                        </div>
+                    </div>
+                    <div class="form-row-vert cf">
+                        <div class="formcontrol textarea">
+                    		{{form.accident_cause.errors}}
+                    		<label for="id_1-accident_cause">Please tell us what caused the crash:</label>
+                    		{{form.accident_cause}}
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
+                    {{ previous_fields|safe }}
+
+                    <div class="report-button or">
+                        <button type="submit" class="awesome large orange" />Continue to Step 3</button>
+        				<a id="big-picture"  href='{% url bike_accidents_thanks %}'>
+        				    Click here to save your results and quit 
+        				    <em>We'll hang on your current report just in case you change your mind.</em>
+        				</a>
+                        <!--a id="big-picture" href="#">
+                            Help us understand the bigger picture and answer a few more questions
+                            <em>We'll save your current report just in case you change your mind.</em>
+                        </a-->
+                    </div>
+                
+    			</form>			
+                <p class="noshare">
+                    <em>The Bay Citizen promises to never sell, rent, or share your personal information with any third parties (or with first or second parties for that matter).</em>
+                </p>
+            </div>
+        </div><div class="col c2">
+            <img src="{{MEDIA_URL}}images/bikeapp/add2.jpg" alt=""/>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

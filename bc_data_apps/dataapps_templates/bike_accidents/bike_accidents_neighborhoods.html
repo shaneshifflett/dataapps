@@ -1,0 +1,140 @@
+{% extends "bike_accidents/bike_accidents_base.html" %}
+
+{% load content_filters %}
+
+{% block page_title %}Bike Accidents - The Bay Citizen{% endblock %}
+
+{% block external_js %}
+    {{block.super}}
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+{% endblock %}
+
+{% block js %}
+    {{block.super}}
+    <script type="text/javascript" charset="utf-8">
+        var map = null; 
+        var neighborhood_layer = null; 
+
+        function toggle_neighborhood() {
+            if(neighborhood_layer.map) {
+                neighborhood_layer.setMap(null);
+            }else {
+                neighborhood_layer.setMap(map);
+            }
+        }        
+		
+        function LegendText(controlDiv, name, title) {
+			
+        	// Set CSS for the control border
+        	var controlUI = document.createElement('DIV');
+        	controlUI.style.cursor = 'default';
+        	controlUI.style.textAlign = 'left';
+        	controlUI.title = title;
+        	controlDiv.appendChild(controlUI);
+        				
+        	// Set CSS for the control interior
+        	var controlText = document.createElement('SPAN');
+        	controlText.style.fontfamily = 'Arial,sans-serif';
+        	controlText.style.fontSize = '12px';
+        	controlText.innerHTML = name;
+        	controlUI.appendChild(controlText);
+        }
+        
+        function Legend(controlDiv, name, color, title) {
+			
+        	// Set CSS for the control border
+        	var controlUI = document.createElement('DIV');
+        	controlUI.style.cursor = 'default';
+        	controlUI.style.textAlign = 'left';
+        	controlUI.title = title;
+        	controlDiv.appendChild(controlUI);
+        				
+        	var legendIcon = document.createElement('IMG');
+        	legendIcon.style.marginRight = '4px';
+        	legendIcon.src = 'http://media.baycitizen.org/images/bikeapp/markers/gradient_large_' + color + '.png';
+        	controlUI.appendChild(legendIcon);
+        				
+        	// Set CSS for the control interior
+        	var controlText = document.createElement('SPAN');
+        	controlText.style.fontfamily = 'Arial,sans-serif';
+        	controlText.style.fontSize = '12px';
+        	controlText.innerHTML = name;
+        	controlUI.appendChild(controlText);
+        }
+
+        $(function (){
+        	var custom_map_style = [ { featureType: "poi", elementType: "all", stylers: [ { visibility: "simplified" } ] },
+        	                         { featureType: "administrative.land_parcel", elementType: "all", stylers: [ { visibility: "off" } ] }, 
+        	                         { featureType: "administrative.neighborhood", elementType: "all", stylers: [ { visibility: "on" }, { invert_lightness: true }] },
+        	                         { featureType: "landscape", elementType: "all", stylers: [ { visibility: "off" } ] },
+        	                         { featureType: "road.highway", elementType: "all", stylers: [ { visibility: "off" } ] },
+        	                         { featureType: "transit.line", elementType: "all", stylers: [ { visibility: "off" } ] },
+        	                         { featureType: "transit.station", elementType: "all", stylers: [ { visibility: "off" } ] } ];
+            var default_center = new google.maps.LatLng(37.778629, -122.446682);
+            
+            map = new google.maps.Map(document.getElementById('accident-map'), {
+              center: default_center,
+              zoom: 12,
+              mapTypeControlOptions: {
+                  mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'custom']
+               }
+            });
+            
+            var customMapType = new google.maps.StyledMapType(custom_map_style, {name: "Custom"})
+            map.mapTypes.set('custom', customMapType);
+            map.setMapTypeId('custom');
+
+            //  Set Default Layers
+            neighborhood_layer = new google.maps.FusionTablesLayer(278308);
+            neighborhood_layer.setMap(map);
+            
+             // Create the legend
+            legend = document.createElement('DIV');
+            legend.style.padding = '5px';
+            legend.style.marginRight = '5px';
+            legend.style.backgroundColor = 'white';
+            legend.style.borderStyle = 'solid';
+            legend.style.borderWidth = '2px';
+            
+            // Create the legend text
+            legendTitle = document.createElement('DIV');
+            new LegendText(legendTitle, 'Accident Count', 'accidentcount')
+            
+            // Create the at fault legend items
+            legendAtFault = document.createElement('DIV');
+            new Legend(legendAtFault, '0-39', 'purple', '0-39');
+            new Legend(legendAtFault, '40-78', 'blue', '40-78');
+            new Legend(legendAtFault, '79-118', 'green', '79-118');
+            new Legend(legendAtFault, '119-158', 'yellow', '119-158');
+            new Legend(legendAtFault, '159-198', 'red', '159-198');
+            				
+            // Append at fault title and legend to actual legend
+            legend.appendChild(legendTitle)
+            legend.appendChild(legendAtFault);
+            legend.index = 1;
+            map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+            
+        });         
+    </script>
+{% endblock %}
+
+{% block main_column %}
+<div id="ba-right">
+   <ul class="maptabs">
+        <li>
+            <a href="{% url bike_accidents_index %}" title="Reported Accidents">Reported Accidents</a>
+        </li>
+        <li class='current'>
+            <a href="#" title="Neighborhoods">Neighborhoods</a>
+        </li>
+    </ul>
+    <div class="application">
+		<p style="padding: 20px; margin-bottom:0">The neighborhoods with the most bike accidents all have major biking thoroughfares. The Mission has Valencia Street while SoMa, downtown and the Financial District all surround Market Street where thousands bike to work every day. Market Street had more accidents than any other street, by far: 139 in the last two years. For a deep look at collision patterns in these neighborhoods, and much more, read our <a href="http://www.baycitizen.org/transportation/story/san-francisco-bike-accidents/">Analysis.</a></p>	
+       <div id="accident-map" style="width: 714px; height: 484px;"></div>
+    </div>
+
+    <div class="column list">
+    
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+<section id="app_searchupper" class="grey wrap-box">
+    <header>
+        <h1>Data Finder</h1>
+        <span class="rightcap"></span>
+        <span class="rightnib"></span>
+    </header>
+
+    <p class="top">Search for a Bay Area school by name.</p>
+    <p class="bottom">Only schools with kindergarten students are included.</p>
+        <form action="{% url immunizations_search %}" method="get">
+            <input type="text" value="{{request.GET.q}}" name="q"/>
+            <!--input type="submit" value="Search" class="submitButton"/-->
+        </form>
+</section>

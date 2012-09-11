@@ -1,0 +1,177 @@
+{% extends "bike_accidents/bike_accidents_base.html" %}
+{% load content_filters %}
+{% block page_title %}Bike Accidents - The Bay Citizen{% endblock %}
+
+{% block internal_css_includes %}
+    {{block.super}}
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/common/forms.css" type="text/css"/>
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/datepicker/redmond/jquery-ui-1.8.4.custom.css" type="text/css"  />
+{% endblock %}
+
+{% block js %}
+    {{block.super}}
+    <script type="text/javascript" charset="utf-8">
+	$(document).ready(function() {
+        
+
+	});
+    </script>
+{% endblock %}
+
+{% block main_column %}
+<div id="bike-app" class="report-accident cf">
+
+    <ul class="bike-tabs cf">
+        <li>
+            <a href="{% url bike_accidents_index %}" title="Reported Accidents">
+                Accident Map
+            </a>
+        </li>
+        <li>
+            <a href="{% url bike_accidents_charts %}" title="Reported Accidents">
+                Charts
+            </a>
+        </li>
+        <li>
+            <a href="{% url bike_accidents_raw %}" title="Reported Accidents">
+                Raw Data
+            </a>
+        </li>
+    </ul>
+    
+    <div id="report-accident" class="two-col tc2">
+        <div class="col c1">
+            <div class="c1pad">
+                <header>
+                    <h1>
+                        Report Your Accident and Help Us Improve Our Bike App
+                    </h1>
+                </header>
+                <p>
+                    Were you in an accident involving a bike, but never officially reported it to the police? Many bike accidents go unreported, which makes tracking statistics more difficult.                    
+                </p>
+                <p>
+                    Help make this tool, and our analysis, more accurate. Share details of your previously unreported crash here.
+                    Questions? Drop a line! newsapps@baycitizen.org.
+                </p>
+                
+                <h2>Personal Information <span>Step {{ step }} of {{ step_count }}</span></h2>
+                
+                <strong class="tuwh">Tell us about what happened  - <em>All fields are required.</em></strong>
+    			{% if step0 > 0 %}
+    				<B>The following fields are optional, <a href='{% url bike_accidents_thanks %}'>click here to save your results and quit </a></B>
+    			{% endif %}
+    			<form action="." method="post">{% csrf_token %}
+    			    
+        			<div class="form-row cf">
+        			    <h4>Personal Information</h4>
+                        <div class="formcontrol textbox">
+							{{form.name.errors}}
+                    		<label for="id_name">Name:</label>
+							{{form.name}}
+                        </div>
+                        <div class="formcontrol textbox">
+							{{form.phone.errors}}
+                    		<label for="id_phone">Phone:</label>
+							{{form.phone}}
+                    		<em class="example">(ex: xxx-xxx-xxxx)</em>
+                        </div>
+                        <div class="formcontrol textbox">
+							{{form.email.errors}}
+                    		<label for="id_email">Email:</label>
+							{{form.email}}
+                        </div>
+                        <div class="formcontrol textbox">
+							{{form.age.errors}}
+                    		<label for="id_age">Age:</label>
+							{{form.age}}
+                        </div>
+        			</div>
+
+                    <div class="form-row cf">
+                        <h4>When did it happen?</h4>
+                        <div class="formcontrol textbox datepicker" id="date-control">
+							{{form.date.errors}}
+                        	<label for="datepicker">
+                        	Date: <span class="required">*</span>
+                        	</label>
+							{{form.date}}
+                        </div>
+                        <div class="formcontrol selectmenu radiogroup timepicker" id="time-control">
+							{{form.hour.errors}}
+                        	<span class="label">
+                        	Time: <span class="required">*</span>
+                        	</span>
+							{{form.hour}}
+							{{form.minute.errors}}
+							{{form.minute}}
+							{{form.ampm.errors}}{{form.ampm}}
+                        </div>
+                    </div>
+                    <div class="form-row cf">
+                        <h4>Where did it happen?</h4>
+                        <div class="formcontrol textbox">
+							{{form.primary_street.errors}}
+                    		<label for="id_primary_street">Primary Street:</label>
+							{{form.primary_street}}
+                        </div>
+
+                        <div class="formcontrol textbox">
+							{{form.cross_street.errors}}
+                    		<label for="id_cross_street">Cross Street:</label>
+							{{form.cross_street}}
+                        </div>
+
+                        <div class="formcontrol textbox">
+							{{form.city.errors}}
+                    		<label for="id_city">City:</label>
+							{{form.city}}
+                        </div>
+
+                        <div class="formcontrol textbox">
+							{{form.zip_code.errors}}
+                    		<label for="id_zip_code">Zip Code:</label>
+							{{form.zip_code}}
+                        </div>
+                    </div>
+
+                    <div class="form-row-vert cf">
+                        <h4>Can you give us some details on what happened?</h4>
+                        <div class="formcontrol textarea">
+                    		{{form.description.errors}}
+                    		<label for="id_description">Description:</label>
+                    		{{form.description}}
+                        </div>
+                    </div>
+                    <div class="form-row-vert cf">
+                        <div class="formcontrol radiogroup">
+                            <h4>Can follow up with you to get further information about your accident, if needed?</h4>
+                    		{{form.follow_up.errors}}
+                    		{{form.follow_up}}
+                        </div>
+                    </div>
+
+
+
+    			<input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
+    			{{ previous_fields|safe }}
+                <div class="report-button">
+                    <button type="submit" class="awesome large orange" />Submit My Report</button>
+                    <!--a id="big-picture" href="#">
+                        Help us understand the bigger picture and answer a few more questions
+                        <em>We'll save your current report just in case you change your mind.</em>
+                    </a-->
+                </div>
+                
+    			</form>			
+    			{% if step0 > 0 %}
+    				<a href='{% url bike_accidents_thanks %}'>Click here to save your results and quit </a>
+    			{% endif %}
+                <p class="noshare">
+                    <em>The Bay Citizen promises to never sell, rent, or share your personal information with any third parties (or with first or second parties for that matter).</em>
+                </p>
+            </div>
+    </div>
+</div>
+{% endblock %}
+

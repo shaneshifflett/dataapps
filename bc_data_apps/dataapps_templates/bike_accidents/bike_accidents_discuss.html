@@ -1,0 +1,23 @@
+{% extends "bike_accidents/bike_accidents_base.html" %}
+{% load content_filters content_tags %}
+{% block page_title %}Bike Accidents - The Bay Citizen{% endblock %}
+
+{% block internal_js_includes %}
+    {{block.super}}
+    <script src="{{ MEDIA_URL }}js/jquery.form.js"></script>
+{% endblock %}
+
+{% block main_column %}
+<div id="ba-right">
+    <h3>Discussion</h3>
+	<p>We're looking for your ideas on how we can all make San Francisco's streets safer to use, on bike, car and foot. <br /> Is the solution more bike lanes? Where? If not, what else do you suggest?</p>
+    
+    {% content_comments dataapp show_comments %}
+    
+	{% include "threadedcomments/form.html" %}
+
+    <div class="column list">
+    	
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,403 @@
+{% extends "rankedchoice/rankedchoice_base.html" %}
+{% block page_title %}{{page_title}} - The Bay Citizen{% endblock %}
+{% block meta %}
+    <link rel="canonical" href="{% url rankedchoice_race_index race.slug %}" />
+{% endblock %}
+
+{% load generic_tags %}
+{% load content_filters %}
+{% block facebook_js %}
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+{% endblock %}
+
+{% block internal_css_includes %}
+    {{block.super}}
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/dataapps/rankedchoice/BarChart2.css" type="text/css"  />
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/mayor/mayor.css" type="text/css"/
+	<link rel="stylesheet" href="{{MEDIA_URL}}css/dataapps/polls.css" type="text/css"/>
+{% endblock %}
+
+{% block css %}
+{{block.super}}
+<style type="text/css">
+	canvas { 
+		background: url(../../../public/images/data-apps/rankedchoice/bg-chart.png) repeat-y;
+	}
+	.node { 
+		background-color:transparent; 
+		cursor:pointer; 
+		opacity:0.9; 
+		border:1px solid #fff; 
+		position:absolute; 
+	} 
+	#g-infobar {
+		background: url(../../../public/images/data-apps/rankedchoice/bg-infobar-plain.png) repeat-y;
+		position: relative;
+		width: 960px;
+	}
+	#intro-txt {
+		padding: 10px 20px 0 20px;
+		white-space: normal;
+		background-color: #fff;
+		border-bottom: 1px dotted #b4b4b4;
+		margin-bottom: 20px;
+	}
+	#intro-txt h1 {
+		font-size: 24px;
+	}
+	#g-controls {
+		background: url(../../../public/images/data-apps/rankedchoice/bg-infobar-divd.png) bottom repeat-y;
+		position: relative;
+		width: 960px;
+		min-height: 75px;
+	}
+	#next-button {
+		text-indent: -9999em;
+		display: block;
+		background: url(../../../public/images/data-apps/rankedchoice/btn-next.png) top no-repeat;
+		width: 107px;
+		height: 29px;
+		position: absolute;
+		right: 20px;
+		top: 0;
+	}
+	#prev-button {
+		font-size: 10px;
+		font-family: Helvetica, sans-serif;
+		color: #005293;
+		position: absolute;
+		right: 54px;
+		top: 33px;
+	}
+	#prev-button.disabled {
+		color: #333;
+	}
+	#next-button:hover {
+		background-position-y: -29px;
+	}
+	#next-button:active {
+		background-position-y: -58px;
+	}
+	#next-button.disabled:hover, #next-button.disabled:active {
+		background-position: top;
+	}
+    .enabled{
+		cursor: pointer;
+		opacity: 1;
+    }
+    .disabled{
+		cursor: default;
+		opacity: .5;
+    }
+	#round {
+		font-size: 18px;
+		font-family: Helvetica, sans-serif;
+		font-weight: bold;
+		position: absolute;
+		top: 0;
+		left: 20px;
+		line-height: 18px;
+	}
+	#graph-text {
+		font-size: 15px;
+		line-height: 20px;
+		font-family: Georgia, serif;
+		margin: 0 0 0 125px;
+		width: 670px;
+		white-space: normal;
+		padding: 0 0 10px 0;
+	}
+	#graph-text p {
+		margin: 0;
+		padding: 0;
+	}
+	#rcv-legend {
+		background: url(../../../public/images/data-apps/rankedchoice/rcv-legend.png) top no-repeat;
+		width: 268px;
+		height: 14px;
+		position: absolute;
+		bottom: 5px;
+		left: 346px;
+		z-index: 9999999;
+	}
+	#remaining-votes{
+		font-size: 12px;
+		font-weight: bold;
+		margin: 15px 0 0 16px;
+		top: 50px;
+	}
+
+	#remaining-votes .notes{
+		font-size: 10px;
+		font-weight: normal;
+	}
+</style>
+{% endblock %}
+
+{% block head_js %}
+    {{block.super}}
+
+    <!--[if IE]><script language="javascript" type="text/javascript" src="{{MEDIA_URL}}js/dataapps/rankedchoice/excanvas.compiled.js"></script><![endif]-->
+    <script type="text/javascript" src="{{MEDIA_URL}}js/dataapps/rankedchoice/jit.compressed.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        var labelType, useGradients, nativeTextSupport, animate, barChart;
+        var round_num = 1;
+        (function() {
+          var ua = navigator.userAgent,
+              iStuff = ua.match(/iPhone/i) || ua.match(/iPad/i),
+              typeOfCanvas = typeof HTMLCanvasElement,
+              nativeCanvasSupport = (typeOfCanvas == 'object' || typeOfCanvas == 'function'),
+              textSupport = nativeCanvasSupport 
+                && (typeof document.createElement('canvas').getContext('2d').fillText == 'function');
+          //I'm setting this based on the fact that ExCanvas provides text support for IE
+          //and that as of today iPhone/iPad current text support is lame
+          labelType = (!nativeCanvasSupport || (textSupport && !iStuff))? 'Native' : 'HTML';
+          useGradients = nativeCanvasSupport;
+          nativeTextSupport = labelType == 'Native';
+          animate = !(iStuff || !nativeCanvasSupport);
+        })();
+
+		function update_round(){
+			//tell something to show a loading signal to the user
+			disable_next();
+			disable_prev();
+			this_round_data = null;
+			
+			$.getJSON('/data/rankedchoice/{{race.slug}}/' + round_num + '/', function(data) { 
+				//pretty_loader('#remaining-votes', 'Continuing Ballots: ' + data['remaining_votes'] + ' Undervotes: ' + data['undervotes'] + ' Overvotes: '+data['overvotes'])
+				this_round_data = data
+				barChart.updateJSON(data, {onComplete: function(data){
+						update_text_elements(this_round_data);
+					}
+				});
+			})
+		}
+
+		function update_text_elements(this_round_data){
+			pretty_loader('#td_cont_ballots', this_round_data['remaining_votes']);
+			pretty_loader('#td_exhausted_ballots', this_round_data['exhausted_ballots']);
+			pretty_loader('#td_overvotes', this_round_data['overvotes']);
+			pretty_loader('#td_undervotes', this_round_data['undervotes']);
+			pretty_loader('#round','Round ' + round_num + ' <BR>&nbsp;&nbsp;&nbsp; of {{num_rounds}}')
+			var available_candidates = this_round_data['available_candidates'];
+			for (var i=available_candidates.length-1; i>=0; --i){
+				var available_selector = ".node div:contains('" + available_candidates[i] + "'):last";
+				$(available_selector).css('text-decoration', 'none');
+			} 
+			
+			$.each(this_round_data['dropped_candidates'], function(index, dropped_candidate){
+				if (dropped_candidate !== null) {
+					var dropped_selector = ".node div:contains('" + dropped_candidate + "'):last";
+					$(dropped_selector).css('text-decoration', 'line-through');
+				}
+			});
+			
+			if( round_num < {{num_rounds}}){
+				enable_next();
+				$.get('/data/rankedchoice/{{race.slug}}/' + round_num + '/text/', function(this_round_data) { 
+					pretty_loader('#graph-text',this_round_data);
+				})
+
+			} else {
+				winner = this_round_data['top_candidate'];
+				pretty_loader('#graph-text', winner+' is the projected winner with ' + this_round_data['top_candidate_percentage'] +' percent of ' + this_round_data['total_valid_ballots'] + ' votes.');
+			}
+			if(round_num >1){
+				enable_prev();
+			}
+		}
+
+
+		function pretty_loader( selector,data){
+			$(selector).fadeOut('fast', function(){
+				$(selector).html(data);
+				$(selector).fadeIn('fast');
+				$(selector).slideDown('fast');
+			});
+
+		}
+
+		function enable_next(){
+			$('#next-button').addClass('enabled')
+			  .removeClass('disabled')
+			  .bind('click.rcv', function (event){
+				event.stopImmediatePropagation()
+				if(round_num < {{num_rounds}}){
+					round_num = round_num + 1;
+					update_round();
+				}
+			}
+			);
+		}
+
+		function enable_prev(){
+			$('#prev-button').addClass('enabled')
+			  .removeClass('disabled')
+			  .bind('click.rcv',function (event){
+				event.stopImmediatePropagation()
+				if(round_num > 1){
+					round_num--;
+					update_round();
+				}
+			});
+		}
+
+		function disable_prev(){
+			$('#prev-button').removeClass('enabled');
+			$('#prev-button').addClass('disabled');
+			$('#prev-button').unbind();
+		}
+
+		function disable_next(){
+			$('#next-button').removeClass('enabled');
+			$('#next-button').toggleClass('disabled');
+			$('#next-button').unbind();
+		}
+
+        function init(){
+
+			$jit.BarChart.implement({  
+                'getMaxValue': function() {  
+                    return {{graph_scale}};  
+                }  
+            }); 
+            
+            barChart = new $jit.BarChart({
+                injectInto: 'infovis',
+                animate: true,
+                orientation: 'vertical',
+                barsOffset: 10,
+                Margin: {
+                    top: 5,
+                    left: 20,
+                    right: 20,
+                    bottom: 110 
+                },
+                labelOffset: 5,
+                type: useGradients? 'stacked' : 'stacked',
+                showAggregates: true,
+                showLabels: true,
+                Label: {
+                    type: 'HTML',
+                    size: 14,
+                    family: 'helvetica',
+                    color: 'black'
+                },
+                Tips: {
+                    enable: true,
+                    onShow: function(tip, elem) {
+                        tip.innerHTML = "<b>" + elem.name + "</b>: " + elem.value;
+                    }
+                }
+            });
+
+
+            
+            $(function() {
+                $.getJSON('/data/rankedchoice/{{race.slug}}/1/', function(data) { 
+                    barChart.loadJSON(data);
+                    update_text_elements(data);
+                });
+
+            });
+           
+    }
+    </script>
+{% endblock %}
+
+{% block body_tag %}
+    <body onload="init()">
+{% endblock %}
+
+
+{% block social_links %}
+    <div>         
+	<a href="http://twitter.com/share" class="twitter-share-button" data-url="www.baycitizen.org/data/rankedchoice/{{slug}}" data-text="" data-count="horizontal" data-via="TheBayCitizen" data-related="shaneshifflett">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>  
+    </div>                                                                                                                                                   
+    <div>                                                                                                                                                    
+        <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.baycitizen.org%2Fdata%2Frankedchoice%2F{{slug}}%2F&amp;layout=button_count&amp;show_faces=true&amp;width=130&amp;action=recommend&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:21px;" allowTransparency="true"></iframe>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+	<div id="sf-mayor" class="bd-base">
+
+    {% block header_menu %}
+        {{block.super}}
+    {% endblock %}
+	    <div id="g-infobar">
+	    	<div id="intro-txt">
+		    	<h1>{% if race.headline%}{{race.headline}}{%endif%}</h1>
+            	<h2 style="margin-top:0;margin-bottom:10px;font-family:sans-serif;">{%if race.deck%}{{race.deck}}{%endif%}</h2>
+		    	{% if race.text %}
+	                {{race.text|safe}}
+                {% endif %}
+	    	</div>
+	    	
+	    	<!-- BEGIN GRAPH CONTROLS / TEXT BAR -->
+		    <div id="g-controls">
+                <span id="round" class="round"></span>
+			    <div id="graph-text">
+			    </div>
+	            <div class="nav_button" id="next-button">Next</div>
+	            <div class="nav_button disabled" id="prev-button">Go Back</div>
+                
+	            
+		    </div>
+	    </div>
+	    
+		<!-- BEGIN JS GRAPH -->
+	    <div id="container">
+	        <div id="center-container">
+	            <div id="infovis"></div> <div id="rcv-legend"></div>
+	        </div>
+	    </div>
+	    
+	    <div class="main-column col">
+			{% block main_column %}
+
+                <div id='remaining-votes'>
+                    Vital Statistics
+                    <table>
+                        <tr>
+                            <th>All Ballots cast</th>
+                            <th>Remaining Ballots</th>
+                            <th style="color:#bd5959">Exhausted Ballots</th>
+                            <th style="color:#bd5959">Undervotes</th>
+                            <th style="color:#bd5959">Overvotes</th>
+                        </tr>
+                        <tr>
+                            <td>{{total_votes}}</td>
+                            <td id="td_cont_ballots"></td>
+                            <td style="color:#bd5959" id="td_exhausted_ballots"></td>
+                            <td style="color:#bd5959" id="td_undervotes"></td>
+                            <td style="color:#bd5959" id="td_overvotes"></td>
+                        </tr>
+                    </table>
+					Notes:
+					<div class='notes'>
+						The count of discarded ballots includes exhausted, undervoted and overvoted ballots.<br/>
+						Ballots are exhausted when all of a voter's chosen candidates are eliminated.<br/>
+						A ballot is considered undervoted if it contains no selections for the race in question. Undervoted ballots are discarded in the first round.<br/>
+						A ballot is considered overvoted if more than one candidate is selected for a given choice. Overvoted ballots are discarded in the round when the duplicate selection is discovered. 
+					</div>
+                </div>
+				<div class="pad" id="methodology">
+				{%if race.disclaimer%}{{race.disclaimer|safe}}{%endif%}
+				</div>
+			
+			    <div style="clear:both"></div>
+						
+    		{% endblock %}
+	    </div>
+	    
+
+	    
+	     
+		
+	</div>
+		
+		
+{% endblock %}

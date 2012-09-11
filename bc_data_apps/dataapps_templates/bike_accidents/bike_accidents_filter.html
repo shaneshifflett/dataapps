@@ -1,0 +1,87 @@
+{% url bike_accidents_index as index_url %} 
+{% url bike_accidents_charts as charts_url %}
+{% url bike_accidents_raw as raw_url %}
+{% if request.path == index_url %}
+<form id='filter-form' action='{% url bike_accidents_get_results %}' method='post'>
+{% endif %}
+{% if request.path == charts_url %}
+<form id='filter-form' action='{{ charts_url }}' method='post'>
+{% endif %}
+{% if request.path == raw_url %}
+<form id='filter-form' action='{{ raw_url }}' method='post'>
+{% endif %}
+{% if request.path != raw_url and request.path != raw_url and request.path != charts_url%}
+<form id='filter-form' action='/' method='post'>
+{% endif %}
+    <h6 class="legend filterstitle">Filters</h6>{% csrf_token %}
+    <div class="filteroptions">
+            <div class="filter selectmenu times">
+                <label>County</label>
+                {{form.county}}
+            </div>
+            <div class="filter datefilter">
+                <label for="id_date_from" class="label-from">From</label>
+                <label for="o" class="label-to">To</label>
+                <span class="fromto">
+                    <div class="fromdiv">
+                        {{form.date_from}} 
+                    </div>
+                    <div class="todiv">
+                        {{form.date_to}}
+                    </div>
+                </span>
+            </div>
+
+            <div class="filter selectmenu times">
+                <label>Road Conditions</label>
+                {{form.road_condition}}
+            </div>
+            <div class="filter selectmenu times">
+                <label>Lighting</label>
+                {{form.lighting}}
+            </div>
+            <div class="filter selectmenu accident">
+                <label>Accident Type</label>
+                {{form.accident_type}}
+            </div>
+            <div class="filter selectmenu fault">
+                <label>Who's at Fault?</label>
+                {{form.at_fault}}
+            </div>
+            <div class="filter selectmenu citation">
+                <label>Violation</label>
+                {{form.violation}}
+            </div>
+    </div>
+    <div class="filter-button">
+        <button id="submitbutton" type="submit" class="awesome large orange" />Apply</button>
+
+        {% if request.path == index_url %}
+        <p class="sorry">Map not displaying? Sorry! <br/> Please try zooming in or reloading the page.</p>
+        {% endif %}
+    </div>
+    <h6 class="legend filterstitle2">share your results</h6>
+    <div class="fbtw cf">
+        <div class="facebook">
+            <span class="label">Facebook</span>
+<iframe src="http://www.facebook.com/plugins/like.php?href=http://baycitizen.org/data/bike-accidents/&amp;layout=button_count&amp;show_faces=true&amp;width=300&amp;action=like&amp;font&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:300px; height:25px;" allowTransparency="true"></iframe>
+        </div>
+        <div class="twitter">
+            <span class="label">Twitter</span>
+            <div>
+                <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+                <div>
+                  <a id="tweetbutton" href="http://twitter.com/share" class="twitter-share-button"
+                     data-url=""
+                     data-via="thebaycitizen"
+                     data-text="I explored @TheBayCitizen's Bike Accident Tracker; check out accidents near you:"
+                     data-related="shaneshifflett"
+                     data-count="none">Tweet</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h6 class="legend filterstitle2">from twitter <a href="http://twitter.com/#!/search/%20%23TBCBIKES" target="_blank">#tbcbikes</a></h6>
+    <div class="tweetquote tweet" id="tweetquote">
+    </div>
+</form>

@@ -1,0 +1,5 @@
+Send a Tip Email Body.
+
+{{name}}
+{{email}}
+{{body|safe}}

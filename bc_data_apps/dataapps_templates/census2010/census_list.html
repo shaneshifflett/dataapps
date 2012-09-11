@@ -1,0 +1,375 @@
+{% extends "census2010/census_base.html" %}
+
+{% block internal_css_includes %}
+    {{block.super}}
+{% endblock %}
+
+{% block internal_js_includes %}
+    {{block.super}}
+{% endblock %}
+
+{% block external_js %}
+    {{block.super}}
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+{% endblock %}
+ 
+{% block js %}
+    {{block.super}}
+
+    <script type="text/javascript" charset="utf-8">
+        var tableid_1 = {{ft_focus_id}};
+        var zoom = 8;
+        var map = null;
+        var center = new google.maps.LatLng(37.7056, -122.1899);
+
+		assembly_layer = new google.maps.FusionTablesLayer({{ft_table_ids.legislative_lower}});
+		assembly_layer.setQuery("SELECT geometry FROM {{ft_table_ids.legislative_lower}}");
+		assembly_layer.setOptions({suppressInfoWindows: true});
+
+
+		senate_layer = new google.maps.FusionTablesLayer({{ft_table_ids.legislative_upper}});
+		senate_layer.setQuery("SELECT geometry FROM {{ft_table_ids.legislative_upper}}");
+		senate_layer.setOptions({suppressInfoWindows: true});
+
+        $("#boundaries").change(function() {
+            value = $(this).val();
+            
+			if (value == 'assembly') {
+			    assembly_layer.setMap(map);
+			    senate_layer.setMap(null);
+
+
+				google.maps.event.addListener(assembly_layer, 'click', function(e){
+					var html_str = "<h4>"+e.row['NAMELSAD10'].value+"</h4>";
+					html_str += "<ul>";
+					html_str += "<li>Representative: "+e.row['Representative'].value+"</li>";
+					html_str += "Population: "+e.row['Pop 2010'].value+"</li>";
+					html_str += "</ul>";
+					$("#quick_info").html(html_str);
+				});
+            } else if (value == 'senate') {
+			    assembly_layer.setMap(null);
+			    senate_layer.setMap(map);
+
+				google.maps.event.addListener(senate_layer, 'click', function(e){
+					var html_str = "<h4>"+e.row['NAMELSAD10'].value+"</h4>";
+					html_str += "<ul>";
+					html_str += "<li>Representative: "+e.row['Representative'].value+"</li>";
+					html_str += "Population: "+e.row['Pop 2010'].value+"</li>";
+					html_str += "</ul>";
+					$("#quick_info").html(html_str);
+				});
+            } else {
+			    assembly_layer.setMap(null);
+			    senate_layer.setMap(null);
+            }
+        });
+
+        $(document).ready(function() {
+            $('[id^="total_"]').toggle(false);
+            $('#total_population').toggle();
+            
+            $('#table_filter').change(function() {
+                $('[id^="total_"]').toggle(false);
+                $('#' + $(this).val()).toggle();
+            });
+            
+            map = new google.maps.Map(document.getElementById('map-display'), {
+                center: center,
+                zoom: zoom,
+                //maxZoom: zoom,
+                //minZoom: zoom,
+                //zoomControl: false,
+                streetViewControl: false,
+                mapTypeControl: false,
+                panControl: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+            
+            layer_1 = new google.maps.FusionTablesLayer(tableid_1);
+            layer_1.setQuery("SELECT geometry FROM " + tableid_1);
+            layer_1.setOptions({suppressInfoWindows: true});
+            layer_1.setMap(map);
+            
+			google.maps.event.addListener(layer_1, 'click', function(e) {
+                var css_class = e.row['total_pop_pct_change'].value < 0 ? "down" : "up";
+				{% if geo_type == 'place' %}
+					var html_str = "<div class='pagelink'><a href='/data/census-2010/cities/"+e.row['slug'].value+"/'>See details for " + e.row['NAME10'].value +"</a></div>";
+				{% endif %}
+				{% if geo_type == 'congressional' %}
+					var html_str = "<div class='pagelink'><a href='/data/census-2010/congressional/"+e.row['slug'].value+"/'>See details for " + e.row['NAME10'].value +"</a></div>";
+				{% endif %}
+				{% if geo_type == 'legislative_lower' %}
+					var html_str = "<div class='pagelink'><a href='/data/census-2010/assemblies/"+e.row['slug'].value+"/'>See details for " + e.row['NAME10'].value +"</a></div>";
+				{% endif %}
+				{% if geo_type == 'legislative_upper' %}
+					var html_str = "<div class='pagelink'><a href='/data/census-2010/senate/"+e.row['slug'].value+"/'>See details for " + e.row['NAME10'].value +"</a></div>";
+				{% endif %}
+				{% if geo_type == 'tract' %}
+					var html_str = "<div class='pagelink'><a href='/data/census-2010/tracts/"+e.row['slug'].value+"/'>See details for " + e.row['NAME10'].value +"</a></div>";
+				{% endif %}
+				{% if geo_type == 'county' %}
+					var html_str = "<div class='pagelink'><a href='/data/census-2010/counties/"+e.row['slug'].value+"/'>See details for " + e.row['NAME10'].value +"</a></div>";
+				{% endif %}
+				html_str += "<h4><a href='/data/census-2010/cities/"+e.row['slug'].value+"/'>"+e.row['NAME10'].value + "</a></h4>";
+				html_str += "<ul>";
+				html_str += "<li><span class='" + css_class + " black'>"+e.row['total_pop_pct_change'].value+"%</span></li>";
+				html_str += "<li>2000 Population: <span>"+e.row['old_total_pop'].value+"</span></li>";
+				html_str += "<li>2010 <span>"+e.row['new_total_pop'].value+"</span></li>";
+				html_str += "</ul>";
+				$("#quick_info").html(html_str);
+			});
+
+
+        
+            chart = new Highcharts.Chart({
+              chart: {
+                 renderTo: 'pop-chart',
+                 defaultSeriesType: 'pie',
+                 width: 300,
+                 height: 300,
+                 margin: -10
+              },
+              legend: false,
+              title: false,
+              tooltip: {
+            	 enabled: false
+              },
+              credits: false,
+              plotOptions: {
+                 pie: {
+                	size: "50%",
+                    dataLabels: {
+                       enabled: true,
+                       connectorWidth: 1,
+                       distance: 10,
+                       formatter: function() {
+                          return '<b>'+ this.point.name +'</b>:<br/>'+ this.y +' %';
+                       }
+                    }
+                 }
+              },
+               series: [{
+                 data: {{ pie_data|safe }}
+              }]
+            });
+
+    $.tablesorter.addParser({ 
+        id: "commaDigit",
+        is: function(s, table) {
+            var c = table.config;
+            return jQuery.tablesorter.isDigit(s.replace(/,/g, ""), c);
+        },
+        format: function(s) {
+            return jQuery.tablesorter.formatFloat(s.replace(/,/g, ""));
+        },
+        type: "numeric"
+    });
+            
+    $('[id^="total_"]').tablesorter({widgets: ['zebra']});
+});
+</script> 
+{% endblock %}
+
+{% block main_column %}
+	<div id="list-page">
+		<div class="right" style="margin-left: 10px; display: inline;">
+			<span>
+	            <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.baycitizen.org/data/census-2010/" data-count="vertical" data-via="thebaycitizen">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+            </span>
+            <span style="margin-left: 10px;">
+	            <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.baycitizen.org%2Fdata%2Fcensus-2010%2F&amp;layout=box_count&amp;show_faces=true&amp;width=450&amp;action=recommend&amp;font=arial&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:65px;" allowTransparency="true"></iframe>
+            </span>
+        </div>
+		<h1>Census 2010: Play with the Data</h1>
+				<h2 style="font-family: Helvetica, sans-serif;">The Bay Area grew at its slowest rate in nearly a century over the past decade, likely signaling a loss of political power to the Central Valley as the redistricting process begins. Meanwhile, the Bay Area’s Asian and Hispanic populations boomed, while the ranks of blacks dwindled in most cities. See how your city or county has changed. <br/><span style="font-size: .8em; font-weight: lighter; color: #646464; padding-top:20px"> What is redistricting? Why do we have a Census, anyway? Read our full Census coverage <a href="http://www.baycitizen.org/census-2010/">here.</a></span></h2>
+		<div id="right-col">
+
+            {% ifequal geo_type "county" %}
+            <h3>Bay Area Counties</h3>
+            {% else %}
+                {% if county %}
+                <h3>Cities in {{ county.display_name }}</h3>
+				{% endif %}
+				{% ifequal geo_type "tract" %}
+				<h3>Bay Area Tracts</h3>
+				{% endifequal %}
+				{% ifequal geo_type "legislative_lower"%}
+				<h3>Bay Area Assembly Districts</h3>
+				{% endifequal %}
+				{% ifequal geo_type "legislative_upper"%}
+				<h3>Bay Area State Senate Districts</h3>
+				{% endifequal %}
+				{% ifequal geo_type "congressional" %} 
+				<h3>Bay Area Congressional Districts</h3>
+				{% endifequal %}
+                {% ifequal geo_type "place"  %}
+                <h3>Bay Area Cities</h3>
+                {% endifequal %}
+            {% endifequal %}
+
+			<ul id="pop-overview">
+				<li>{{ total_population.pct_change|safe }}</li>
+				<li><span>Population 2000:</span> {{ total_population.2000 }}</li>
+				<li><span>2010:</span> {{ total_population.2010 }}</li>
+			</ul>
+
+            {% ifequal geo_type "county" %}
+            <p>The 2010 Census revealed slow growth for the Bay Area’s counties over the last decade, with a gain of just 366,979 people since 2000. The data also shows interesting demographic shifts in race and ethnicity. The combined counties lost about 186,000 whites and 30,000 blacks overall, but gained nearly 370,000 Hispanics and 375,000 Asians. Contra Costa County had the most rapid population growth since 2000, adding 100,000 new residents of all races. Meanwhile Alameda County had the largest exodus of African Americans, losing about 25,000 blacks over the decade.</p>
+			{% endifequal %}
+            {% ifequal geo_type "place"  %}
+            <p>Bay Area cities shifted in size and demographics over the last decade, but San Jose still reigned as the region’s largest city, swelling to more than 945,000 residents. To the north, Oakland shed 8,760 residents over the last decade; of California’s 20 largest cities, Oakland was one of only two to shrink. San Francisco lost more than 19 percent of its black population since 2000, but more than made up for the gap with an additional 28,350 Asians and 12,270 Hispanics.</p>
+            {% endifequal %}
+			{% ifequal geo_type "legislative_lower" %}
+
+			{% endifequal %}
+			{% ifequal geo_type "legislative_upper" %}
+
+			{% endifequal %}
+			{% ifequal geo_type "tract" %}
+
+			{% endifequal %}
+			<div class="c-module">
+				<span class="title">Population by Race</span>
+				<div id="pop-chart" class="c-content" style="margin: 5px;"></div>
+			</div>
+		</div>
+		<div id="left-col">
+			<ul id="breadcrumb">
+				<li class="label">Currently viewing:</li>
+                {% ifequal geo_type "county" %}
+                    <li><a href="{% url census2010_county_list %}">All Counties</a> &gt;</li>
+				{% endifequal %}
+				{% ifequal geo_type "place" %}
+                    <li><a href="{% url census2010_city_list %}">All Cities</a> &gt;</li>
+                {% endifequal %}
+				{% ifequal geo_type "congressional" %}
+					<li><a href="{% url census2010_congressional_list %}">All Congressional Districts</a>&gt;</li>
+				{% endifequal %}
+				{% ifequal geo_type "legislative_lower" %}
+					<li><a href="{% url census2010_assembly_list %}">All State Assemblies</a>&gt;</li>
+				{% endifequal %}
+				{% ifequal geo_type "legislative_upper" %}
+					<li><a href="{% url census2010_senate_list %}">All State Senate Districts</a>&gt;</li>
+				{% endifequal %}
+				{% ifequal geo_type "tract" %}
+					<li><a href="{% url census2010_tract_list %}">All Tracts</a>&gt;</li>
+				{% endifequal %}
+				<li>{{ geography.display_name }}</li>
+			</ul>
+			<div id="map">
+				<div id="titlebar">
+					<ul id="navigation">
+						{% ifequal geo_type "county" %}
+							<li class="active"><a href="{% url census2010_county_list %}">Counties</a></li>
+							<li><a href="{% url census2010_city_list %}">Cities</a></li>
+							<li><a href="{% url census2010_congressional_list %}">Congressional</a></li>
+							<li><a href="{% url census2010_senate_list %}">State Senate</a></li>
+							<li><a href="{% url census2010_assembly_list %}">State Assemblies</a></li>
+							<li><a href="{% url census2010_tract_list %}">Tracts</a></li>
+						{% endifequal %}
+						{% ifequal geo_type "place" %}
+							<li><a href="{% url census2010_county_list %}">Counties</a></li>
+							<li class="active"><a href="{% url census2010_city_list %}">Cities</a></li>
+							<li><a href="{% url census2010_congressional_list %}">Congressional</a></li>
+							<li><a href="{% url census2010_senate_list %}">State Senate</a></li>
+							<li><a href="{% url census2010_assembly_list %}">State Assemblies</a></li>
+							<li><a href="{% url census2010_tract_list %}">Tracts</a></li>
+						{% endifequal %}
+						{% ifequal geo_type "congressional" %}
+							<li><a href="{% url census2010_county_list %}">Counties</a></li>
+							<li><a href="{% url census2010_city_list %}">Cities</a></li>
+							<li class="active"><a href="{% url census2010_congressional_list %}">Congressional</a></li>
+							<li><a href="{% url census2010_senate_list %}">State Senate</a></li>
+							<li><a href="{% url census2010_assembly_list %}">State Assemblies</a></li>
+							<li><a href="{% url census2010_tract_list %}">Tracts</a></li>
+						{% endifequal %}
+						{% ifequal geo_type "legislative_upper" %}
+							<li><a href="{% url census2010_county_list %}">Counties</a></li>
+							<li><a href="{% url census2010_city_list %}">Cities</a></li>
+							<li><a href="{% url census2010_congressional_list %}">Congressional</a></li>
+							<li class="active"><a href="{% url census2010_senate_list %}">State Senate</a></li>
+							<li><a href="{% url census2010_assembly_list %}">State Assemblies</a></li>
+							<li><a href="{% url census2010_tract_list %}">Tracts</a></li>
+						{% endifequal %}
+						{% ifequal geo_type "legislative_lower" %}
+							<li><a href="{% url census2010_county_list %}">Counties</a></li>
+							<li><a href="{% url census2010_city_list %}">Cities</a></li>
+							<li><a href="{% url census2010_congressional_list %}">Congressional</a></li>
+							<li><a href="{% url census2010_senate_list %}">State Senate</a></li>
+							<li class="active"><a href="{% url census2010_assembly_list %}">State Assemblies</a></li>
+							<li><a href="{% url census2010_tract_list %}">Tracts</a></li>
+						{% endifequal %}
+						{% ifequal geo_type "tract" %}
+							<li><a href="{% url census2010_county_list %}">Counties</a></li>
+							<li><a href="{% url census2010_city_list %}">Cities</a></li>
+							<li><a href="{% url census2010_congressional_list %}">Congressional</a></li>
+							<li><a href="{% url census2010_senate_list %}">State Senate</a></li>
+							<li><a href="{% url census2010_assembly_list %}">State Assemblies</a></li>
+							<li class="active"><a href="{% url census2010_tract_list %}">Tracts</a></li>
+						{% endifequal %}
+					</ul>
+				</div>
+				<div id="quick_info">
+					<div id="pre-click">click on the map to see details</div>
+				</div>
+				<div id="map-display"></div>
+				<div id="map-legend">
+                    {% if geo_type == "county" or geo_type == "congressional" or geo_type == "legislative_lower" or geo_type == "legislative_upper"  %}
+					    <img src="{{MEDIA_URL}}images/census2010/map-legend-county.png" alt="Population change 2000-2010" width="470" height="20"/>
+                    {% else %}
+					    <img src="{{MEDIA_URL}}images/census2010/map-legend-city.png" alt="Population change 2000-2010" width="513" height="20"/>
+                    {% endif %}
+				</div>
+			</div>
+            {% ifequal geo_type "county" %}
+			<h3 class="left">Bay Area Counties</h3>
+            {% else %}
+                {% if county %}
+			    <h3 class="left">Cities in {{ county.display_name }}</h3>
+                {% else %}
+			    <h3 class="left">Bay Area Cities</h3>
+                {% endif %}
+            {% endifequal %}
+			<span class="filter">
+				FILTER BY: 
+				<select id="table_filter">
+					<option value="total_population">Total Population</option>
+					<option value="total_white">White</option>
+					<option value="total_black">Black</option>
+					<option value="total_asian">Asian</option>
+					<option value="total_hispanic">Hispanic Origin</option>
+					<option value="total_two_races">Two or More Races</option>
+				</select>
+			</span>
+			<div class="clearfix"></div>
+			{% for table in tables %}
+				<table id="{{ table.filter }}" cellpadding="0" cellspacing="0">
+					<thead>
+						{% for header in table.headers %}
+							<th>{{ header }}</th>
+						{% endfor %}
+					</thead>
+					<tbody>
+						{% for row in table.rows %}
+							<tr>
+								{% for col in row %}
+                                    {% if forloop.first %}
+									    <td>{{ col|safe }}</td>
+                                    {% else %}
+									    <td class="text-right">{{ col|safe }}</td>
+                                    {% endif %}
+								{% endfor %}
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			{% endfor %}
+			<p style="text-transform: uppercase; color: #adadad; padding: 5px; font-size: .9em; margin-bottom: 0">Published 3/10/2011. By Peter Gullekson, Sydney Lupkin, Tasneem Raja, Shane Shifflett, David Suriano and Aurelio Tinio.</p>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	
+{% endblock %}
+
+

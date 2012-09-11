@@ -1,0 +1,201 @@
+{% extends "bike_accidents/bike_accidents_base.html" %}
+
+
+{% block page_title %}Bike Accidents - The Bay Citizen{% endblock %}
+
+{% block internal_css_includes %}
+    {{block.super}}
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/datepicker/redmond/jquery-ui-1.8.4.custom.css" type="text/css"  />
+{% endblock %}
+
+{% block js %}
+    {{block.super}}
+
+	<script type='text/javascript' src='{{MEDIA_URL}}js/highcharts2/highcharts-2-1-4.js'></script>
+    <script type="text/javascript" charset="utf-8">
+		var chart = null;
+		var vis_url = '{% url bike_accidents_index %}';
+		var charts_url = '{% url bike_accidents_charts %}';
+		var raw_url = '{% url bike_accidents_raw %}';
+
+		function checkdate(input){
+			var dateformat = /^\d{1,2}(\-|\/|\.)\d{1,2}\1\d{4}$/
+			return dateformat.test(input);
+		}
+		$("#submitbutton").click(function(){
+				var date_from = $("#id_date_from").val();
+				var date_to = $("#id_date_to").val();
+				var retVal = checkdate(date_from);
+				var retValDos = checkdate(date_to);
+				if(retVal && retValDos){
+					f_date = new Date(date_from);
+					t_date = new Date(date_to);
+					if(t_date <= f_date){
+						alert("Your from date should occur before your end date.");
+						return false;
+					}
+					end_date = new Date("12/31/2009");
+					start_date = new Date("01/01/2005");
+					if(f_date < start_date){
+						alert("Sorry, but our data set begins on 01/01/2005.  Please use a later from date.");
+						return false;
+					}
+					if(t_date > end_date){
+						alert("Sorry, but our data set ends on 12/31/2009.  Please use an earlier start date.");
+						return false;
+					}
+					$("#filter-form").submit();
+				} else {
+					alert("Please enter a valid date (our format: mm/dd/YYYY)");
+					return false;
+				}
+		});
+		$(document).ready(function(){
+			history.pushState('', 'query', charts_url + '{{query_str|safe}}');
+			$(".twitter").html('');
+			$(".twitter").html('<span class="label">Twitter</span><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.html?url={{query_str|safe}}&count=none&related=shaneshifflett:davidsuriano:tasneemraja&text=I explored @TheBayCitizen\'s Bike Accident Tracker; check out accidents near you:" style="width:130px; height:25px;"></iframe><p><p></p></p><div class="clearfix"></div>');
+
+			$("#map_tab").attr('href', vis_url + '{{query_str|safe}}');
+			$("#raw_tab").attr('href', raw_url + '{{query_str|safe}}');
+			$("#charts_tab").attr('href', charts_url + '{{query_str|safe}}');
+			   chart = new Highcharts.Chart({
+				  chart: {
+					 renderTo: 'container',
+					 defaultSeriesType: 'column'
+				  },
+				  title: {
+					 text: 'Bicycle Accidents by County'
+				  },
+				  subtitle: {
+					 text: ''
+				  },
+				credits: {
+					
+					enabled: false
+				},
+				  xAxis: {
+					 categories: {{counties|safe}}
+				  },
+				  yAxis: {
+					 min: 0,
+					 title: {
+						text: 'Accidents'
+					 }
+				  },
+				  tooltip: {
+					 formatter: function() {
+						return ''+
+						   this.x +': '+ this.y ;
+					 }
+				  },
+				  plotOptions: {
+					 column: {
+						pointPadding: 0.2,
+						borderWidth: 0
+					 }
+				  },
+					   series: [{
+					 name: 'Accident counts by county',
+					 data: {{counts|safe}}
+			   
+				  } ]
+			   });
+   
+		});
+        $(function (){
+             $("#id_date_from").datepicker({
+    			showOn: "button",
+    			buttonImage: "{{MEDIA_URL}}images/icons/icon-calendar-bw-16x16.png",
+    			buttonImageOnly: true,
+    			dateFormat: 'mm/dd/yy',
+    			minDate: '01/01/09', 
+    			onSelect: function(selected_date) {
+    				$('#loading-notification').fadeIn();
+                }
+    		});
+            $("#id_date_to").datepicker({
+    			showOn: "button",
+    			buttonImage: "{{MEDIA_URL}}images/icons/icon-calendar-bw-16x16.png",
+    			buttonImageOnly: true,
+    			dateFormat: 'mm/dd/yy',
+    			maxDate: '11/30/10',
+    			onSelect: function(selected_date) {
+    				$('#loading-notification').fadeIn();
+                }
+    		});
+        });
+	</script>
+{% endblock %}
+
+{% block main_column %}
+<div id="bike-app" class="cf">
+    <div class="inside-bike-app cf">
+        <div class="filters">
+    		{% include "bike_accidents/bike_accidents_filter.html" %}
+        </div>
+
+        <div class="application">
+        
+            <a href="{% url bike_accidents_report %}" class="awesome small green">Report your own accident</a>
+        
+            <ul class="bike-tabs cf">
+                <li class="">
+                    <a id="map_tab" href="{% url bike_accidents_index %}" title="Reported Accidents">
+                        Accident Map
+                    </a>
+                </li>
+                <li class="current">
+                    <a id="charts_tab" href="{% url bike_accidents_charts %}" title="Reported Accidents">
+                        Charts
+                    </a>
+                </li>
+                <li class="">
+                    <a id="raw_tab" href="{% url bike_accidents_raw %}" title="Reported Accidents">
+                        Raw Data
+                    </a>
+                </li>
+            </ul>
+
+    		<div class="main-body">
+               <div id="chart-container">
+				<h3 style="font-family: sans-serif; padding: 10px; margin:0px">Your Results</h3>
+    			<!--charts -->
+                <div id="container">
+                </div>
+               </div>
+			   <div class="more-data cf">
+					<h4 style="font-family: sans-serif">More Data Highlights</h4>
+					<p>
+					    From fatalities to violations to the perennial question when it comes to bike collisions--whose fault was it?--we pulled out a few data points of particular interest.
+					</p>
+					<p>
+					    All charts below are for the time period Jan. 2005 through Dec. 2009. Source: California Highway Patrol.
+					</p>
+					<div class="col" style="float:left; width:49%">
+						<iframe src="http://media.baycitizen.org/interactive/5-11/bikes/files/party-at_fault7.htm" width="100%" height="450"></iframe>
+						<p>
+						    Our original Bike Accident Tracker showed that most San Francisco bike collisions were caused by bikers. This pattern holds true for the entire Bay Area. Cyclists were faulted for the majority of collisions in every county, reportedly causing 52% of them. Autos were cited in 34% of cases.
+						</p>
+						<iframe src="http://media.baycitizen.org/interactive/5-11/bikes/files/male_female_fault2.htm" width="100%" height="420"></iframe>
+						<p>
+						    In all nine counties, men caused more bike accidents than women, whether they were the cyclist or the motorist in the situation. Bear in mind that gender was not noted in about 40 percent of the data; those accidents aren’t included.
+					    </p>
+					</div>
+					<div class="col" style="float: right; width:49%">
+						<iframe src="http://media.baycitizen.org/interactive/5-11/bikes/files/deaths_county_bar_final_5.htm" width="100%" height="450"></iframe>
+						<p>
+						    Despite being a large (and potentially scary) city for a cyclist, San Francisco did not have the most fatalities over the five-year period. In fact, it didn’t even come in second. Santa Clara and Contra Costa had the highest number of fatalities, followed by San Mateo and Alameda. More details.
+						</p>
+						<iframe src="http://media.baycitizen.org/interactive/5-11/bikes/files/top-violations-by-county2.htm" width="100%" height="420"></iframe>
+						<p>
+						    We took the top three overall violations and showed how many times they were cited in each county. In Alameda, most accidents were caused by a “wrong side of road” violation. In San Francisco, “right of way” violations were most frequent.
+						</p>
+					</div>
+				</div>
+    		</div>
+        </div>
+    </div>
+    <img id="lcfoot" src="{{MEDIA_URL}}images/bikeapp/lcfoot.jpg" alt="" height="10" width="201" />
+</div>
+<div class="byline">By: Zusha Elinson, Sydney Lupkin, Shane Shifflett, David Suriano & Tasneem Raja. Published 5/31/2011.</div>
+{% endblock %}

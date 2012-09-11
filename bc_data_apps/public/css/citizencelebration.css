@@ -1,0 +1,133 @@
+#citizencelebration {
+	width: 960px;
+	border: 1px solid #b4b4b4;
+	background: #ffffff;
+	height: 100%;
+}
+#leftcol {
+	border-right: 1px solid #b4b4b4;
+	width: 175px;
+	background: url(../images/celebration/bg-nav.png) repeat-y;
+	position: relative;
+	float: left;
+	height: 2112px;
+}
+#rightcol {
+	margin: 20px 20px 20px 195px;
+}
+#nav {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	top: 0;
+	left: 0;
+	display: block;
+	position: absolute;
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+#nav li {
+}
+#nav li a {
+	display: block;
+	margin: 0;
+	padding: 10px 20px ;
+	border-bottom: 1px dotted #b4b4b4;
+}
+#nav li a:hover {
+	background: #e2e8e8;
+	cursor: pointer;
+	border-left: 5px solid #b6dce1;
+	padding-left: 15px;
+}
+h1.logo {
+	background: url(../images/celebration/logo-citizencelebration.png) no-repeat;
+	height: 96px;
+	width: 629px;
+	display: block;
+	text-indent: -9999em;
+	margin-left: 60px;
+}
+h2.details {
+	margin: 15px 0 0 0;
+	text-align: center;
+	font-size: 16px;
+	color: #00a5bc;
+}
+.divider {
+    background: url("../images/celebration/divider-ribbon.png") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    height: 50px;
+    margin: 20px 0 0 -20px;
+    padding: 18px 0 0 18px;
+    width: 845px;
+}
+.content-box {
+	position: relative;
+	padding: 0 0 10px 0;
+	font-size: 13px;
+	font-family: Helvetica, sans-serif;
+	line-height: 19px;
+}
+.content-box .title {
+	font-size: 14px;
+	font-weight: bold;
+	color: #000000;
+	text-transform: none;
+	margin: 0 0 15px 0	;
+	padding: 0;
+}
+#headliner {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#offtherecord {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+}
+#offtherecordlink {
+    display: block;
+    height: 30px;
+    position: absolute;
+    right: 63px;
+    top: 250px;
+    width: 243px;
+	z-index: 2;
+}
+
+/* TITLES */
+.divider#cause span {
+	display: block;
+	text-indent: -9999em;
+	background: url(../images/celebration/sprite-titles.png) no-repeat top left;
+	width: 268px;
+	height: 18px;
+}
+.divider#agenda span {
+	display: block;
+	text-indent: -9999em;
+	background: url(../images/celebration/sprite-titles.png) no-repeat;
+	background-position: 0 -19px;
+	width: 281px;
+	height: 18px;
+}
+.divider#awards span {
+	display: block;
+	text-indent: -9999em;
+	background: url(../images/celebration/sprite-titles.png) no-repeat;
+	background-position: 0 -38px;
+	width: 258px;
+	height: 18px;
+}
+.divider#sponsors span {
+	display: block;
+	text-indent: -9999em;
+	background: url(../images/celebration/sprite-titles.png) no-repeat;
+	background-position: 0 -58px;
+	width: 404px;
+	height: 18px;
+}

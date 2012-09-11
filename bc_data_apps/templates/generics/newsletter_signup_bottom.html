@@ -1,0 +1,21 @@
+{% load content_tags content_filters generic_tags module_tags profile_tags %}
+
+<div class="newsletter-signup-story-bottom clear">
+    <div class="tagline left">
+        <img src="https://d1m7jskxfd7v6.cloudfront.net/images/layout/newsletter-signup-storyBottom-wantMore.png" alt="Want More Stories Like This"/>
+    </div>
+    <div class="inputSide left">
+        <form id="newsletterSignupForm-bottom" name="newsletterSignupForm-bottom" method="POST" action="{% url newsletters_subscribe %}?w=bottomofstory4">{% csrf_token %}
+             {% for choice in registration_form.base_fields.newsletter.choices %}
+                {% if forloop.first %}
+                <input type="hidden" name="newsletter" value="{{choice.0}}"/>
+
+                {% endif %}
+            {% endfor %}
+            <div class="left"><input id="id_email_end" name="email" type="text"/></div>
+            
+            <div class="go left" id="bottomSignupFormSubmit"></div>
+
+        </form>
+    </div>
+</div>

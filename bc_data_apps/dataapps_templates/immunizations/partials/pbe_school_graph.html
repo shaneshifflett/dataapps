@@ -1,0 +1,71 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+        var chart2 = new Highcharts.Chart({
+            chart: {
+                renderTo: 'vacc_app_chart2',
+                defaultSeriesType: 'column',
+                height: 250,
+            },
+            legend: {
+                align: 'center',
+				layout: 'horizontal'
+            },
+            xAxis: {
+                categories: ['School vs Nearby Averages'],
+            },
+            plotOptions: {
+                column: {
+                    dataLabels: {
+                       enabled: true
+                    }
+                },
+                series: {
+                     events: {
+                         legendItemClick: function(event) {
+                             event.preventDefault();
+                             return false;
+                         }
+                     }
+                 }
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                         this.series.name +': '+ this.y +'%';
+                },
+                style: {
+                    color: '#515151',
+                    fontSize: '9pt',
+                    padding: '5px'
+                },
+            },
+            credits: {
+                enabled: false
+            },
+            series: [
+                {
+                    name: 'School rate',
+                    data: [{{iz_2009.up_to_date_percent|floatformat}}]
+                }
+                {% if district_pbe_percent %}
+                ,{
+                    name: 'District rate',
+                    data: [{{district_iz_percent|floatformat}}]
+                }
+                {% endif %}
+                ,{
+                    name: 'City rate',
+                    data: [{{city_iz_percent|floatformat}}]
+                }
+                ,{
+                    name: 'County rate',
+                    data: [{{county_iz_percent|floatformat}}]
+                }
+            ]
+        });
+	});
+</script>
+<div id="vacc_app_chart2"></div>

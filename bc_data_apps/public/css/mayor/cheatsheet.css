@@ -1,0 +1,288 @@
+#introInfo {
+    position:relative;
+    padding-top:20px;
+}
+
+#ecs {
+    position:absolute;
+    top:14px;
+    left:0;
+}
+
+#introCopy {
+    border:1px solid #d4d4d4;
+    padding:15px;
+    background:#f6f6f6;
+    margin:20px;
+}
+
+#introCopy ul {
+    margin:26px 0 0 0;
+    padding:0;
+    list-style:none;
+    width:105%;
+}
+
+#introCopy ul li {
+    margin:0;
+    padding:0;
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    vertical-align:top;
+    width:258px;
+    height:64px;
+    border:1px solid #dbdbdb;
+    margin:0 15px 10px 0;
+
+       -moz-border-radius: 20px; 
+    -webkit-border-radius: 20px; 
+            border-radius: 20px; 
+    overflow:hidden;
+    background:#eeeeee url(../../images/mayor/icn-rep.png) no-repeat 12px 0px;
+}
+
+#introCopy ul li:hover {
+    background-color:#fff;
+}
+
+#introCopy ul li.what-mean {
+    background-position:12px -65px;
+}
+
+#introCopy ul li.charts {
+    background-position:12px -130px;
+}
+
+#introCopy ul li.method {
+    background-position:12px -195px;
+}
+
+#introCopy ul li.raw-data {
+    background-position:16px -262px;
+}
+
+#introCopy ul li.report {
+    background-position:12px -332px;
+}
+
+
+#introCopy ul li a {
+    display:block;
+    padding:10px 70px;
+    font-weight:bold;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+#introCopy ul li a span {
+    display:block;
+    color:#000;
+    font-size:12px;
+    font-weight:normal;
+    white-space:nowrap;
+}
+
+
+#introCopy p {
+    margin:15px 0;
+}
+
+#introCopy .mail-us {
+    text-align:center;
+    padding:10px 0;
+}
+
+#introCopy .mail-us a {
+    font-weight:bold;
+}
+
+
+/* faq */
+
+.qlist {
+    width:110%;
+    margin-bottom:20px;
+}
+
+.qlist h2 {
+    font-family:helvetica;
+    font-size:16px;
+    margin:0 0 10px;
+}
+
+.qlist ul,
+.qlist ul li {
+    margin:0;
+    padding:0;
+    list-style:none;
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    vertical-align:top;
+    width:280px;
+}
+
+.qlist ul li {
+    border-bottom:1px dotted #999;
+}
+
+.qlist ul.list2 {
+    margin-left:20px;
+}
+
+.qlist ul li a {
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    vertical-align:top;
+    padding-left:20px;
+    background:url(../../images/mayor/mark.png) 3px 3px no-repeat;
+    margin:4px 0;
+}
+
+div.question {
+    background:url(../../images/mayor/qdiv.png) 0 100% no-repeat;
+    position:relative;
+    margin-left:10px;
+    padding-left:10px;
+    padding-bottom:20px;
+}
+
+div.question .q {
+   position:absolute;
+   top:10px;
+   left:-42px;
+}
+
+div.question h3 {
+    margin:0 0 10px;
+    font-family:helvetica;
+    font-size:24px;
+}
+
+div.question .marker {
+    position:absolute;
+    top:-40px;
+}
+
+/* results */
+
+.graph-caption{
+	background-color: #e9e9e9;
+	padding:5px;
+	font-size:10px;
+}
+
+.race-nav a,
+.race-nav img {
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    vertical-align:top;
+}
+
+.race-nav img {
+    float:left;
+    position:relative;
+    margin-left:-30px;
+    margin-right:16px;
+}
+
+.race-nav a {
+    float:left;
+    border-left:1px solid #c9c9c9;
+    padding:2px 12px;
+    font-size:11px;
+    line-height:1.2em;
+}
+
+.race-cat .item.story-item h4{
+	margin-top: 8px;
+}
+
+.race-cat .item.story-item {
+margin-bottom: 0px;
+padding-bottom: 0px;
+}
+
+.election-results .story-item,
+.election-results .graph {
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    vertical-align:top;
+    width:47%;
+    border:0;
+}
+
+.election-results .story-item {
+    margin-left:20px;
+}
+
+.election-results .story-item .attribution {
+    max-width:140px;
+}
+
+.election-results .race-cat h2 {
+    margin:8px 0;
+    font-size:20px;
+}
+
+.race-cat {
+    border-bottom:1px dotted #999;
+    padding-bottom:20px;
+	margin-bottom: 20px;
+}
+
+.race-cat .prop {
+    width:278px;
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    vertical-align:top;
+}
+
+.race-cat .prop.last {
+    margin-left:20px;
+}
+
+.race-cat .prop h2 {
+    font-family:oswald,sans-serif;
+    text-transform:uppercase;
+    margin:0;
+}
+.race-cat .prop em {
+    color:#666666;
+    display:block;
+    padding:0px 0;
+}
+
+.race-cat.props .prop .race-caption{
+    border-bottom:1px dotted #666;
+}
+
+.race-cat .prop ul{
+
+}
+
+.race-cat .prop h3 {
+    text-transform:capitalize;
+    margin:10px 0 5px;
+}
+
+.race-cat.props {
+    border:0;
+}
+
+.other-links {
+    padding:20px 0;
+    background:url(../../images/mayor/qdiv.png) 0 0 no-repeat;
+}
+
+.other-links a {
+    display:block;
+    background:url(../../images/mayor/pagelink.png) 0 50% no-repeat;
+    padding:2px 0 2px 20px;
+}
+
