@@ -1,5 +1,0 @@
-Suggest a Story Email Body.
-
-{{name}}
-{{email}}
-{{body|safe}}
