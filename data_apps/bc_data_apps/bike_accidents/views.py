@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 from django.utils import simplejson
 from django.views.decorators.cache import never_cache
 
-from data_apps.google import ftclient
+from data_apps.lib.google import ftclient
 
 
 from data_apps.bc_data_apps.bike_accidents.models import *
