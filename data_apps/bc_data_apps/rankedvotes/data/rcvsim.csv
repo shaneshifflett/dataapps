@@ -1,0 +1,448 @@
+First,Second,Third
+Alioto-Pier,Adachi, Lee
+Avalos,Adachi, Lee
+Chiu,Adachi, Lee
+Chiu,Adachi, Lee
+Herrera,Adachi, Lee
+Herrera,Adachi, Lee
+Yee,Adachi, Lee
+Dufty,Alioto-Pier, Lee
+Dufty,Alioto-Pier, Lee
+Dufty,Alioto-Pier, Lee
+Herrera,Alioto-Pier, Lee
+Herrera,Avalos, Lee
+Adachi,Chiu, Lee
+Avalos,Chiu, Lee
+Dufty,Chiu, Lee
+Alioto-Pier,Dufty, Lee
+Alioto-Pier,Dufty, Lee
+Herrera,Dufty, Lee
+Herrera,Dufty, Lee
+Herrera,Dufty, Lee
+Herrera,Dufty, Lee
+Alioto-Pier,Hall, Lee
+Adachi,Herrera, Lee
+Avalos,Herrera, Lee
+Avalos,Herrera, Lee
+Adachi,Other, Lee
+Chiu,Yee, Lee
+Chiu,Yee, Lee
+Alioto-Pier, Lee,Adachi
+Avalos, Lee,Adachi
+Chiu, Lee,Adachi
+Chiu, Lee,Adachi
+Dufty, Lee,Adachi
+Herrera, Lee,Adachi
+Rees, Lee,Adachi
+Chiu,Alioto-Pier,Adachi
+Hall,Alioto-Pier,Adachi
+Herrera,Alioto-Pier,Adachi
+Rees,Alioto-Pier,Adachi
+ Lee,Chiu,Adachi
+ Lee,Chiu,Adachi
+ Lee,Chiu,Adachi
+ Lee,Dufty,Adachi
+ Lee,Herrera,Adachi
+ Lee,Herrera,Adachi
+ Lee,Herrera,Adachi
+Dufty,Herrera,Adachi
+Other,Herrera,Adachi
+ Lee,Other,Adachi
+Hall,Rees,Adachi
+Adachi, Lee,Alioto-Pier
+Avalos, Lee,Alioto-Pier
+Dufty, Lee,Alioto-Pier
+Herrera, Lee,Alioto-Pier
+Herrera, Lee,Alioto-Pier
+Yee, Lee,Alioto-Pier
+ Lee,Adachi,Alioto-Pier
+ Lee,Avalos,Alioto-Pier
+ Lee,Avalos,Alioto-Pier
+Herrera,Avalos,Alioto-Pier
+ Lee,Chiu,Alioto-Pier
+Ting,Chiu,Alioto-Pier
+Yee,Chiu,Alioto-Pier
+ Lee,Dufty,Alioto-Pier
+Dufty,Dufty,Alioto-Pier
+Herrera,Dufty,Alioto-Pier
+ Lee,Hall,Alioto-Pier
+ Lee,Hall,Alioto-Pier
+ Lee,Hall,Alioto-Pier
+ Lee,Hall,Alioto-Pier
+ Lee,Herrera,Alioto-Pier
+Hall,Rees,Alioto-Pier
+ Lee,Yee,Alioto-Pier
+Dufty,Yee,Alioto-Pier
+Herrera,Yee,Alioto-Pier
+Hall, Lee,Avalos
+Yee, Lee,Avalos
+ Lee,Adachi,Avalos
+Herrera,Adachi,Avalos
+Herrera,Adachi,Avalos
+Adachi,Alioto-Pier,Avalos
+Herrera,Alioto-Pier,Avalos
+Herrera,Alioto-Pier,Avalos
+Herrera,Chiu,Avalos
+Adachi,Dufty,Avalos
+Herrera,Dufty,Avalos
+Yee,Dufty,Avalos
+Dufty,Herrera,Avalos
+Dufty,Herrera,Avalos
+Dufty,Herrera,Avalos
+Herrera,Rees,Avalos
+Herrera,Yee,Avalos
+Yee, Lee,Chiu
+Yee, Lee,Chiu
+Yee, Lee,Chiu
+ Lee,Adachi,Chiu
+ Lee,Adachi,Chiu
+ Lee,Adachi,Chiu
+ Lee,Adachi,Chiu
+Adachi,Adachi,Chiu
+Other,Adachi,Chiu
+ Lee,Alioto-Pier,Chiu
+ Lee,Alioto-Pier,Chiu
+ Lee,Alioto-Pier,Chiu
+Adachi,Alioto-Pier,Chiu
+Adachi,Avalos,Chiu
+Herrera,Avalos,Chiu
+ Lee,Hall,Chiu
+ Lee,Herrera,Chiu
+ Lee,Herrera,Chiu
+ Lee,Herrera,Chiu
+ Lee,Herrera,Chiu
+ Lee,Herrera,Chiu
+Avalos,Herrera,Chiu
+Dufty,Herrera,Chiu
+Yee,Rees,Chiu
+ Lee,Yee,Chiu
+ Lee,Yee,Chiu
+ Lee,Yee,Chiu
+ Lee,Yee,Chiu
+Avalos,Yee,Chiu
+Herrera,Yee,Chiu
+Herrera,Yee,Chiu
+Avalos, Lee,Dufty
+Avalos, Lee,Dufty
+Chiu, Lee,Dufty
+Herrera, Lee,Dufty
+ Lee,Adachi,Dufty
+Alioto-Pier,Adachi,Dufty
+Avalos,Alioto-Pier,Dufty
+ Lee,Avalos,Dufty
+Yee,Avalos,Dufty
+ Lee,Chiu,Dufty
+ Lee,Chiu,Dufty
+Dufty,Dufty,Dufty
+Other,Herrera,Dufty
+ Lee,Yee,Dufty
+ Lee,Yee,Dufty
+Hall,Yee,Dufty
+Herrera,Yee,Dufty
+Alioto-Pier, Lee,Hall
+Alioto-Pier, Lee,Hall
+ Lee,Alioto-Pier,Hall
+Yee,Avalos,Hall
+Hall,Hall,Hall
+ Lee,Herrera,Hall
+Herrera,Rees,Hall
+Avalos, Lee,Herrera
+Chiu, Lee,Herrera
+Dufty, Lee,Herrera
+Dufty, Lee,Herrera
+Herrera, Lee,Herrera
+Yee, Lee,Herrera
+Avalos,Adachi,Herrera
+Avalos,Adachi,Herrera
+Yee,Adachi,Herrera
+ Lee,Avalos,Herrera
+ Lee,Avalos,Herrera
+Adachi,Avalos,Herrera
+Yee,Avalos,Herrera
+ Lee,Chiu,Herrera
+Adachi,Chiu,Herrera
+ Lee,Dufty,Herrera
+ Lee,Dufty,Herrera
+Alioto-Pier,Hall,Herrera
+Hall,Herrera,Herrera
+Avalos,Other,Herrera
+ Lee,Yee,Herrera
+ Lee,Yee,Herrera
+ Lee,Yee,Herrera
+Avalos,Yee,Herrera
+Other,Yee,Herrera
+Rees,Yee,Herrera
+Rees,Yee,Herrera
+ Lee,Dufty,Other
+Adachi,Dufty,Other
+ Lee,Other,Other
+ Lee,Other,Other
+Chiu,Yee,Other
+Chiu, Lee,Rees
+ Lee,Alioto-Pier,Rees
+Yee,Alioto-Pier,Rees
+Herrera,Avalos,Rees
+Adachi,Chiu,Rees
+ Lee,Hall,Rees
+ Lee,Herrera,Rees
+ Lee,Yee,Rees
+ Lee,Yee,Rees
+Adachi,Yee,Rees
+Rees,Alioto-Pier,Ting
+Hall,Rees,Ting
+ Lee,Yee,Ting
+Adachi, Lee,Yee
+Herrera, Lee,Yee
+ Lee,Adachi,Yee
+Dufty,Alioto-Pier,Yee
+ Lee,Avalos,Yee
+Chiu,Avalos,Yee
+Other,Avalos,Yee
+ Lee,Chiu,Yee
+ Lee,Chiu,Yee
+ Lee,Chiu,Yee
+ Lee,Chiu,Yee
+ Lee,Dufty,Yee
+Dufty,Herrera,Yee
+Ting,Herrera,Yee
+Alioto-Pier,Rees,Yee
+Alioto-Pier,Rees,Yee
+Adachi, Lee,NA
+Alioto-Pier, Lee,NA
+Alioto-Pier, Lee,NA
+Alioto-Pier, Lee,NA
+Avalos, Lee,NA
+Avalos, Lee,NA
+Avalos, Lee,NA
+Avalos, Lee,NA
+Chiu, Lee,NA
+Dufty, Lee,NA
+Hall, Lee,NA
+Herrera, Lee,NA
+Herrera, Lee,NA
+Other, Lee,NA
+Yee, Lee,NA
+ Lee,Adachi,NA
+ Lee,Adachi,NA
+Avalos,Adachi,NA
+Hall,Adachi,NA
+Herrera,Adachi,NA
+ Lee,Alioto-Pier,NA
+ Lee,Alioto-Pier,NA
+ Lee,Alioto-Pier,NA
+ Lee,Alioto-Pier,NA
+ Lee,Alioto-Pier,NA
+ Lee,Alioto-Pier,NA
+ Lee,Alioto-Pier,NA
+ Lee,Alioto-Pier,NA
+ Lee,Alioto-Pier,NA
+Adachi,Alioto-Pier,NA
+Hall,Alioto-Pier,NA
+Herrera,Alioto-Pier,NA
+Rees,Alioto-Pier,NA
+Rees,Alioto-Pier,NA
+Yee,Alioto-Pier,NA
+Yee,Alioto-Pier,NA
+Yee,Alioto-Pier,NA
+ Lee,Avalos,NA
+Adachi,Avalos,NA
+Alioto-Pier,Avalos,NA
+Herrera,Avalos,NA
+ Lee,Chiu,NA
+ Lee,Chiu,NA
+ Lee,Chiu,NA
+ Lee,Chiu,NA
+ Lee,Chiu,NA
+ Lee,Chiu,NA
+ Lee,Chiu,NA
+ Lee,Chiu,NA
+ Lee,Chiu,NA
+ Lee,Chiu,NA
+ Lee,Chiu,NA
+ Lee,Chiu,NA
+ Lee,Chiu,NA
+ Lee,Chiu,NA
+ Lee,Chiu,NA
+Alioto-Pier,Chiu,NA
+Alioto-Pier,Chiu,NA
+Avalos,Chiu,NA
+Hall,Chiu,NA
+Hall,Chiu,NA
+Yee,Chiu,NA
+ Lee,Dufty,NA
+ Lee,Dufty,NA
+ Lee,Dufty,NA
+ Lee,Dufty,NA
+Alioto-Pier,Dufty,NA
+Avalos,Dufty,NA
+Herrera,Dufty,NA
+Herrera,Dufty,NA
+Yee,Dufty,NA
+ Lee,Hall,NA
+Rees,Hall,NA
+ Lee,Herrera,NA
+ Lee,Herrera,NA
+ Lee,Herrera,NA
+ Lee,Herrera,NA
+ Lee,Herrera,NA
+Adachi,Herrera,NA
+Adachi,Herrera,NA
+Chiu,Herrera,NA
+Dufty,Herrera,NA
+Yee,Herrera,NA
+Yee,Herrera,NA
+Yee,Herrera,NA
+ Lee,Other,NA
+Yee,Other,NA
+ Lee,Rees,NA
+Adachi,Rees,NA
+Alioto-Pier,Rees,NA
+Chiu,Rees,NA
+Hall,Rees,NA
+Hall,Rees,NA
+Hall,Rees,NA
+Yee,Rees,NA
+ Lee,Ting,NA
+Rees,Ting,NA
+ Lee,Yee,NA
+ Lee,Yee,NA
+ Lee,Yee,NA
+ Lee,Yee,NA
+ Lee,Yee,NA
+ Lee,Yee,NA
+ Lee,Yee,NA
+Avalos,Yee,NA
+Avalos,Yee,NA
+Avalos,Yee,NA
+Chiu,Yee,NA
+Herrera,Yee,NA
+Herrera,Yee,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+ Lee,NA,NA
+Adachi,NA,NA
+Adachi,NA,NA
+Adachi,NA,NA
+Adachi,NA,NA
+Adachi,NA,NA
+Alioto-Pier,NA,NA
+Alioto-Pier,NA,NA
+Alioto-Pier,NA,NA
+Alioto-Pier,NA,NA
+Alioto-Pier,NA,NA
+Avalos,NA,NA
+Avalos,NA,NA
+Avalos,NA,NA
+Avalos,NA,NA
+Avalos,NA,NA
+Avalos,NA,NA
+Avalos,NA,NA
+Avalos,NA,NA
+Avalos,NA,NA
+Avalos,NA,NA
+Avalos,NA,NA
+Chiu,NA,NA
+Chiu,NA,NA
+Dufty,NA,NA
+Dufty,NA,NA
+Dufty,NA,NA
+Dufty,NA,NA
+Dufty,NA,NA
+Dufty,NA,NA
+Dufty,NA,NA
+Dufty,NA,NA
+Hall,NA,NA
+Hall,NA,NA
+Hall,NA,NA
+Hall,NA,NA
+Herrera,NA,NA
+Herrera,NA,NA
+Herrera,NA,NA
+Herrera,NA,NA
+Herrera,NA,NA
+Herrera,NA,NA
+Herrera,NA,NA
+Herrera,NA,NA
+Herrera,NA,NA
+Herrera,NA,NA
+Other,NA,NA
+Other,NA,NA
+Other,NA,NA
+Other,NA,NA
+Other,NA,NA
+Rees,NA,NA
+Rees,NA,NA
+Rees,NA,NA
+Rees,NA,NA
+Rees,NA,NA
+Rees,NA,NA
+Rees,NA,NA
+Rees,NA,NA
+Yee,NA,NA
+Yee,NA,NA
+Yee,NA,NA
+Yee,NA,NA
+Yee,NA,NA
+Yee,NA,NA
+Yee,NA,NA
+Yee,NA,NA
+Yee,NA,NA
+Yee,NA,NA
+Yee,NA,NA
+Yee,NA,NA
+Yee,NA,NA

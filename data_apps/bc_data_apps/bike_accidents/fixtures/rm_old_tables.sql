@@ -1,0 +1,5 @@
+drop table bike_accidents_bikeaccident;
+drop table bike_accidents_submittedbikeaccident;
+drop table bike_accidents_violationcode;
+drop table bike_accidents_vehicle;
+drop table bike_accidents_street;

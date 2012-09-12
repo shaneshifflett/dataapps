@@ -1,0 +1,7 @@
+SET foreign_key_checks = 0;
+drop table rankedchoice_candidateroundrank;
+drop table rankedchoice_candidateroundrank_roundovotes;
+drop table rankedchoice_rankedchoiceround;
+drop table rankedchoice_rankedchoiceround_candidate_rankings;
+drop table rankedchoice_rankedchoiceround_dropped_candidates;
+drop table rankedchoice_roundovotes;

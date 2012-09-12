@@ -25,13 +25,6 @@ DATABASES = {
         'PASSWORD':'',
         'HOST':'localhost',
     },
-    'slave': {
-        'ENGINE':'django.db.backends.mysql',
-        'NAME':'citizen',
-        'USER':'root',
-        'PASSWORD':'',
-        'HOST':'localhost',
-    },
 }
 
 
