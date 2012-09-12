@@ -1,4 +1,4 @@
-from models import *
+from data_apps.bc_data_apps.census2010.models import *
 import inspect
 
 def pct_change(old_val, new_val):

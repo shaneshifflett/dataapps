@@ -5,7 +5,7 @@ from django.conf import settings
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404, render_to_response
 
-from census2010.models import CensusGeography, CensusTableRow, GeographyType
+from data_apps.bc_data_apps.census2010.models import CensusGeography, CensusTableRow, GeographyType
 
 locale.setlocale(locale.LC_ALL, "")
 

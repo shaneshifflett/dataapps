@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('bc_data_apps.dataapps.census2010.views',
+urlpatterns = patterns('data_apps.bc_data_apps.census2010.views',
 	url('^$', 'list', {'geography':'county'}, name='census2010_index'),
 	url('^counties/$', 'list', {'geography':'county'}, name='census2010_county_list'),
 	url('^cities/$', 'list', {'geography':'place'}, name='census2010_city_list'),

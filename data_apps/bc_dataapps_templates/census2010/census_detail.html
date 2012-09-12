@@ -227,9 +227,6 @@
 				{% ifequal geo_type "legislative_upper" %}
 					<li><a href="{% url census2010_senate_list %}">All State Senate Districts</a>&gt;</li>
 				{% endifequal %}
-				{% ifequal geo_type "tract" %}
-					<li><a href="{% url census2010_tract_list %}">All Tracts</a>&gt;</li>
-				{% endifequal %}
 				<li>{{ geography.display_name }}</li>
 			</ul>
 			<div id="map">
@@ -241,7 +238,6 @@
 							<li><a href="{% url census2010_congressional_list %}">Congressional</a></li>
 							<li><a href="{% url census2010_senate_list %}">State Senate</a></li>
 							<li><a href="{% url census2010_assembly_list %}">State Assemblies</a></li>
-							<li><a href="{% url census2010_tract_list %}">Tracts</a></li>
 						{% endifequal %}
 						{% ifequal geo_type "place" %}
 							<li><a href="{% url census2010_county_list %}">Counties</a></li>
@@ -249,7 +245,6 @@
 							<li><a href="{% url census2010_congressional_list %}">Congressional</a></li>
 							<li><a href="{% url census2010_senate_list %}">State Senate</a></li>
 							<li><a href="{% url census2010_assembly_list %}">State Assemblies</a></li>
-							<li><a href="{% url census2010_tract_list %}">Tracts</a></li>
 						{% endifequal %}
 						{% ifequal geo_type "congressional" %}
 							<li><a href="{% url census2010_county_list %}">Counties</a></li>
@@ -257,7 +252,6 @@
 							<li class="active"><a href="{% url census2010_congressional_list %}">Congressional</a></li>
 							<li><a href="{% url census2010_senate_list %}">State Senate</a></li>
 							<li><a href="{% url census2010_assembly_list %}">State Assemblies</a></li>
-							<li><a href="{% url census2010_tract_list %}">Tracts</a></li>
 						{% endifequal %}
 						{% ifequal geo_type "legislative_upper" %}
 							<li><a href="{% url census2010_county_list %}">Counties</a></li>
@@ -265,7 +259,6 @@
 							<li><a href="{% url census2010_congressional_list %}">Congressional</a></li>
 							<li class="active"><a href="{% url census2010_senate_list %}">State Senate</a></li>
 							<li><a href="{% url census2010_assembly_list %}">State Assemblies</a></li>
-							<li><a href="{% url census2010_tract_list %}">Tracts</a></li>
 						{% endifequal %}
 						{% ifequal geo_type "legislative_lower" %}
 							<li><a href="{% url census2010_county_list %}">Counties</a></li>
@@ -273,7 +266,6 @@
 							<li><a href="{% url census2010_congressional_list %}">Congressional</a></li>
 							<li><a href="{% url census2010_senate_list %}">State Senate</a></li>
 							<li class="active"><a href="{% url census2010_assembly_list %}">State Assemblies</a></li>
-							<li><a href="{% url census2010_tract_list %}">Tracts</a></li>
 						{% endifequal %}
 						{% ifequal geo_type "tract" %}
 							<li><a href="{% url census2010_county_list %}">Counties</a></li>
@@ -281,7 +273,6 @@
 							<li><a href="{% url census2010_congressional_list %}">Congressional</a></li>
 							<li><a href="{% url census2010_senate_list %}">State Senate</a></li>
 							<li><a href="{% url census2010_assembly_list %}">State Assemblies</a></li>
-							<li class="active"><a href="{% url census2010_tract_list %}">Tracts</a></li>
 						{% endifequal %}
 					</ul>
 				</div>
