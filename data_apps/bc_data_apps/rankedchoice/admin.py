@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib import admin
-from bc_data_apps.dataapps.rankedchoice.models import *
+from data_apps.bc_data_apps.rankedchoice.models import *
 
 class RoundAdmin(admin.ModelAdmin):
     class Media:

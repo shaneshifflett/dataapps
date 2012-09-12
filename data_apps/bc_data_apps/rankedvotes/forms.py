@@ -1,5 +1,5 @@
 from django import forms
-from rankedvotes.models import RankedBallot
+from data_apps.bc_data_apps.rankedvotes.models import RankedBallot
 
 class RankedBallotForm(forms.Form):
 

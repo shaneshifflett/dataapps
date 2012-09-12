@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     (r'^data/immunizations/',    include('data_apps.bc_data_apps.immunizations.urls')),
     (r'^data/census-2010/',      include('data_apps.bc_data_apps.census2010.urls')),
     #(r'^mayors-race-2011/', include('bc_data_apps.dataapps.sfmayor2011.urls')),
-    #(r'^rankedchoice/',     include('bc_data_apps.dataapps.rankedchoice.urls')),
+    (r'^data/rankedchoice/',     include('data_apps.bc_data_apps.rankedchoice.urls')),
 )
 urlpatterns += patterns('',
     (r'^public/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT }),

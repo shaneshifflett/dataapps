@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('bc_data_apps.dataapps.rankedchoice.views',
+urlpatterns = patterns('data_apps.bc_data_apps.rankedchoice.views',
     url('^rcv-alternate-history/$',                    'race', 
         {'slug': 'oakland-mayoral'},  name='rankedchoice_alternate_history'),
     url('^sf-mayors-race/$',                    'race', 

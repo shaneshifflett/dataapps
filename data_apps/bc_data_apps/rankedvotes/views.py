@@ -10,8 +10,8 @@ from django.views.decorators.cache import never_cache
 
 from twilio import twiml
 
-from rankedvotes.forms import RankedBallotForm
-from rankedvotes.models import Race, RankedBallot, Candidate
+from data_apps.bc_data_apps.rankedvotes.forms import RankedBallotForm
+from data_apps.bc_data_apps.rankedvotes.models import Race, RankedBallot, Candidate
 
 def voice(request):
     r = twiml.Response()

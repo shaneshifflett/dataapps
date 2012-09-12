@@ -144,8 +144,8 @@ INSTALLED_APPS = (
     'data_apps.bc_data_apps.bike_accidents',
     'data_apps.bc_data_apps.immunizations',
     'data_apps.bc_data_apps.census2010',
-    #'bc_data_apps.dataapps.rankedvotes',
-    #'bc_data_apps.dataapps.rankedchoice',
+    'data_apps.bc_data_apps.rankedvotes',
+    'data_apps.bc_data_apps.rankedchoice',
 )
 
 # A sample logging configuration. The only tangible logging

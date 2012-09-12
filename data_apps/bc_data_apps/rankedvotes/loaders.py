@@ -1,4 +1,4 @@
-from rankedvotes.models import *
+from data_apps.bc_data_apps.rankedvotes.models import *
 from django.db import transaction, connection
 from datetime import datetime
 from django.db.models import Q

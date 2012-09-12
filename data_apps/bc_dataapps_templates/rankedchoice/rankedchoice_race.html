@@ -5,7 +5,6 @@
 {% endblock %}
 
 {% load generic_tags %}
-{% load content_filters %}
 {% block facebook_js %}
 <div id="fb-root"></div>
 <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
@@ -22,7 +21,7 @@
 {{block.super}}
 <style type="text/css">
 	canvas { 
-		background: url(../../../public/images/data-apps/rankedchoice/bg-chart.png) repeat-y;
+		background: url({{STATIC_URL}}images/data-apps/rankedchoice/bg-chart.png) repeat-y;
 	}
 	.node { 
 		background-color:transparent; 
@@ -32,7 +31,7 @@
 		position:absolute; 
 	} 
 	#g-infobar {
-		background: url(../../../public/images/data-apps/rankedchoice/bg-infobar-plain.png) repeat-y;
+		background: url({{STATIC_URL}}images/data-apps/rankedchoice/bg-infobar-plain.png) repeat-y;
 		position: relative;
 		width: 960px;
 	}
@@ -47,7 +46,7 @@
 		font-size: 24px;
 	}
 	#g-controls {
-		background: url(../../../public/images/data-apps/rankedchoice/bg-infobar-divd.png) bottom repeat-y;
+		background: url({{STATIC_URL}}images/data-apps/rankedchoice/bg-infobar-divd.png) bottom repeat-y;
 		position: relative;
 		width: 960px;
 		min-height: 75px;
@@ -55,7 +54,7 @@
 	#next-button {
 		text-indent: -9999em;
 		display: block;
-		background: url(../../../public/images/data-apps/rankedchoice/btn-next.png) top no-repeat;
+		background: url({{STATIC_URL}}images/data-apps/rankedchoice/btn-next.png) top no-repeat;
 		width: 107px;
 		height: 29px;
 		position: absolute;
@@ -113,7 +112,7 @@
 		padding: 0;
 	}
 	#rcv-legend {
-		background: url(../../../public/images/data-apps/rankedchoice/rcv-legend.png) top no-repeat;
+		background: url({{STATIC_URL}}images/data-apps/rankedchoice/rcv-legend.png) top no-repeat;
 		width: 268px;
 		height: 14px;
 		position: absolute;

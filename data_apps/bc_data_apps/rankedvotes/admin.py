@@ -1,7 +1,9 @@
 
 from django.conf import settings
 from django.contrib import admin
-from models import *
+from data_apps.bc_data_apps.rankedvotes.models import *
+
+
 class RaceAdmin(admin.ModelAdmin):
     class Media:
         js = (

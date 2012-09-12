@@ -2,16 +2,10 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.utils import simplejson
 from django.http import HttpResponse, HttpResponseRedirect
-from django.core.exceptions import ObjectDoesNotExist
 
-from decimal import *
+from data_apps.bc_data_apps.rankedchoice.models import RankedChoiceRound
+from data_apps.bc_data_apps.rankedvotes.models import Race
 
-from bc_data_apps.dataapps.rankedchoice.rankedchoice.models import RankedChoiceRound
-from bc_data_apps.dataapps.rankedchoice.rankedvotes.models import Race
-
-from content.models import Content 
-from django.db.models import Q
-from generics.utils import paginate_list
 from django.contrib.humanize.templatetags.humanize import intcomma
 
 
@@ -42,16 +36,8 @@ def race(request, slug, template_name="rankedchoice/rankedchoice_race.html"):
 
     context['total_votes'] = intcomma(race.get_ballots_cnt())
 
-    content = (Content.published_objects.filter(primary_topic__slug='sf-mayoral-race',
-        publication_status='P').order_by('-pub_date').exclude(
-            Q(classname='videos.video') | Q(classname='images.image') | 
-            Q(classname='images.gallery')))
-    pages, current_page = paginate_list(request, content)
 
     context['cssname'] = 'stories-Story'
-    context['pages'] = pages
-    context['current_page'] = current_page
-    context['content'] = current_page.object_list
     
     return render_to_response(template_name, context, context_instance=RequestContext(request))
 
