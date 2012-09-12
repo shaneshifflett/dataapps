@@ -1,4 +1,5 @@
 import os
+import dj_database_url
 from os import environ
 
 env = lambda e, d: environ[e] if environ.has_key(e) else d# Django settings for bc_data_apps project.
@@ -26,7 +27,8 @@ DATABASES = {
         'HOST':'localhost',
     },
 }
-
+if not DEBUG:
+    DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
