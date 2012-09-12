@@ -26,21 +26,6 @@ DATABASES = {
         'HOST':'localhost',
     },
 }
-if not DEBUG:
-    #DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
-    dbname = env('DBNAME', '')
-    dbuser = env('DBUSER', '')
-    dbpass = env('DBPASS', '')
-    dbhost = env('DBHOST', '')
-    DATABASES = {
-        'default': {
-            'ENGINE':'django.db.backends.mysql',
-            'NAME': dbname,
-            'USER': dbuser,
-            'PASSWORD': dbpass,
-            'HOST': dbhost,
-        },
-    }
 
 
 # Local time zone for this installation. Choices can be found here:
