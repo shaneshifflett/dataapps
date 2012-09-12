@@ -1,0 +1,196 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+
+.app-hd .info {
+    background-position: 0 -88px;
+    color: #306991;
+    float: left;
+    font-size: 16px;
+    height: 25px;
+    line-height: 1em;
+    padding-top: 4px;
+    margin-top: 10px;
+    text-shadow: 1px 1px 0 #FFFFFF;
+}
+
+.padding {
+    margin:20px;
+    margin-top:0px;
+}
+
+#topgraph {
+    float:right;
+    margin-left:20px;
+}
+
+.row1 {
+    padding-bottom:20px;
+}
+
+.row2 {
+    background:url(../../images/polls/sliderbg.png) no-repeat;
+    width:620px;
+    height:122px;
+    position:relative;
+    margin-left:-20px;
+}
+
+#slider {
+    margin:20px 0 0 50px;
+}
+
+#slider li a {
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    vertical-align:top;
+    width:30%;
+    margin-right:10px;
+    font-weight:normal;
+}
+
+#slider li a strong {
+    font-weight:normal;
+}
+
+#slider li a img {
+    float:left;
+    margin-right:10px;
+    border:1px solid #b4b4b4;
+    -moz-box-shadow: 0px 2px 2px #888;
+    -webkit-box-shadow: 0px 2px 2px #888;
+    box-shadow: 0px 2px 2px #888;
+}
+
+.row2 .btns {
+    position:absolute;
+    left:50px;
+    bottom:3px;
+    width:550px;
+    text-align:center;
+}
+
+.row2 .btns a {
+    text-transform:uppercase;
+    color:#686868;
+    text-decoration:none;
+    font-family:helvetica;
+    font-weight:bold;
+    font-size:bold;
+    margin:0 3px;
+}
+
+.row2 .btns a span {
+    font-size:18px;
+    line-height:80%;
+}
+
+.row2 .btns a:hover {
+    color:#005293;
+}
+
+.row2 .btns a.pg {
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    vertical-align:top;
+    width:12px;
+    height:12px;
+    text-indent:-999px;
+    overflow:hidden;
+    background:url(../../images/polls/pgbtn.jpg) no-repeat -15px 50%;
+    position:relative;
+    bottom:-4px;
+    margin:0 0;
+}
+
+.row2 .btns a.pg.cur {
+    background:url(../../images/polls/pgbtn.jpg) no-repeat 0px 50%;
+}
+
+
+#slider li a:hover img {
+    border:1px solid #e37222;
+}
+
+#polls-index ul, #polls-index ul li {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+#polls-index h1, #polls-index h2 {
+    font-family:"Oswald",sans-serif;
+    margin:10px 0;
+    font-weight:normal;
+    text-transform:uppercase;
+}
+
+.row3 {
+    border-bottom:1px dotted #999;
+    padding-bottom:15px;
+    margin-bottom:15px;
+}
+
+.row3 ul {
+    width:110%;
+}
+
+.row3 li {
+    float:left;
+}
+
+.row3 li a {
+    display:block;
+    float:left;
+    margin-right:22px;
+}
+
+.row3 li a strong {
+    display:block;
+    font-family:"Georgia";
+    font-size:16px;
+    margin:4px 0;
+    font-weight:normal;
+}
+
+
+/* Methodology Section */
+
+#methodology, #demographics {
+	padding-top: 15px;
+	border-top: 1px dotted #b4b4b4;
+}
+#methodology h1, #demographics h1 {
+	font-family: 'Oswald', sans-serif;
+	font-size: 24px;
+	font-weight: normal;
+	text-transform: uppercase;
+	margin-bottom: 10px;
+}
+
+/* Demographics Section */
+
+#demographics ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#demographics li {
+	display: inline-block;
+	margin: 0 12px 15px 0;
+}
+#demographics li.last {
+	margin-right: 0;
+}
+#demographics li img {
+	display: block;
+	padding: 1px;
+	border: 1px solid #b4b4b4;
+}
+#demographics .demo-title {
+	font-family: Georgia, serif;
+	font-size: 16px;
+	line-height: 16px;
+	margin-top: 7px;
+	display: block;
+}

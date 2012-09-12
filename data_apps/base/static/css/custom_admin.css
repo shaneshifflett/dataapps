@@ -1,0 +1,125 @@
+/* overrides Django's built-in admin styles */
+
+div#branding h1#login_title,
+div#branding h1#logout_title
+{
+	padding: 0;
+	color: #ddd;
+}
+
+div#branding h1#login_title
+{
+	margin: 0.5em 0 0 1em;
+	margin: 0.5em 0 0 1em !important;
+	font-weight: bold;
+}
+
+div#branding h1#logout_title
+{
+	margin: 0.5em 0 0 1em;
+	margin: 0.825em 0 0 1.25em !important;
+	font-size: 11px;
+	font-size: 11px !important;
+}
+
+div.inline-group
+{
+	margin: 0;
+	padding: 0;
+}
+/**/
+
+a.external
+{
+	padding-right: 12px;
+	background: url(http://static.texastribune.org/common/images/ico_ext_link_gray.gif) scroll right center no-repeat;
+	border: none;
+	outline: none;
+}
+
+.ajax_indicator
+{
+	display: block;
+	margin: 10px 0 10px 0;
+}
+
+.ui-sortable
+{
+	font-size: 0.875em;
+}
+
+.ui-sortable, .ui-sortable li
+{
+	font-weight: normal;
+}
+
+.ui-sortable li, ul.sortable_container.no_drag li ul li
+{
+	cursor: move;
+}
+
+ul.sortable_container.no_drag li
+{
+	cursor: default;
+}
+
+ul.sortable_container, ul.sortable_container li, .ui-sortable, .ui-sortable li
+{
+	list-style: none;
+}
+
+.ui-sortable li span
+{
+	margin-left: 0.5em;
+}
+
+ul.sortable_container
+{
+	font-size: 1.25em;
+	font-weight: bold;
+	margin-left: 0;
+	padding-left: 0;
+	margin-top: 1em;
+}
+
+ul.sortable_container li
+{
+	font-weight: bold;
+	margin-top: 1em;
+	font-size: 1em;
+}
+
+ul.sortable_container li ul
+{
+	padding-left: 1em;
+	padding-bottom: 1.5em;
+}
+
+ul.sortable_container li ul li
+{
+	font-weight: normal;
+	font-size: 1em;
+	margin-top: 0.5em;
+}
+
+li.sortable
+{
+	color: #417690;
+	cursor: move;
+}
+
+li.sortable.normal
+{
+	font-weight: normal;
+}
+
+.friendly_datetime_now,
+.friendly_time_widget
+{
+	margin-left: 1em;
+}
+
+.friendly_time_widget
+{
+	display: inline;
+}

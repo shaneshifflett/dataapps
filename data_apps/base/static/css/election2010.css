@@ -1,0 +1,410 @@
+.statewide_races, .statewide_ballot_measures, .local_races, .local_ballot_measures	{
+	height: 42px;
+	width:592px;
+	font-size:14px;
+	font-weight:bold;
+	color:transparent;
+	margin-left:-21px;
+	margin-top: 10px;
+	text-indent: -999em;
+}
+
+.statewide_races	{
+	background: url(../images/election2010/statewide_races.gif) no-repeat;
+}
+
+.statewide_ballot_measures	{
+	background: url(../images/election2010/statewide_ballot_measures.gif) no-repeat;
+}
+
+.local_races	{
+	background: url(../images/election2010/local_races.gif) no-repeat;
+}
+
+.local_ballot_measures	{
+	background: url(../images/election2010/local_ballot_measures.gif) no-repeat;
+}
+
+.innercontent	{	
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+/**
+width:592px;padding:0px;	}
+**/
+
+
+.submeasuresblue	{
+	height: 40px;
+	width:592px;
+	background: url(../images/election2010/racetitlebarbg.gif) no-repeat;
+	font-size:15px;
+	font-weight:bold;
+	color:#005395;
+	padding:4px 20px 0px 20px;
+	text-transform:underline;
+	margin:0 0 0 -21px;
+	overflow:show;
+	text-decoration: underline;
+}
+
+
+.electionstory	{
+	padding:0;
+	margin:0;
+}
+
+.substory	{
+	padding:0 0px 10px 0px;
+	font-size: .9em;
+	color: #4D4D4D;
+}
+.substory .deck {
+	font-weight: bold;
+	color: #4D4D4D;
+	font-size: 11px;
+	margin-bottom: 5px;
+}
+
+.substorytitle h4	{
+	font-size: 14px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-weight: bold;
+	margin:0 0 5px;	
+}
+.elections2010 .substory .thumb {
+	margin-bottom: 15px;
+}
+.substorybyline	{
+	font-size:10px;
+	color:#969696;
+	padding-bottom:4px;
+}
+
+/** POLL **/
+
+.poll	{
+	float: right;
+	font-size: 12px;
+	margin: 0 -20px 0 20px;
+	padding: 0 0 10px 0;
+	width: 240px;
+}
+
+.latestpoll	{
+	font-style:oblique;
+	color:#969696;
+}
+.latestpoll span {
+	color: #646464;
+	font-weight: bold;
+}
+
+.polldate	{color:#a81e23;font-size:10px; margin-bottom: 7px;}
+
+.pollseeall {
+	font-size: 11px;
+	padding-right: 10px;
+}
+.pollspread	{color:#6e6e6e;font-size:12px;}
+
+.pollspread2	{color:#307543;font-weight:bold;}
+
+#race-chart-8	{	background: none url(../images/election2010/graph_bg.gif) no-repeat;
+}
+
+.thumb	{float:left;margin:0 8px 5px 0;}
+
+
+
+
+/* BEGIN NAVIGATION BAR */
+#electionsNav {
+	background: #eaf6ff;
+	padding-left: 20px;
+	margin: -19px -21px 15px -21px;
+}
+#electionsNav h1 {
+	margin: 0;
+	padding: 0;
+	float: left;
+	background: url(../images/layout/logo-elections2010.png) no-repeat top left; width: 167px; height: 48px;
+}
+#electionsNav span {
+	left: -999em;
+	position: absolute;
+}
+#electionsNav p {
+	color: #6f9bbc;
+	font-size: 12px;
+	font-weight: bold;
+	font-style: italic;
+	margin: 16px 0 0 35px;
+	float: left;
+}
+#nav {
+	margin: 0;
+	padding: 0;
+	line-height: 100%;
+	height: 54px;
+	background: #eaf6ff; /* for non-css3 browsers */
+}
+#nav li {
+	margin: 0;
+	padding: 0;
+	float: right;
+	position: relative;
+	list-style: none;
+	cursor: pointer;
+	height: 54px;
+}
+#nav li strong {
+	display: block;
+	padding: 10px;
+}
+/* main level link */
+#nav a {
+	font-weight: bold;
+	color: #005395;
+	text-decoration: none;
+	display: block;
+	padding:  8px 20px;
+	margin: 0;
+}
+/* main level link hover */
+#nav .current a, #nav li:hover > a {
+	background: #eaf6ff; /* for non-css3 browsers */
+	color: #005395;
+}
+/* sub levels link hover */
+#nav ul li:hover a, #nav li:hover li a {
+	background: none;
+	border: none;
+	color: #005395;
+	z-index: 100;
+}
+#nav ul a:hover {
+	background: #005395 !important; /* for non-css3 browsers */
+	color: #fff !important;
+	z-index: 100;
+}
+/* level 2 list */
+#nav ul {
+	background: #eaf6ff; /* for non-css3 browsers */
+	display: none;
+	margin: 0;
+	padding: 0;
+	width: auto;
+	position: absolute;
+	top: 54px;
+	right: 0;
+	border: solid 1px #b1d4ef;
+	z-index: 100;
+}
+/* dropdown */
+#nav li:hover > ul {
+	display: block;
+}
+#nav li:hover > ul {
+     -moz-box-shadow: 0px 3px 5px #6d6d6d; 
+  -webkit-box-shadow: 0px 3px 5px #6d6d6d; 
+          box-shadow: 0px 3px 5px #6d6d6d; 
+}
+#nav ul li {
+	float: none;
+	margin: 0;
+	padding: 0;
+	white-space: nowrap;
+}
+#nav ul a {
+	font-weight: normal;
+}
+#nav li li {
+	text-align: right;
+	cursor: auto;
+	height: auto;
+}
+/* clearfix */
+#nav:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+#nav {
+	display: inline-block;
+}
+html[xmlns] #nav {
+	display: block;
+}
+.navlabel {
+  background-color: #badaf2;
+  background-image: -moz-linear-gradient(top, #eaf6ff, #badaf2); 
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eaf6ff),color-stop(1, #badaf2)); 
+            filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#eaf6ff', EndColorStr='#badaf2'); 
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#eaf6ff', EndColorStr='#badaf2')"; 
+}
+ul#nav li.navlabel {
+	border-left: 1px solid #b1d4ef;
+	border-right: 1px solid #b1d4ef;
+}
+ul#nav li.navlabel:first-child {
+	border-right: none;
+}
+ul#nav li.navlabel:last-child {
+	border-right: none;
+}
+#nav li li.navlabel {
+	color: #000000;
+	border: none;
+}
+#nav .statewide {
+	background: url(../images/layout/elections-navbar.png) top left no-repeat;
+	width: 129px;
+	height: 54px;
+}
+#nav .statewide:hover {
+	background-position: bottom left;
+}
+#nav .local {
+	background: url(../images/layout/elections-navbar.png) top right no-repeat;
+	width: 91px;
+	height: 54px;
+}
+#nav .local:hover {
+	background-position: bottom right;
+}
+/* END NAVIGATION BAR */
+
+
+/* FEATURED STORY */
+.elections2010 .featured {
+	display: inline-block;
+	margin: 0;
+	padding: 0 0 15px 0;
+	border-bottom: 1px dotted #b4b4b4;
+}
+.elections2010 .featured .details {
+	margin-bottom: 6px;
+}
+.elections2010 .featured .thumb {
+	width: auto;
+	height: auto;
+	float: left;
+	margin: 0 20px 0 0;
+	padding: 0;
+}
+.elections2010 .featured .storyDetails {
+	float: left;
+	width: 240px;
+	font-size: .9em;
+}
+.elections2010 .featured .deck {
+	margin: 0 0 10px 0;
+	padding: 0;
+	font-size: 1.1em;
+}
+.elections2010 .featured .relatedStories {
+	font-weight: bold;
+	font-size: 10px;
+	text-transform: uppercase;
+	margin: 15px 0 0 0;
+	padding: 0;
+}
+.featured .relatedStories ul {
+	list-style: square;
+	margin: 5px 0 0 15px;
+	padding: 0;
+	text-transform: none;
+	font-size: 11px;
+}
+/*END FEATURED STORY */
+
+.elections2010 .secondaryStories {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+/*BEGIN POLLING PAGE POLL TABLE
+.elections2010 table .white {
+	background: #ffffff;
+}
+.elections2010 table .grey {
+	background: #f7f7f7;
+}
+th { font-size: 13px; font-family: Arial, Helvetica, sans-serif; font-weight:bold; border: 1px solid #b4b4b4; }
+th {
+  background-color: #eaf6ff;
+  background-image: -moz-linear-gradient(top, #eaf6ff, #badaf2); 
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eaf6ff),color-stop(1, #badaf2)); 
+            filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#eaf6ff', EndColorStr='#badaf2'); 
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#eaf6ff', EndColorStr='#badaf2')"; 
+}
+th {border: 1px solid #b4b4b4; text-align: center; border-top: none; }
+th:first-child { text-align: left; border-left: none; }
+th:last-child { border-right: none; }
+table {
+	border: 1px solid #b4b4b4;
+}
+/*END POLLIONG PAGE POLL TABLE */
+
+.tableTitle {
+	font: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	margin: 10px 0 5px 0;
+	padding-top: 15px;
+	border-top: 1px dotted #b4b4b4;
+}
+
+/*LATEST POLL MODULE */
+.module.pulse.poll {
+	margin: 20px 0 0 0;
+	font-size: 12px;
+}
+.module.pulse.poll .bluebar {
+	background: url(../images/layout/election-pollmodule-bluebar.png) no-repeat;
+	width: 332px;
+	height: 40px;
+	font-size: 1em;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 5px 20px 0 20px;
+}
+.module.pulse.poll .pollwrap {
+	margin: 0 20px 10px 20px;
+	border-bottom: 1px dotted #b4b4b4;
+}
+.module.pulse.poll .pollwrap.noborder { border: none; }
+.pollwrap .date {
+	font-size: .9em;
+}
+.pollwrap .pollname {
+	font-size: .9em;
+	float: left;
+}
+.pollwrap .spread {
+	font-size: .95em;
+	float: right;
+}
+.pollwrap .spread strong {
+	font-weight: bold;
+	color: #307543;
+}
+.pollwrap .graph {
+	padding: 10px 0;
+}
+.pollwrap .winner { color: #358e10; }
+.liveResults { background: url(../images/layout/header-2010election-live-results.png) top left no-repeat; width: 334px; height: 63px; text-indent: -999em; }
+.liveResults h2 { margin: 0; padding: 0; }
+/*END LATEST POLL MODULE */
+
+.elections2010 .seeallstories {
+	float: right;
+	margin-top: 9px;
+}

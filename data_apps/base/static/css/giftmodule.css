@@ -1,0 +1,151 @@
+/* Rejiggering the blue banner txt if a gift module exists */
+
+#donate .bluebar { 
+	height: 33px;
+}
+#donate #step2 {
+	background: url("https://d1m7jskxfd7v6.cloudfront.net/images/donate/giftmodule/step2-1.png") no-repeat;
+	width: 348px;
+	height: 15px;
+	text-indent: -999em;
+	margin: 0;
+	padding: 0;
+}
+#donate #step3 {
+	background: url("https://d1m7jskxfd7v6.cloudfront.net/images/donate/giftmodule/step3-1.png") no-repeat;
+	width: 246px;
+	height: 15px;
+	text-indent: -999em;
+	margin: 0;
+	padding: 0;
+}
+#donate .giftmodule label {
+	font-size: 18px;
+	font-family: Georgia, serif;
+	line-height: 18px;
+	margin-bottom: 20px;
+	display: inline;
+	margin-right: 15px;
+	font-weight: normal;
+	color: #000;
+}
+.gifts-container {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.gifts-container ul {
+	margin: 0 0 0 10px;
+	padding: 0;
+	list-style: none;
+}
+.gift {
+	text-align: center;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	position: relative;
+	width:111px;
+	margin: 10px 10px;
+	vertical-align: top;
+}
+.gift .gifthead {
+	background: url(https://d1m7jskxfd7v6.cloudfront.net/images/donate/giftmodule/giftItem-topBanner.png) top left no-repeat;
+	width: 111px;
+	height: 24px;
+	position: relative;
+	z-index: 5;
+	font-size: 11px;
+	font-weight: bold;
+	font-family: Helvetica, sans-serif;
+	color: #fff;
+	line-height: 11px;
+	padding: 4px 0 0 0;
+	text-shadow: 0 -1px 0 #1771a5;
+	white-space: nowrap;
+	max-width: 111px;
+	overflow: hidden;
+}
+.gift .giftbody {
+	background: url(https://d1m7jskxfd7v6.cloudfront.net/images/donate/giftmodule/giftItem-bg.png) top left repeat;
+	width: 99px;
+	height: 99px;
+	border-left: 1px solid #b4b4b4;
+	border-right: 1px solid #b4b4b4;
+	margin: -9px 0 0 5px;
+	*margin-left:0px;
+	position: relative;
+	z-index: 3;
+	max-height: 99px;
+	max-width: 99px;
+	overflow: hidden;
+}
+.gift .giftbody a {
+	line-height: 99px;
+	display: block;
+	height: 99px;
+}
+.gift .giftbody img {
+	display: inline;
+	vertical-align: middle;
+}
+.gift .giftfoot {
+	background: url(https://d1m7jskxfd7v6.cloudfront.net/images/donate/giftmodule/giftItem-selectBg.png) top left no-repeat;
+	width: 103px;
+	height: 26px;
+	margin: 0 0 0 4px;
+	*margin-left: 2px;
+	padding: 4px 0 0 2px;
+	*padding: 2px 0 0 2px;
+}
+.gift .giftfoot label {
+	font-size: 11px !important;
+	font-family: Helvetica, sans-serif !important;
+	color: #666 !important;
+	text-transform: uppercase;
+	text-shadow: 0 1px 0 #fff;
+	*display: inline !important;
+	*zoom: 1;
+	*margin-top: 2px;
+}
+.gift .giftdesc {
+	font-size: 14px;
+	font-family: Georgia, serif;
+	line-height: 18px;
+	width: 103px;
+	margin: 3px 0 0 4px;
+}
+.gift .giftoption {
+	margin: 0 0 0 4px;
+}
+.gift .giftoption select {
+	width: 103px;
+}
+a.bx-next {
+	background: url(https://d1m7jskxfd7v6.cloudfront.net/images/donate/giftmodule/icon_arrow_right.png) bottom left no-repeat;
+	width: 31px;
+	height: 31px;
+	display: block;
+	text-indent: -9999em;
+	position: absolute;
+	top: 200px;
+	right: -2px;
+	z-index: 10;
+}
+a.bx-next:hover {
+	background-position: top;
+}
+a.bx-prev {
+	background: url(https://d1m7jskxfd7v6.cloudfront.net/images/donate/giftmodule/icon_arrow_left.png) bottom left no-repeat;
+	width: 31px;
+	height: 31px;
+	display: block;
+	text-indent: -9999em;
+	position: absolute;
+	top: 200px;
+	left: -20px;
+	z-index: 10;
+}
+a.bx-prev:hover {
+	background-position: top;
+}

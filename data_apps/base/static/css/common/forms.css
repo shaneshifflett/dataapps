@@ -1,0 +1,75 @@
+
+/* Generic Form Styling */
+
+.formcontrol {
+    margin-bottom:12px;
+}
+
+.formcontrol label,
+.formcontrol .label {
+    font-weight:bold;
+    display:block;
+    font-size:14px;
+    color:#616161;
+    margin-bottom:5px;
+}
+
+.formcontrol .required {
+    color:#ff0000;
+}
+
+.formcontrol .example {
+    color:#999;
+    font-size:10px;
+    display:block;
+}
+
+.formcontrol.radiogroup label,
+.formcontrol.checkbox label {
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+}
+
+.formcontrol.textbox input,
+.formcontrol.textarea textarea {
+       -moz-box-shadow:inset 0px 0px 2px #AAAAAA;
+    -webkit-box-shadow:inset  0px 0px 2px #AAAAAA;
+            box-shadow:inset  0px 0px 2px #AAAAAA;
+    padding:8px;
+    font-size:12px;
+    font-family:Helvetica, sans-serif;
+    color:#636363;
+    border:1px solid #B4B4B4;
+}
+
+/* datepicker */
+.formcontrol.textbox.datepicker input {
+    width:116px;
+    margin-right:10px;
+}
+
+/* timepicker */
+.formcontrol.timepicker select {
+    margin-right:8px;
+    width:50px;
+}
+
+.formcontrol.radiogroup ul,
+.formcontrol.radiogroup ul li {
+    margin:0;
+    padding:0;
+    list-style:none;
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    vertical-align:top;
+}
+
+.formcontrol.radiogroup ul {
+    display:block;
+}
+
+
+
+
