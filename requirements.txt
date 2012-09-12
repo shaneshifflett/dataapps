@@ -7,3 +7,4 @@ python-fusiontables
 django-tables
 boto
 dj_database_url
+MySQL-python
