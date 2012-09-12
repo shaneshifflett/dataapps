@@ -8,3 +8,4 @@ django-tables
 boto
 dj_database_url
 MySQL-python
+django-storages
