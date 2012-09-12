@@ -34,6 +34,13 @@ DATABASES = {
     },
 }
 
+if not DEBUG:
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID', '')
+    AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', '') 
+    AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME', '')
+    STATIC_URL = env('STATIC_URL', '')
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.

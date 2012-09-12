@@ -6,4 +6,4 @@ google
 simplejson
 python-fusiontables
 django-tables
-dj-database-url
+boto
