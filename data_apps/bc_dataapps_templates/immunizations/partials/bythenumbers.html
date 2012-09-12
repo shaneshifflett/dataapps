@@ -1,0 +1,188 @@
+{% load generic_tags humanize %}
+<div id="primaryStats">
+	<h2 class="bigteal">By the Numbers{% if numbers_geo_title%}: {{numbers_geo_title}} {%endif%}</h2>
+	<p>All statistics are for kindergarten enrollment at start of the 2010-11 school year.<br><br>
+	    
+    <a href='{% url immunizations_cities %}'>View all Cities</a> |
+	<a href='{% url immunizations_districts %}'>View all School Districts</a> |
+    <a href='{% url immunizations_schools %}'>View all Schools</a> 
+    </p>
+    <section class="two-col fifty-fifty">
+        <div class="col c1">
+        	<h3>Up-to-date immunization rate</h3>
+        	<table border="0" cellspacing="0" cellpadding="0">
+        	   <thead>
+        	       <tr>
+        	           <th>
+        	           School Type
+        	           </th>
+        	           <th class="value">
+        	           Rate
+        	           </th>
+        	       </tr>
+        	   </thead>
+        	   <tbody>
+        	       <tr>
+        	           <td>
+        	           Public
+        	           </td>
+        	           <td class="value">
+        	           {{total_public_iz_percent|floatformat:2}}%
+        	           </td>
+        	       </tr>
+        	       <tr class="odd">
+        	           <td>
+        	           Private
+        	           </td>
+        	           <td class="value">
+        	           {%if total_private_iz_percent %} {{total_private_iz_percent|floatformat:2}}% {%else%} N/A {% endif %}
+        	           </td>
+        	       </tr>
+        	       <tr>
+        	           <td>
+        	           Statewide immunization rate
+        	           </td>
+        	           <td class="value">
+						90.76%
+        	           </td>
+        	       </tr>
+        	       <tr class="tfoot">
+        	           <td>
+        	           Total
+        	           </td>
+        	           <td class="value">
+        	           {{total_iz_percent|floatformat:2}}%
+        	           </td>
+        	       </tr>
+        	   </tbody>
+        	</table>
+        	<h3>Conditional entrance rate</h3>
+        	<table border="0" cellspacing="0" cellpadding="0">
+        	   <thead>
+        	       <tr>
+        	           <th>
+        	           School Type
+        	           </th>
+        	           <th class="value">
+        	           Rate
+        	           </th>
+        	       </tr>
+        	   </thead>
+        	   <tbody>
+        	       <tr>
+        	           <td>
+        	           Public
+        	           </td>
+        	           <td class="value">
+        	           {{total_public_conditional_percent|floatformat:2}}%
+        	           </td>
+        	       </tr>
+        	       <tr class="odd">
+        	           <td>
+        	           Private
+        	           </td>
+        	           <td class="value">
+        	           {% if total_private_conditional_percent %}{{total_private_conditional_percent|floatformat:2}}% {%else%} N/A {%endif%}
+        	           </td>
+        	       </tr>
+        	       <tr class="tfoot">
+        	           <td>
+        	           Total
+        	           </td>
+        	           <td class="value">
+        	           {{total_conditional_percent|floatformat:2}}%
+        	           </td>
+        	       </tr>
+        	   </tbody>
+        	</table>
+        </div><div class="col c2">
+        	<h3>Personal belief exemption rate</h3>
+        	<table border="0" cellspacing="0" cellpadding="0">
+        	   <thead>
+        	       <tr>
+        	           <th>
+        	           School Type
+        	           </th>
+        	           <th class="value">
+        	           Rate
+        	           </th>
+        	       </tr>
+        	   </thead>
+        	   <tbody>
+        	       <tr>
+        	           <td>
+        	           Public
+        	           </td>
+        	           <td class="value">
+        	           {{total_pbe_percent|floatformat:2}}%
+        	           </td>
+        	       </tr>
+        	       <tr class="odd">
+        	           <td>
+        	           Private
+        	           </td>
+        	           <td class="value">
+        	           {% if total_private_pbe_percent %}{{total_private_pbe_percent|floatformat:2}}% {%else%} N/A {%endif%}
+        	           </td>
+        	       </tr>
+        	       <tr>
+        	           <td>
+        	           Statewide exemption rate
+        	           </td>
+        	           <td class="value">
+						2.28%
+        	           </td>
+        	       </tr>
+        	       <tr class="tfoot">
+        	           <td>
+        	           Total
+        	           </td>
+        	           <td class="value">
+        	           {{total_pbe_percent|floatformat:2}}%
+        	           </td>
+        	       </tr>
+        	   </tbody>
+        	</table>
+        	<h3>Enrolled kindergartners</h3>
+        	<table border="0" cellspacing="0" cellpadding="0">
+        	   <thead>
+        	       <tr>
+        	           <th>
+        	           School Type
+        	           </th>
+        	           <th class="value">
+        	           Count
+        	           </th>
+        	       </tr>
+        	   </thead>
+        	   <tbody>
+        	       <tr>
+        	           <td>
+        	           Public
+        	           </td>
+        	           <td class="value">
+        	           {{total_public_number|intcomma}}
+        	           </td>
+        	       </tr>
+        	       <tr class="odd">
+        	           <td>
+        	           Private
+        	           </td>
+        	           <td class="value">
+        	           {% if total_private_number %}{{total_private_number|intcomma}} {%else%} N/A {%endif%}
+        	           </td>
+        	       </tr>
+        	       <tr class="tfoot">
+        	           <td>
+        	           Total
+        	           </td>
+        	           <td class="value">
+        	           {{total_enrollment_number|intcomma}}
+        	           </td>
+        	       </tr>
+        	   </tbody>
+        	</table>
+            
+        </div>
+    </section>
+</div>

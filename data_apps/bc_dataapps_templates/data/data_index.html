@@ -1,0 +1,258 @@
+{% extends "dataapps/dataapps_base.html" %}
+{% load generic_tags %}
+{% load content_filters %}
+{% block internal_css_includes %}
+    {{block.super}}
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/common/forms.css" type="text/css"/>
+    <link rel="stylesheet" href="{{MEDIA_URL}}slidingtabs/css/slidingtabs-vertical.css" type="text/css"/>
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/dataapps/app_library.css" type="text/css"/>
+{% endblock %}
+
+{% block internal_js_includes %}
+    {{block.super}}
+    <script type="text/javascript" src="{{MEDIA_URL}}slidingtabs/js/plugins/jquery.mousewheel.min.js"></script> <!-- Optional -->
+    <script type="text/javascript" src="{{MEDIA_URL}}slidingtabs/js/plugins/jquery.easing.1.3.js"></script> <!-- Optional -->
+    <script type="text/javascript" src="{{MEDIA_URL}}slidingtabs/js/jquery.slidingtabs.pack.js"></script>
+    <!--script type="text/javascript" src="{{MEDIA_URL}}js/hoverup/jquery.hoverup.pack.js"></script-->
+    <script src="{{ MEDIA_URL }}js/jquery.form.js"></script>
+{% endblock %}
+
+{% block js %}
+    {{block.super}}
+    <script type="text/javascript" charset="utf-8">
+    	$(document).ready(function() {
+      		// Vertical Sliding Tabs Demo
+      		$('div#st_vertical').slideTabs({  			
+    			// Options
+    			contentAnim: 'slideH',
+    			contentAnimTime: 1200,
+    			contentEasing: 'easeInOutExpo',
+    			orientation: 'vertical',
+    			autoplay: true,
+    			autoplayInterval: 8000,
+      			tabsAnimTime: 1200			
+      		});		
+            $("#loading-tabs").animate({"opacity":0}, { duration: 600 }).remove();
+    		
+            // $('.app').mouseover(function(){
+            //     $('.app:hover .qf-hover').mouseover();
+            // });
+            // 
+            // $('.app').mouseout(function(){
+            //     $('.qf-hover').mouseout();
+            // });
+            // 
+            // $('.qf-hover').hoverup({
+            //     fade:false,
+            //     position: 'bottom'
+            // });
+
+            $('#suggest-idea-form').ajaxForm({
+            	success: function(responseText, statusText)  {
+                    $('#suggest-form-fail').hide();
+                    $('#suggest-form-success').fadeIn();
+            	},
+            	error: function(request, text, error) {
+                    $('#suggest-form-success').hide();
+                    $('#suggest-form-fail').fadeIn();
+            	} 
+            });      		        
+            
+        });
+    </script>
+{% endblock %}
+
+
+{% block content %}
+<div id="data-app" class="library clearfix">
+    {% block header_menu %}
+    <div class="app-hd">
+        <div id="da-select-menu">
+            <a href="#" title="Select an Application" class="btn dd">
+                <span>
+                    Data App Quick Select
+                    <strong>View Applications</strong>
+                </span>
+            </a>
+            {% block quick_app_select_menu %}
+            {{block.super}}
+            {% endblock %}
+        </div>
+        <strong class="info">Data Library Index</strong>
+    </div>
+    {% endblock %}
+
+
+
+    
+    <!-- Start HTML - Vertical tabs -->
+    <div id="loading-tabs"></div>
+    
+    <div id="st_vertical" class="st_vertical">                        	                                                                                          
+        <div class="st_tabs_container">                               
+            <a href="#prev" class="st_prev"></a>
+            <a href="#next" class="st_next"></a>                                    					
+            <div class="st_slide_container">
+                <ul class="st_tabs">
+                    {% for featured_project in featured_project_list %}
+                        <li>
+                            <a href="#stv_content_{{forloop.counter}}" rel="v_tab_{{forloop.counter}}" class="st_tab">
+            				    <span>{{ featured_project.title }}</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div> <!-- /.st_slide_container -->                                                                                          
+        </div> <!-- /.st_tabs_container -->                               
+        <div class="st_view_container">
+            <div class="st_view">
+                {% for featured_project in featured_project_list %}
+                    <div id="stv_content_{{forloop.counter}}" class="st_tab_view">
+        			    <a class="leadart_c" href="{{featured_project.get_absolute_url}}">
+                        {{ featured_project.lead_art|render_media_obj:"feature" }}
+                        </a>
+                        <p class="deck">
+                            {{ featured_project.subscript }}
+                        </p>
+                        <a href='{{featured_project.get_absolute_url}}' class="launch awesome medium orange">Launch</a>
+                    </div>
+                {% endfor %}
+            </div> <!-- /.st_view --> 
+        </div> <!-- /.st_view_container -->                                                    	            
+    </div> <!-- /#st_vertical -->                    
+    
+    
+    
+    
+    
+    
+    
+	<div class="columns clearfix">
+	  <div class="column leftcol">
+	      <h2>More Projects</h2>
+          {% for featured_content in featured_content_list %}
+    	      <div onclick="window.location='{{featured_content.get_absolute_url}}';" class="app {% cycle '' '' 'last' %}">
+					{% if featured_content.quick_fact != None and featured_content.quick_fact != "" %}
+                  <span class="qf-hover">
+        	          {{featured_content.lead_art|render_media_obj:'feature_3col'}}
+					  <small>{{featured_content.quick_fact }}</small>
+                  </span>
+					{% else %}
+					<span class="qf-nonhover">
+        	          {{featured_content.lead_art|render_media_obj:'feature_3col'}}
+					</span>
+					{% endif %}
+                  <h3>{{featured_content.title|truncatewords:9}}</h3>
+                  <p class="appdesc">
+                      {{featured_content.subscript|truncatewords:20}}
+                  </p>
+                  <span class="updated">Last Updated: {{featured_content.updated_at|date:'n/j/y'}}</span>
+                  <a href='{{featured_content.get_absolute_url}}' class="launch awesome medium orange">Launch</a>
+    	      </div>
+          {% endfor %} 
+		  {% paginate pages %}
+	  </div>
+
+
+	  <div class="column rightcol">
+	      <h2>Topics We Love</h2>
+          {% for featured_destination in featured_destination_list %}
+          <a href="{{featured_destination.get_absolute_url}}" title="Check out this page" style="margin-bottom: 10px;">
+            {{featured_destination.lead_art|render_media_obj:'rightrail'}}
+          </a>
+          {% endfor %}
+          <h2>Bay Citizen Tech Blog</h2>
+          <a href="/blogs/sandbox/" title="Check out The Sandbox">
+              <img src="/public/images/datalibrary/sandbox.png" alt="about The Sandbox">
+          </a>
+          <h2>What Should We Build Next?</h2>
+			<h6>Send your ideas for future data projects!</h6>
+          <p>Have questions about how things work in the Bay Area? Know of a dataset we should look at? Our team wants your suggestions.
+          </p>
+          <form id='suggest-idea-form' action="{% url data_suggest %}" method="post">{% csrf_token %}
+              {{form.errors}}
+              <div id='suggest-form-success' class="message success hide">
+                <h3>Thanks for your idea!</h3>
+                <p>
+                    We'll talk it over and see what we can do.
+                </p>
+              </div>
+              <div id='suggest-form-fail' class="message failure hide">
+                <h3>Whoops!</h3>
+                <p>
+                    Looks like you left out some information . . .
+                </p>
+              </div>
+              <div id="name-control" class="formcontrol textbox">
+                  <label for="id_name">
+                      {{form.name.label}}
+                      <span class="required">*</span>
+                  </label>
+                  {{form.name}}
+              </div>
+              <div id="name-control" class="formcontrol textbox">
+                  <label for="id_email">
+                      {{form.email.label}}
+                      <span class="required">*</span>
+                  </label>
+                  {{form.email}}
+              </div>
+              <div id="body-control" class="formcontrol textarea">
+                  <label for="id_body">
+                      {{form.body.label}}
+                      <span class="required">*</span>
+                  </label>
+                  {{form.body}}
+              </div>
+               <button class="awesome medium red">Send</button>
+          </form>
+          <div id="whats-hot" class="tab-box">
+            <h2>What's Hot<span></span></h2>
+            
+            <div class="tab-box-content-c">
+                    <div id="hot-tabs" class="inner ui-tabs tab-box-content">
+                        <ul class="tabs clearfix">
+                            <li class="tab"><a href="#hot-viewed-tab">Most Viewed</a></li>
+                            <li class="tab"><a href="#hot-discussed-tab">Most Discussed</a></li>
+                        </ul>
+
+                        <div id="hot-viewed-tab" class="items">
+                            {% for content in most_viewed_content %}
+                                <div class="tb-item">
+                                    <h6><a href="{{content.get_absolute_url}}">{{content.title}}</a></h6>
+                                    <cite>
+                                        by <span class="attribution">{{content.get_authors_str}}</span>
+                                    </cite>
+                                    {% if content.comments_count %}
+                                        <span class="comments"><a href='{{content.get_absolute_url}}comments/'>{{content.comments_count|default:"0"}} comment{{content.comments_count|pluralize}}</a></span>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <div id="hot-discussed-tab" class="items ui-tabs-hide">
+                             {% for content in most_discussed_content %}
+                                <div class="tb-item">
+                                    <h6><a href="{{content.get_absolute_url}}">{{content.title}}</a></h6>
+                                    <cite>
+                                        by <span class="attribution">{{content.get_authors_str}}</span>
+                                    </cite>
+                                    {% if content.comments_count %}
+                                        <span class="comments"><a href='{{content.get_absolute_url}}comments/'>{{content.comments_count|default:"0"}} comment{{content.comments_count|pluralize}}</a></span>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <img src="/public/images/datalibrary/whtb.gif" alt="">
+
+            </div>
+
+          </div>
+
+	  </div>
+	</div>
+
+</div>
+{% endblock %}

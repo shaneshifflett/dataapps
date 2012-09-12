@@ -1,0 +1,27 @@
+{% load generic_tags humanize %}
+<h2 class="bigteal">Immunization and Enrollment Stats for {{county.name}} County</h2>
+<p>What percent of kindergartners were fully immunized by the start of the 2010-11 school year in each city? How many kindergartners' parents opted out? Click a column name to sort.</p>
+<table class="schoolresults raw-table-data ">
+<thead>
+	<tr>
+		<th><a href="?order={% ifequal order '-city' %}city{% else %}-city{% endifequal %}" class="{% simple_sort order "name" %}">City</a></th>
+		<th class="rightAlign"><a href="./?order={% ifequal order '-percent_up_to_date' %}percent_up_to_date{% else %}-percent_up_to_date{% endifequal %}" class="{% simple_sort order "percent_up_to_date" %}">Up-to-date immunization rate</a></th>
+		<th class="rightAlign"><a href="./?order={% ifequal order '-percent_pbe' %}percent_pbe{% else %}-percent_pbe{% endifequal %}" class="{% simple_sort order "percent_pbe" %}">Personal belief exemption rate</a></th>
+		<th class="rightAlign"><a href="./?order={% ifequal order '-enrollment' %}enrollment{% else %}-enrollment{% endifequal %}" class="{% simple_sort order "enrollment" %}">Kindergartners enrolled in 09-10 school year</a></th>
+		<th class="rightAlign"><a href="./?order={% ifequal order '-percent_public' %}percent_public{% else %}-percent_public{% endifequal %}" class="{% simple_sort order "percent_public" %}">Public school enrollment</a></th>
+		<th class="rightAlign"><a href="./?order={% ifequal order '-percent_private' %}percent_private{% else %}-percent_private{% endifequal %}" class="{% simple_sort order "percent_private" %}">Private school enrollment</a></th>
+	</tr>
+</thead>
+<tbody>
+	{% for row in rows %}
+		<tr class="{% cycle '' 'alternate' %}">
+			<td><a href="{% url immunizations_city row.city.slug %}">{{row.city.name|title}}</a></td>
+			<td class="rightAlign">{{row.percent_up_to_date|floatformat:2|intcomma|default:0}}%</td>
+			<td class="rightAlign">{{row.percent_pbe|floatformat:2|intcomma|default:0}}%</td>
+			<td class="rightAlign">{{row.enrollment|intcomma}}</td>
+			<td class="rightAlign">{{row.percent_public|floatformat:2|intcomma|default:0}}%</td>
+			<td class="rightAlign">{{row.percent_private|floatformat:2|intcomma|default:0}}%</td>
+		</tr>
+	{% endfor %}
+</tbody>
+</table>

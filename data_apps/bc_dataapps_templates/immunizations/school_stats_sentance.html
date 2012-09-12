@@ -1,0 +1,6 @@
+Quick Fact: At <a href="{{url}}">{{descriptor}}</a>, 
+{% ifequal percent '0.00' %}
+no parents submitted "Personal Belief Exemption" waivers to opt out of vaccinating their kindergarten-bound children in the 2010-11 school year.
+{% else %}
+{{percent|default:"0"}} % of kindergartners weren't fully immunized in the 2010-11 school year due to their parents' personal beliefs.
+{% endifequal %}

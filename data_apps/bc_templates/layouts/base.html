@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://www.facebook.com/2008/fbml" {% block extra_xmlns %}{% endblock%}>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        {% block meta_medium %}<meta name="medium" content="news" />{% endblock %}
+        <meta property="fb:app_id" content="124286200948438"/>
+        <meta name="readability-verification" content="Cp3Kh3qLzJUN9n946MtuNyqJmmb5KtqpHkvdWhED"/>       
+        {% block meta %}{% endblock %}
+        
+        <title>{% block page_title %}The Bay Citizen{% endblock %}</title>
+        
+        <link rel="shortcut icon" href="https://citizen-media.s3.amazonaws.com/images/favicon.ico">
+        
+        
+            <link rel="stylesheet" charset="utf-8" type="text/css" media="screen, projection" href="{{MEDIA_URL}}js/fancybox/jquery.fancybox-1.3.1-v3.css" />
+            <link rel="stylesheet" href="{{MEDIA_URL}}css/baycitizen.css" type="text/css" media="screen, projection"/>
+            <link rel="stylesheet" href="{{MEDIA_URL}}css/baycitizen2.css" type="text/css" media="screen, projection"/>
+            <link rel="stylesheet" href="{{MEDIA_URL}}css/blueprint/print.css" type="text/css" media="print"/>
+            <link rel="stylesheet" href="{{MEDIA_URL}}css/common/forms.css" type="text/css" media="screen, projection"/>
+            <link rel="stylesheet" href="{{MEDIA_URL}}css/common/comments.css" type="text/css" media="screen, projection"/>
+            <link rel="stylesheet" href="{{MEDIA_URL}}css/ads.css" type="text/css" media="screen, projection"/>
+            <link rel="stylesheet" href="{{MEDIA_URL}}css/common/bc-panel.css" type="text/css" media="screen, projection"/>
+            {% block internal_css_includes %}
+			{% endblock %}
+        {% block external_css_includes %}{% endblock %} 
+        {% block css %}{% endblock %}
+        
+        {% block ielove %}
+
+        {% endblock %}
+        
+        {% block extra_head %}
+        {% endblock %}
+        <script type="text/javascript" src="{{MEDIA_URL}}js/jquery/jquery-1.6.4.min.js"></script>
+        <script type="text/javascript" src="{{MEDIA_URL}}js/jquery-ui-1.8.13.custom.min.js"></script>
+        <script type="text/javascript" src="{{MEDIA_URL}}js/html5shiv.js"></script>
+
+
+        {% block head_js %}
+        {% endblock %}
+
+
+
+        <!-- Google Analytics Queue Start --> 
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-15406259-1']);
+            _gaq.push(['_trackPageview']);
+            _gaq.push(['_trackPageLoadTime']);
+            {% if request.session.referral %}
+            	_gaq.push(['_setVar', '{{ request.session.referral }}']);
+            	_gaq.push(['_setCustomVar', 5, 'Referral', '{{ request.session.referral }}', 3]);
+        	{% endif %}
+        	{% block google_analytics_queue %}
+        	{% endblock %}
+        </script>
+        <!-- Google Analytics Queue End -->        
+        <script type="text/javascript" src="{{MEDIA_URL}}js/ga_social_tracking.js"></script>
+    </head>
+    {% block body_tag %}
+    <body>
+    {% endblock %}
+    
+        {% block facebook_js %}
+            <div id="fb-root"></div>
+            <script>
+              window.fbAsyncInit = function() {
+                FB.init({appId: '124286200948438', status: true, cookie: true,
+                         xfbml: true});
+                _ga.trackFacebook();
+              };
+              (function() {
+                var e = document.createElement('script'); e.async = true;
+                e.src = document.location.protocol +
+                  '//connect.facebook.net/en_US/all.js';
+                document.getElementById('fb-root').appendChild(e);
+              }());
+                (function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+            </script>            
+        {% endblock %}
+        {% block twitter_js %}
+        <script>
+            (function(){
+                var twitterWidgets = document.createElement('script');
+                twitterWidgets.type = 'text/javascript';
+                twitterWidgets.async = true;
+                twitterWidgets.src = 'https://platform.twitter.com/widgets.js';
+                
+                // Setup a callback to track once the script loads.
+                twitterWidgets.onload = _ga.trackTwitter;
+                
+                document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+            })();
+        </script>        
+        {% endblock %}
+        
+        <div class="full">
+            <!-- header -->
+            <header id="hd">
+            {% block involved %}
+	            
+	        {% endblock %}
+	        
+	        {% block header %}
+	          
+		    {% endblock %}
+
+            {% block nav_container %}
+            {% endblock %}
+            
+            {% block subnav %}
+            {% endblock %}
+
+            </header>
+            <!-- end header -->
+            
+            <!-- main body -->
+            {% block maincontainer %}
+	        <!-- main container -->
+            <section id="bd" class="cf">
+                {% block content %}
+				    <div id="main" class="fixed main">
+				        <!-- right column -->
+				        <div id="right-column" class="rightColumn">
+				            {% block right_column %}
+				            {% endblock %}
+				        </div>
+				        <!-- end right column -->
+				    
+                        <!-- left column -->
+				        {% block content_column %}
+                        {% endblock %}
+				        <div class="clear"></div>
+				     </div>
+				    <!-- end left column -->                
+                {% endblock %}
+            {% block bottom_leaderboard %}
+            {% endblock %}
+            </section>
+		    <!-- end main container -->
+			{% endblock %}
+            <!-- end main body -->
+			
+
+
+            <!-- footer -->
+
+            <!-- end footer -->
+        </div>
+        
+
+
+        <script type="text/javascript">  (function() {
+            var ga = document.createElement('script');     ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:'   == document.location.protocol ? 'https://ssl'   : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+        <!-- Google Analytics End -->
+        
+		<!-- Start AddThis tag -->
+        {% block addthis_js %} 
+        {% endblock %}
+		<!-- End AddThis tag -->
+
+        <!-- Start Google plusone tag -->
+        {% block plusone_js %} 
+        {% endblock %}
+        <!-- End Google plusone tag -->
+
+        
+        <!-- Extra Analytics Start -->        
+        {% block extra_analytics %}
+        {% endblock %}
+        <!-- Extra Analytics End -->
+
+        <!-- Tracking End -->
+
+            <script src="{{MEDIA_URL}}js/fancybox/jquery.fancybox-1.3.1.js" type="text/javascript" charset="utf-8"></script>
+            <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.meerkat.1.3.js"></script>
+            <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.defaultvalue.js"></script>
+            <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.cookie.js"></script>
+            <script type="text/javascript" src="{{MEDIA_URL}}js/base.js"></script>
+            {% block internal_js_includes %}
+            {% endblock %}
+        {% block external_js %}
+        {% endblock %}
+        {% block js %}{% endblock %}
+       
+    </body>
+</html>

@@ -1,0 +1,35 @@
+{% extends "dataapps/dataapps_base.html" %}
+{% block internal_css_includes %}
+    {{block.super}}
+{% endblock %}
+
+{% block external_css_includes %}
+	{{block.super}}
+{% endblock %}
+
+{% block internal_js_includes %}
+    {{block.super}}
+{% endblock %}
+
+<style type="text/css">
+
+</style>
+
+{% block app_title %}
+<a href="{% url rankedchoice_race_index 'bay-citizen-usf-mayoral-poll' %}" style="font-size:.8em;line-height:12px; display:block;">Ranked-Choice Voting<sup style="margin-top: 9px; display: block; font-size:.9em;">Simulator</sup></a>
+{% endblock %}
+
+
+{% block social_links %}
+    <div>         
+	<a href="http://twitter.com/share" class="twitter-share-button" data-url="www.baycitizen.org/data/rankedchoice" data-text="" data-count="horizontal" data-via="TheBayCitizen" data-related="shaneshifflett">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>  
+    </div>                                                                                                                                                   
+    <div>                                                                                                                                                    
+        <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.baycitizen.org%2Fdata%2Frankedchoice%2F&amp;layout=button_count&amp;show_faces=true&amp;width=130&amp;action=recommend&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:21px;" allowTransparency="true"></iframe>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    {{block.super}}
+{% endblock %}

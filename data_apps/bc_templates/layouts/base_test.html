@@ -1,0 +1,62 @@
+{% load cache compress topics_tags weather profile_tags %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        {% block meta_medium %}<meta name="medium" content="news" />{% endblock %}
+        {% block meta %}{% endblock %}
+        <title>{% block page_title %}The Bay Citizen{% endblock %}</title>
+        
+                {% block extra_head %}{% endblock %}
+    </head>
+    
+    <body>
+        
+            {% block involved %}
+	            
+	        {% endblock %}
+	        
+	        {% block header %}
+	            
+		    {% endblock %}
+
+            
+                {% block nav %}
+	                
+	            {% endblock %}
+            
+
+            
+                    {% block subnav %}
+                        
+                    {% endblock %}
+                
+            
+            {% block maincontainer %}
+		        
+	                {% block content %}
+				
+					            {% block right_column %}
+					            {% endblock %}
+				
+					        {% block content_column %}
+	                        {% endblock %}
+				                
+	                {% endblock %}
+	            
+			{% endblock %}
+
+            
+                {% block footer %}
+	        
+	            {% endblock %}
+            
+        {% block external_js %}
+        {% endblock %}
+        {% compress js "" MEDIA_URL %}
+	        
+			{% block internal_js_includes %}
+			{% endblock %}
+		{% endcompress %}
+        {% block js %}{% endblock %}
+        

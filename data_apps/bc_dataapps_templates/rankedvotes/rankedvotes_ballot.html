@@ -1,0 +1,59 @@
+{% extends "rankedchoice/rankedchoice_base.html" %}
+{% block page_title %}{{page_title}}The Bay Citizen/Cal Academy - Science of Voting{% endblock %}
+{% block meta %}
+{% endblock %}
+
+{% load generic_tags %}
+{% load content_filters %}
+{% block facebook_js %}
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+{% endblock %}
+
+{% block internal_css_includes %}
+    {{block.super}}
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/dataapps/rankedchoice/BarChart2.css" type="text/css"  />
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/mayor/mayor.css" type="text/css"/
+	<link rel="stylesheet" href="{{MEDIA_URL}}css/dataapps/polls.css" type="text/css"/>
+>
+{% endblock %}
+
+{% block head_js %}
+    {{block.super}}
+{% endblock %}
+
+{%block css%}
+{{block.super}}
+<style type='text/css'>
+h1, p{
+    color: #313131;
+    display: inline-block;
+    margin: 20px 20px 0px 20px;
+    *display: inline;
+    zoom: 1;
+    vertical-align: top;
+}
+button{
+    color: #313131;
+    display: inline-block;
+    margin: 37px 20px 1.5em;
+    *display: inline;
+    zoom: 1;
+    vertical-align: top;
+}
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+    <div class='bd-base'>
+        <h1>Science of Voting Ballot Entry</h1>
+        <form action="{% url rankedvotes_new_ballot race.slug %}" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock%}

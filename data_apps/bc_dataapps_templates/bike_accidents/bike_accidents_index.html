@@ -1,0 +1,434 @@
+{% extends "bike_accidents/bike_accidents_base.html" %}
+
+
+{% block page_title %}Bike Accidents - The Bay Citizen{% endblock %}
+
+{% block internal_css_includes %}
+    {{block.super}}
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/datepicker/redmond/jquery-ui-1.8.4.custom.css" type="text/css"  />
+{% endblock %}
+
+{% block internal_js_includes %}
+    {{block.super}}
+    <script src="{{ MEDIA_URL }}js/jquery.form.js"></script>
+{% endblock %}
+
+{% block external_js %}
+    {{block.super}}
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+{% endblock %}
+
+{% block js %}
+    {{block.super}}
+
+    <script type="text/javascript" charset="utf-8">
+
+		var vis_url = '{% url bike_accidents_index %}';
+		var charts_url = '{% url bike_accidents_charts %}';
+		var raw_url = '{% url bike_accidents_raw %}';
+		$(document).ready(function(){
+			$("#map_tab").attr('href', vis_url + '{{query_str|safe}}');
+			$("#raw_tab").attr('href', raw_url + '{{query_str|safe}}');
+			$("#charts_tab").attr('href', charts_url + '{{query_str|safe}}');
+		});
+        $('.filteroptions input[type=checkbox]').hide();
+        $('.filteroptions span.check').show();
+        $(".filteroptions span.check").click(function() {
+    		$(this).toggleClass("checked");
+    		$(this).next().click();
+    	});
+        
+        var map = null; 
+		var bay_area_bounds = new google.maps.LatLngBounds(new google.maps.LatLng(36.514051, -121.882324), new google.maps.LatLng(38.616870, -121.539001));
+        var accidents_layer = null; 
+		var county_layer = null;
+        var reported_accidents_layer = null; 
+        var hotspots_layer = null;
+        var route_layer = null; 
+        var stories_layer = null;
+		var browserSupportFlag =  new Boolean();
+		var initialLocation = null;
+		var initialZoom = 12;
+		var initQuery = decodeURIComponent("{{init_query|safe}}");
+		var default_county = '{{default_county}}';
+		var default_county_tbl = '{{default_county_tbl}}';
+		var last_county = null;
+		var centers = {
+			'Alameda': new google.maps.LatLng(37.674582, -122.082138),
+			'Contra Costa': new google.maps.LatLng(37.883525, -121.902924),
+			'Marin': new google.maps.LatLng(38.128075, -122.761230),
+			'Napa': new google.maps.LatLng(38.528830, -122.258606),
+			'San Francisco': new google.maps.LatLng(37.781298, -122.418594),
+			'San Mateo': new google.maps.LatLng(37.565807, -122.325211),
+			'Santa Clara': new google.maps.LatLng(37.356650, -121.954765),
+			'Solano': new google.maps.LatLng(38.336270, -121.894684),
+			'Sonoma': new google.maps.LatLng(38.603993, -122.98645)
+		}
+
+        function toggle_route() {
+            if(route_layer.map) {
+                route_layer.setMap(null);
+            }else {
+                route_layer.setMap(map);
+            }
+        }
+
+        function toggle_accidents() {
+            if(accidents_layer.map) {
+                accidents_layer.setMap(null);
+            }else {
+                accidents_layer.setMap(map);
+            }
+        }
+
+        function toggle_hotspots() {
+            if(hotspots_layer.map) {
+                hotspots_layer.setMap(null);
+            }else {
+                hotspots_layer.setMap(map);
+            }
+        }
+        
+        function toggle_reported_accidents() {
+            if(reported_accidents_layer.map) {
+                reported_accidents_layer.setMap(null);
+            }else {
+                reported_accidents_layer.setMap(map);
+            }
+        }
+
+        function toggle_heatmap() {
+			if(accidents_layer.heatmap == true){
+				accidents_layer.heatmap = false;
+			} else{
+				accidents_layer.heatmap = true;
+			}
+			accidents_layer.setMap(map);
+        }        
+
+        function toggle_stories() {
+            if(stories_layer.map) {
+                stories_layer.setMap(null);
+            }else {
+                stories_layer.setMap(map);
+            }
+        }        
+
+        function LegendText(controlDiv, name, title) {
+			
+        	// Set CSS for the control border
+        	var controlUI = document.createElement('DIV');
+        	controlUI.style.cursor = 'default';
+        	controlUI.style.textAlign = 'left';
+        	controlUI.title = title;
+        	controlDiv.appendChild(controlUI);
+        				
+        	// Set CSS for the control interior
+        	var controlText = document.createElement('SPAN');
+        	controlText.style.fontfamily = 'Arial,sans-serif';
+        	controlText.style.fontSize = '12px';
+        	controlText.innerHTML = name;
+        	controlUI.appendChild(controlText);
+        }
+        
+        function Legend(controlDiv, name, marker_name, title) {
+			
+        	// Set CSS for the control border
+        	var controlUI = document.createElement('DIV');
+        	controlUI.style.cursor = 'default';
+        	controlUI.style.textAlign = 'left';
+        	controlUI.title = title;
+        	controlDiv.appendChild(controlUI);
+        				
+        	var legendIcon = document.createElement('IMG');
+        	legendIcon.style.marginRight = '4px';
+        	legendIcon.src = 'http://media.baycitizen.org/images/bikeapp/markers/' + marker_name + '.png';
+        	controlUI.appendChild(legendIcon);
+        				
+        	// Set CSS for the control interior
+        	var controlText = document.createElement('SPAN');
+        	controlText.style.fontfamily = 'Arial,sans-serif';
+        	controlText.style.fontSize = '12px';
+        	controlText.innerHTML = name;
+        	controlUI.appendChild(controlText);
+        }
+		
+		function overlay_county(c_name, c_tbl_id){
+			if((last_county == null) || (last_county != null && last_county != c_name)){
+				if(county_layer != null)
+					county_layer.setMap(null);
+				county_layer = new google.maps.FusionTablesLayer(c_tbl_id, {query: "SELECT geometry FROM "+c_tbl_id+" WHERE NAME10='"+c_name+"'"});
+				county_layer.setMap(map);
+				map.setCenter(centers[c_name]);
+				map.setZoom(9);
+			}
+			last_county = c_name;
+		}
+
+		function checkdate(input){
+			var dateformat = /^\d{1,2}(\-|\/|\.)\d{1,2}\1\d{4}$/
+			return dateformat.test(input);
+		}
+         
+        $('#filter-form').ajaxForm({
+            beforeSubmit: function(formData, jqForm, options) {
+				var date_from = $("#id_date_from").val();
+				var date_to = $("#id_date_to").val();
+				var retVal = checkdate(date_from);
+				var retValDos = checkdate(date_to);
+				if(retVal && retValDos){
+					f_date = new Date(date_from);
+					t_date = new Date(date_to);
+					if(t_date <= f_date){
+						alert("Your from date should occur before your end date.");
+						return false;
+					}
+					end_date = new Date("12/31/2009");
+					start_date = new Date("01/01/2005");
+					if(f_date < start_date){
+						alert("Sorry, but our data set begins on 01/01/2005.  Please use a later from date.");
+						return false;
+					}
+					if(t_date > end_date){
+						alert("Sorry, but our data set ends on 12/31/2009.  Please use an earlier start date.");
+						return false;
+					}
+                	$('#filter-form .awesome').removeClass('orange').addClass('disabled').addClass('grey').attr('disabled', 'disabled').text('Updating Map . . .');
+				} else {
+					alert("Please enter a valid date (our format: mm/dd/YYYY)");
+					return false;
+				}
+                //$('#filter-form .loader').show();
+            },
+			beforeSend: function(xhr){
+				xhr.setRequestHeader('X-PJAX', 'true')
+			},
+        	success: function(responseText, statusText)  {
+        		var data = $.parseJSON(responseText);
+         		accidents_layer.setMap(null);
+                accidents_layer = new google.maps.FusionTablesLayer({{main_ft}}, {query: data.map_query});
+                accidents_layer.setMap(map);
+				if(data.county_name != null && data.county_name != ''){
+					overlay_county(data.county_name, data.county_tbl);
+				}
+                $('#filter-results').html(data.results);
+                $('#filter-form .awesome').addClass('orange').removeClass('disabled').removeClass('grey').removeAttr('disabled').text('Apply');
+                //$('#filter-form .loader').hide();
+                //$('#filter-form .submit').show().blur();
+
+				history.pushState('', 'query', vis_url + data.query_str);
+				$("#map_tab").attr('href', vis_url + data.query_str);
+				$("#raw_tab").attr('href', raw_url + data.query_str);
+				$("#charts_tab").attr('href', charts_url + data.query_str);
+
+				$(".twitter").html('');
+				$(".twitter").html('<span class="label">Twitter</span><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.html?url={{query_str|safe}}&count=none&related=shaneshifflett:davidsuriano:tasneemraja&text=I explored @TheBayCitizen\'s Bike Accident Tracker; check out accidents near you:" style="width:130px; height:25px;"></iframe><p><p></p></p><div class="clearfix"></div>');
+        	},
+            error: function(response){
+                console.log(response);
+            }
+        });
+       
+        $(function (){
+             $("#id_date_from").datepicker({
+    			showOn: "button",
+    			buttonImage: "{{MEDIA_URL}}images/icons/icon-calendar-bw-16x16.png",
+    			buttonImageOnly: true,
+    			dateFormat: 'mm/dd/yy',
+    			minDate: '01/01/05', 
+    			onSelect: function(selected_date) {
+    				$('#loading-notification').fadeIn();
+                }
+    		});
+            $("#id_date_to").datepicker({
+    			showOn: "button",
+    			buttonImage: "{{MEDIA_URL}}images/icons/icon-calendar-bw-16x16.png",
+    			buttonImageOnly: true,
+    			dateFormat: 'mm/dd/yy',
+    			maxDate: '11/30/10',
+    			onSelect: function(selected_date) {
+    				$('#loading-notification').fadeIn();
+                }
+    		});
+            var custom_map_style = [ { featureType: "poi", elementType: "all", stylers: [ { visibility: "simplified" } ] },
+        	                         { featureType: "administrative.land_parcel", elementType: "all", stylers: [ { visibility: "off" } ] }, 
+        	                         { featureType: "administrative.neighborhood", elementType: "all", stylers: [ { visibility: "off" }, { invert_lightness: true }] },
+        	                         { featureType: "landscape", elementType: "all", stylers: [ { visibility: "off" } ] },
+        	                         { featureType: "transit.line", elementType: "all", stylers: [ { visibility: "off" } ] },
+        	                         { featureType: "transit.station", elementType: "all", stylers: [ { visibility: "off" } ] } ];
+            var default_center = new google.maps.LatLng(37.778629, -122.446682);
+			
+            map = new google.maps.Map(document.getElementById('accident-map'), {
+              mapTypeControlOptions: {
+                  mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'custom']
+               }
+            });
+
+		  map.setCenter(default_center);
+		  map.setZoom(11);
+            
+			//if we have a county in the query, lets go to it
+			//should only execute on page load
+			if (default_county != null && default_county != '') {
+				overlay_county(default_county, default_county_tbl);
+			} 
+            var customMapType = new google.maps.StyledMapType(custom_map_style, {name: "Custom"})
+            map.mapTypes.set('custom', customMapType);
+            map.setMapTypeId('custom');
+
+            //  Set Default Layers
+            route_layer = new google.maps.BicyclingLayer();
+            route_layer.setMap(map);
+			if(initQuery != null && initQuery != ''){
+				accidents_layer = new google.maps.FusionTablesLayer({{main_ft}}, {query: initQuery});
+			} else {
+            	accidents_layer = new google.maps.FusionTablesLayer({{main_ft}}, {query: 'SELECT FullAddress FROM {{main_ft}}'});
+			}
+            accidents_layer.setMap(map);
+			reported_accidents_layer = new google.maps.FusionTablesLayer(445921);
+			stories_layer = new google.maps.FusionTablesLayer(415636);
+            //stories_layer = new google.maps.FusionTablesLayer(415636);
+			hotspots_layer = new google.maps.FusionTablesLayer({{hotspots}}, {query: "SELECT 'Full Address' FROM {{hotspots}} where 'accident count' >= 5;"});
+            hotspots_layer.setMap(map);
+
+            // Create the legend
+            legend = document.createElement('DIV');
+            legend.style.padding = '5px';
+            legend.style.marginRight = '5px';
+            legend.style.backgroundColor = 'white';
+            legend.style.borderStyle = 'solid';
+            legend.style.borderWidth = '2px';
+            
+            // Create the legend text
+            legendTitle = document.createElement('DIV');
+            new LegendText(legendTitle, 'Who was at fault?', 'atfault')
+            
+            // Create the at fault legend items
+            legendAtFault = document.createElement('DIV');
+            new Legend(legendAtFault, 'Bike', 'small_green', 'bike');
+            new Legend(legendAtFault, 'Motor Vehicle', 'small_blue', 'motor');
+            new Legend(legendAtFault, 'Pedestrian', 'small_purple', 'pedestrian');
+
+             // Create the legend text
+            legendOtherTitle = document.createElement('DIV');
+            new LegendText(legendOtherTitle, 'Other', 'other')
+             
+            // Create the at fault legend items
+            legendOther = document.createElement('DIV');
+            new Legend(legendOther, 'User Submitted', 'user_submitted', 'user');
+            new Legend(legendOther, 'Hotspots', 'hotspot', 'hotspot');
+            new Legend(legendOther, 'Stories', 'stories', 'stories');
+           
+            // Append at fault title and legend to actual legend
+            legend.appendChild(legendTitle)
+            legend.appendChild(legendAtFault);
+            legend.appendChild(legendOtherTitle)
+            legend.appendChild(legendOther)
+            legend.index = 1;
+            map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+			//last step, if we can get their position, center them correctly
+			
+			geo_locate();
+
+		  //http://code.google.com/apis/maps/documentation/javascript/basics.html#DetectingUserLocation
+		  //thx google!
+		  // Try W3C Geolocation (Preferred)
+			function geo_locate(){
+			  if(navigator.geolocation) {
+				browserSupportFlag = true;
+				navigator.geolocation.getCurrentPosition(function(position) {
+				  initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+					if(bay_area_bounds.contains(initialLocation)){
+				  		map.setCenter(initialLocation);
+					}
+				});
+			  // Try Google Gears Geolocation
+			  } else if (google.gears) {
+				browserSupportFlag = true;
+				var geo = google.gears.factory.create('beta.geolocation');
+				geo.getCurrentPosition(function(position) {
+				  initialLocation = new google.maps.LatLng(position.latitude,position.longitude);
+					if(bay_area_bounds.contains(initialLocation)){
+				  		map.setCenter(initialLocation);
+					}
+				});
+			  }
+			}
+        
+        });         
+
+    </script>
+{% endblock %}
+
+{% block main_column %}
+<div id="bike-app" class="cf">
+    <div class="inside-bike-app cf">
+        <div class="filters">
+    		{% include "bike_accidents/bike_accidents_filter.html" %}
+        </div>
+
+        <div class="application">
+        
+        
+        <ul class="bike-tabs cf">
+            <li class="current">
+                <a id="map_tab" href="{% url bike_accidents_index %}" title="Reported Accidents">
+                    Accident Map
+                </a>
+            </li>
+            <li class="">
+                <a id="charts_tab" href="{% url bike_accidents_charts %}" title="Reported Accidents">
+                    Charts
+                </a>
+            </li>
+            <li class="">
+                <a id="raw_tab" href="{% url bike_accidents_raw %}" title="Reported Accidents">
+                    Raw Data
+                </a>
+            </li>
+        </ul>
+        
+            <div class="overlay">
+                <h6 class="legend">Overlay:</h6>
+                <p class="filteroptions">
+                    <span class="filter">
+                        <span class="check checked" style="display:none"> </span><input type="checkbox" name='accidents' value='true' onClick='toggle_accidents();' checked/><label>Accidents</label>
+                    </span>
+                    <span class="filter">
+                        <span class="check" style="display:none"> </span><input type="checkbox" name='reported-accidents' value='true' onClick='toggle_reported_accidents();'/><label>User-Submitted Reports</label>
+                    </span>
+                    <span class="filter">
+                        <span class="check checked" style="display:none"> </span><input type="checkbox" name='hotspots' value='true' onClick='toggle_hotspots();' checked/><label>Hotspots</label>
+                    </span>
+					<span class="filter">
+                        <span class="check" style="display:none"> </span><input type="checkbox" name='heatmap' value='true' onClick='toggle_heatmap();'/><label>Heat Map</label>
+                    </span>
+                    <span class="filter">
+                        <span class="check" style="display:none"> </span><input type="checkbox" name='stories' value='true' onClick='toggle_stories();'/><label>Stories</label>
+                    </span>
+                    <span class="filter">
+                        <span class="check checked" style="display:none"> </span><input type="checkbox" name='bike-routes' value='true' onClick='toggle_route();' checked/><label>Bike Routes</label>
+                    </span>            
+                </p>
+            
+            </div>
+            <div class="main-body">
+                <div id='filter-results'>
+                    <span style="color:#12487a;">NOW SHOWING: </span>{{accidents_count}} accidents
+                    <span style="color:gray; font-size: .9em; font-style: normal;">| {{accidents_percent|floatformat:"-1"}}% of all cases</span><br />
+                    <span style="color:gray; font-size: .8em; font-weight: normal;">Locations with more than one accident display only the most recent one--see <a href="{% url bike_accidents_raw %}">Raw Data</a> for full list. Locations with 5+ crashes are marked as red Hotspots.</span>
+                </div>
+                <div id="accident-map-wrap">
+                    <div id="accident-map"></div>
+                </div>
+<!--                <div class="main-add">
+                    <img src="{{MEDIA_URL}}images/bikeapp/intel-add.jpg" alt="" />
+                </div>-->
+            </div>
+        </div>
+    </div>
+    <img id="lcfoot" src="{{MEDIA_URL}}images/bikeapp/lcfoot.jpg" alt="" height="10" width="201" />
+</div>
+<div class="byline">By: Zusha Elinson, Sydney Lupkin, Shane Shifflett, David Suriano & Tasneem Raja. Published 5/31/2011.</div>
+
+{% endblock %}

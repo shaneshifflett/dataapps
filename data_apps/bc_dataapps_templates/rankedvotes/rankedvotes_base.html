@@ -1,0 +1,36 @@
+{% extends "dataapps/dataapps_base.html" %}
+{% block internal_css_includes %}
+    {{block.super}}
+{% endblock %}
+
+{% block external_css_includes %}
+	{{block.super}}
+{% endblock %}
+
+{% block internal_js_includes %}
+    {{block.super}}
+{% endblock %}
+
+<style type="text/css">
+
+</style>
+
+{% block app_title %}
+<a href="#" style="font-size:.8em;line-height:12px; display:block;">Ranked-Choice Voting<sup style="margin-top: 9px; display: block; font-size:.9em;">Simulator</sup></a>
+{% endblock %}
+
+
+{% block social_links %}
+{% endblock %}
+
+{% block adslots %}
+{{ block.super }}
+GA_googleAddSlot("ca-pub-5050647251544365", "RightRail_Sponsor_160x600");                                                                                    
+GA_googleAddSlot("ca-pub-5050647251544365", "RightRail_House_160x600");
+GA_googleAddSlot("ca-pub-5050647251544365", "RightRail_Sponsor_180x150");                                                                                    
+GA_googleAddSlot("ca-pub-5050647251544365", "RightRail_House_180x150");
+{% endblock %}
+
+{% block js %}
+    {{block.super}}
+{% endblock %}

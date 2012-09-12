@@ -1,0 +1,52 @@
+{% extends "immunizations/immunizations_base.html" %}
+{% block page_title %}{{page_title}} - The Bay Citizen{% endblock %}
+{% block meta %}
+    <link rel="canonical" href="{% url immunizations_index %}" />
+{% endblock %}
+
+{% block internal_css_includes %}
+	{{block.super}}
+{% endblock %}
+
+{% block js %}
+    {{block.super}}
+    <script type="text/javascript">
+    $(document).ready(function() {
+		$("#slider").jCarouselLite({
+            btnNext: ".imageSliderExt .next",
+            btnPrev: ".imageSliderExt .prev",
+            visible: 1,
+            btnGo:
+            ["#slider .slide1", "#slider .slide2"]
+        });
+    });
+    </script>
+{% endblock %}
+{% block content %}
+	<div id="immunization" class="bd-base">
+		{% block header_menu %}
+			{{block.super}}
+		{% endblock %}
+
+		<div class="main-column col">
+			<section class="pad">
+				<h2 class="bigteal">Immunizations in {% if numbers_geo_title%} {{numbers_geo_title}} {%endif%}</h2>
+				{% include "immunizations/partials/city_county_state_graph.html" %}
+				{% include 'immunizations/partials/bythenumbers.html' %}
+				{% include 'immunizations/partials/school_search.html' %}
+				{% include "immunizations/partials/raw_table_city.html" %}
+			</section>
+    {% block fb_comments %}                                                                          
+        {{block.super}}                                                                              
+    {% endblock %}      
+		</div>
+		<div class="right-column col">
+    	    <div class="pad">
+    			{% include "immunizations/partials/stat.html" %}
+    			{% include "immunizations/partials/search.html" %}
+    			{% include "immunizations/partials/accordian.html" %}
+    			{% include "immunizations/partials/glossary.html" %}
+    		</div>
+    	</div>
+</div>
+{% endblock %}

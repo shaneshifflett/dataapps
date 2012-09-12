@@ -1,0 +1,66 @@
+<script type="text/javascript">
+$(document).ready(function() {
+
+        var chart2 = new Highcharts.Chart({
+            chart: {
+                renderTo: 'vacc_app_chart2',
+                defaultSeriesType: 'column',
+                height: 250,
+				width: 430,
+                margin: [30, 30, 100, 40]
+            },
+            legend: {
+                align: 'center',
+				layout: 'horizontal',
+                x: 30,
+                itemWidth: 105
+            },
+            xAxis: {
+                categories: ['Counties']
+            },
+            yAxis: {
+                min: 0,
+				title: {
+					text: 'Percent',
+					margin: 20
+				}
+            },
+            plotOptions: {
+                series: {
+                    events: {
+                        legendItemClick: function(event) {
+                            event.preventDefault();
+                            return false;
+                        }
+                    }
+                }
+            },
+            title: {
+                text: 'Personal Belief Exemption Rates by County, 2010-11'
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                         this.series.name +': '+ this.y +'%';
+                },
+                style: {
+                    color: '#515151',
+                    fontSize: '9pt',
+                    padding: '5px'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [
+            {% for data in counties_data %}
+                {
+                    name: '{{data.county.name|title}}',
+                    data: [{{data.percent_pbe|floatformat:2}}]
+                }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+            ]
+        });        
+});
+</script>
+<div id="vacc_app_chart2"></div>

@@ -1,0 +1,83 @@
+{% extends "bike_accidents/bike_accidents_base.html" %}
+{% block page_title %}Bike Accidents - The Bay Citizen{% endblock %}
+
+
+{% block main_column %}
+<div id="bike-app" class="methodology cf">
+    <div class="inside-bike-app cf">
+		<div class="method">
+			<div class="inner">
+				<div class="text">
+					<h1>Methodology</h1>
+	
+					<p class="intro">As promised, Bike Accident Tracker 2.0 includes more details, more locations and more accidents--we’ve expanded across the Bay Area and now include five years of data. Here’s how we did it.</p>
+	
+					<h2>Data Collection</h2>
+
+					<p>Instead of collecting data from dozens of individual police departments across the Bay Area, a time-consuming process, we approached the California Highway Patrol, which maintains a standardized database of collisions for the whole state. To CHP’s credit, they mailed us a disc with zip files for each of the nine counties without requiring a processing fee, and were responsive to our questions about the data format.
+					</p>
+					<p>
+					The San Francisco Police Department was our sole data source for Version 1 of this project. Citing privacy concerns, SFPD stripped out all sorts of interesting information about bike accidents before handing records over to us, including data about lighting and road conditions. The California Highway Patrol does not strip out this information for any of the municipalities it aggregates, making this a far more attractive dataset for our purposes.
+					</p>
+					<p>
+					However, CHP is about a year behind on processing the collision data it collects from local police departments, due to budget-related staff constraints. Some counties are more up-to-date in CHP’s electronic database than others; for uniformity and to make our accident map as useful as possible for comparing statistics across counties, we cut off the data at the end of 2009.
+					</p>
+					<p>
+					(Note: the raw data is available from the CHP website <a href="http://iswitrs.chp.ca.gov/Reports/jsp/RawData.jsp"> here</a>, but downloads are limited to one city or police department at a time.)
+					</p>
+
+					<h2>Data Processing</h2>
+	
+					<p>
+					The CHP data came organized into three tables: collision, party, and victims. First, we appended all nine files for each table type, careful to keep track of how many rows we were adding – always a good data practice for all you nerds out there.
+					</p>
+					<p>
+					Unlike Bike Accident Tracker 1.0’s raw data, cells in this raw database were mostly filled with numbers and codes instead of text. Thanks to a thorough key and help from the CHP folks, we were able to generate a text version using a series of joins and update queries. Finally, we pulled the newly generated text fields into a new table, limiting the results to only bike accidents.
+					</p>
+					<p>
+					It is also important to note that while the SFPD accident database designated the party at fault in its own category, CHP does not. We generated that using a SQL join between the collision table and the party table in which we populated P1 with the party type (auto, bicyclist, etc.) when the party in the party table was designated at fault. On occasion, no fault is designated.
+					</p>
+					<p>Keep in mind, this project is limited to raw accident numbers. Therefore, if the tracker shows ten accidents on A Street and five accidents B Street, it does not necessarily mean A Street is twice as dangerous as B Street. In fact, A Street might get twice as much traffic as B Street, making the accident rate exactly the same. Because uniform bike traffic information isn’t gathered for every street in the Bay Area, there is no way to normalize the data and create these rates. </p>
+	
+					<h2>Mapping</h2>
+
+					<p>In order to generate the accident markers, we used Google Fusion Tables to power the map interface. It is a great solution in order to display a larger number of markers than is possible with basic Google Maps functionality, and Fusion Tables doubled as a database for storing the information we wanted to map.
+					</p>
+					<p>Please note, marker locations were generated using the cross streets of the intersection nearest the accident and thus they do not signify an exact position.  An accident may have occurred on the sidewalk but because the CHP does not provide exact coordinates we approximated the accident's location for display purposes.</p>
+					<p>However, since the map markers are generated on the server side, this afforded us fewer controls over their appearance. As a result, when more than one accident occurs at any particular intersection, only the more recent accident is displayed.
+					</p>
+					<p>At the least, we would have wanted to display the number of accidents within the marker itself. At best, we would have used dot-density markers to indicate clusters of accidents. We hope Google Fusion will evolve and make these kinds of displays possible.
+					</p>
+	
+					<h2>Tools Used</h2>
+
+					<ul>
+					<a href="http://www.djangoproject.com/"><li>Django</li></a>
+					<a href="http://www.highcharts.com/"><li>Highcharts, a Javascript charting library</li></a>
+					<a href="http://jquery.com/"><li>jQuery</li></a>
+					<a href="http://code.google.com/apis/maps/documentation/javascript/"><li>Google Maps Javascript API v3</li></a>
+					<a href="http://code.google.com/p/google-refine/"><li>Google Refine, for data cleaning and analysis</li></a>
+					<a href="http://www.google.com/fusiontables/"><li>Google Fusion Tables</li></a>
+					<a href="http://code.google.com/apis/maps/documentation/geocoding/"><li>Google Geocoding API</li></a>
+					<li>Beat reporting</li>
+					</ul>
+				</div>
+			</div>
+		</div>  
+	</div>
+</div>
+	
+{% block comments_ralated %}
+<div id="ba-disc-rel" class="two-col tc1">
+    <div class="col c1">
+        <h3><em><img src="{{MEDIA_URL}}images/icons/disqus-chat.png" alt="">Bike Accident Tracker - Comments &amp; Conversations</em></h3>
+        <div id="disqus">
+<fb:comments href="http://www.baycitizen.org{% url bike_accidents_index %}" width="618px"></fb:comments>
+        </div>
+    </div><div class="col c2">
+
+        
+    </div>
+</div>
+{% endblock %}
+{% endblock %}

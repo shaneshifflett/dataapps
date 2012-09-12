@@ -1,0 +1,12 @@
+{% if pages and show_pages %}
+    Page {{current_page_num}} of {{total_pages}}
+    {% ifnotequal current_page_num 1 %}
+        <a href="{{request.path}}?page={% if current_page.previous_page_number %}{{current_page.previous_page_number}}{% else %}{{current_page_num}}{% endif %}{% if request.GET.q %}&q={{request.GET.q}}{% endif %}{% if request.GET.order %}&order={{request.GET.order}}{% endif %}&type={{type}}" class="pageLink">Previous</a>
+        
+        {% ifnotequal current_page_num pages.num_pages %}|{% endifnotequal %}
+    {% endifnotequal %}
+    
+    {% ifnotequal current_page_num pages.num_pages %}
+        <a href="{{request.path}}?page={% if current_page.has_next %}{{current_page.next_page_number}}{% else %}{{current_page_num}}{% endif %}{% if request.GET.q %}&q={{request.GET.q}}{% endif %}{% if request.GET.order %}&order={{request.GET.order}}{% endif %}&type={{type}}" class="pageLink">Next</a>
+    {% endifnotequal %}
+{% endif %}

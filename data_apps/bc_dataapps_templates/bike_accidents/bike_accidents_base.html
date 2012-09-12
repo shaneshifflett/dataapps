@@ -1,0 +1,124 @@
+{% extends "dataapps/dataapps_base.html" %}
+
+{% block internal_css_includes %}
+    {{block.super}}
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/dataapps/bike_accidents2.css" type="text/css"/>
+    <link rel="stylesheet" href="{{MEDIA_URL}}js/tweet/jquery.tweet.css" type="text/css"/>
+{% endblock %}
+
+{% block internal_js_includes %}
+	{{block.super}}
+    <script src="{{ MEDIA_URL }}js/tweet/jquery.tweet.js"></script>
+{% endblock %}
+
+{% block app_title %}
+<a id="baheader" href="{% url bike_accidents_index %}">Bike Accident Tracker 2.0</a>
+{% endblock %}
+
+{% block social_links %}
+	<div>
+		<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+		<div>
+		  <a href="http://twitter.com/share" class="twitter-share-button"
+		     data-url="http://baycitizen.org{% url bike_accidents_index%}"
+		     data-via="thebaycitizen"
+		     data-text="I explored @TheBayCitizen's Bike Accident Tracker; check out accidents near you:"
+		     data-related="shaneshifflett"
+		     data-count="horizontal">Tweet</a>
+		</div>
+	</div>
+	<div>
+		<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.baycitizen.org%2Fdata%2Freading-series%2F&amp;layout=button_count&amp;show_faces=true&amp;width=130&amp;action=recommend&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:21px;" allowTransparency="true"></iframe>
+	</div>
+{% endblock %}
+
+{% block adslots %}
+{{ block.super }}
+
+{% endblock %}
+
+{% block js %}
+    {{block.super}}
+    <script type="text/javascript" charset="utf-8">
+	$(document).ready(function(){
+		$("#tweetquote").tweet({
+			query: "tbcbikes",
+			avatar_size: 0,
+			count: 3,
+			loading_text: "loading tweets..."
+		});
+	});
+    $('#hide').click(function(e){
+        e.preventDefault();
+        if ($.cookie('ba_info_showhide') == 'shown') {
+            $.cookie('ba_info_showhide','hidden', {expires: 30, path: '/'});
+    		$("#introCopy").animate({"height": "toggle", "opacity":"toggle"}, { duration: 400 });
+    		$('#hide').html('SHOW INFO');
+        } else {
+            $.cookie('ba_info_showhide','shown', {expires: 30, path: '/'});
+    		$("#introCopy").animate({"height": "toggle", "opacity":"toggle"}, { duration: 400 });
+    		$('#hide').html('HIDE INFO');
+        };
+    });
+    </script>
+{% endblock %}
+
+
+
+{% block info_toggle %}
+<div id="introInfo">
+    <div id="control">
+    	{% if not request.COOKIES.ba_info_showhide %}
+        	<a id="hide" href="#">HIDE INFO</a>
+        {% endif %}
+     	{% ifequal request.COOKIES.ba_info_showhide 'shown' %}
+        	<a id="hide" href="#">HIDE INFO</a>
+        {% endifequal%}
+        {% ifequal request.COOKIES.ba_info_showhide 'hidden' %}
+        	<a id="hide" href="#">Show INFO</a>
+        {% endifequal %}
+    </div>
+
+    <div id="introCopy" {% ifequal request.COOKIES.ba_info_showhide "hidden" %}style="display:none;"{% endifequal %}>
+        <h1 style="font-family: arial; font-weight: bold">Welcome to The Bay Citizen's Bike Accident Tracker!</h1>
+            <span style="font-size: 1.3em">We've expanded the app with all new data: five years of collision statistics covering the entire Bay Area.</span><br/> <span style="color: gray">Source: California Highway Patrol. Time period: Jan. 2005 through Dec. 2009 (the latest region-wide data available; see <a href="{% url bike_accidents_methodology %}" title="Learn how we built this project">Methodology</a> for details).</span><br/><br/>
+        <ul>
+            <li class="acc-map">
+                <a href="{% url bike_accidents_index %}" title="Slice and dice the numbers" class="vis">
+                    Accident Map
+                    <span>Slice and dice the numbers</span>
+                </a>
+            </li>
+            <li class="charts">
+                <a href="{% url bike_accidents_charts %}" title="Compare stats by time and place">
+                    Charts
+                    <span>Compare stats by time and place</span>
+                </a>
+            </li>
+            <li class="raw-data">
+                <a href="{% url bike_accidents_raw %}" title="Drill down to individual accidents">
+                    Raw Data
+                    <span>Drill down to individual accidents</span>
+                </a>
+            </li>
+            <li class="what-mean">
+                <a href="http://www.baycitizen.org/bike-accident-tracker/" title="Our original reporting on this data">
+                    What’s It All Mean?
+                    <span>Our original reporting on this data</span>
+                </a>
+            </li>
+            <li class="method">
+                <a href="{% url bike_accidents_methodology %}" title="Learn how we built this project">
+                    Methodology
+                    <span>Learn how we built this project</span>
+                </a>
+            </li>
+
+        </ul>
+        <div class="mail-us">See something wrong? Want to get in touch with us? <a href="mailto:newsapps@baycitizen.org">newsapps@baycitizen.org</a></div>
+    </div>
+</div>
+{% endblock %}
+
+
+

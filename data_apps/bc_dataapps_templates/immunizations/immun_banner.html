@@ -1,0 +1,13 @@
+<script>
+    $(document).ready(function() {
+        $('#statrefresh').click(function(e){ e.preventDefault(); $('#pagestat').load('{% url immunizations_stats_refresh from_page %}');});
+    });
+</script>
+<div id="top">
+    <div class="stat">
+        <p id="pagestat">{{initial_stat}}</p>
+        <div style="text-align: right"><a href="#" id="statrefresh">[refresh]</a></div>
+    </div>
+    
+   
+</div>

@@ -1,0 +1,42 @@
+{% extends "dataapps/dataapps_base.html" %}
+
+{% block internal_css_includes %}
+    {{block.super}}
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/dataapps/census2010.css" type="text/css"/>
+{% endblock %}
+
+{% block js %}
+    {{block.super}}
+	<script src="{{MEDIA_URL}}js/highcharts2/highcharts-2-1-4.js" type="text/javascript"></script>
+	<script src="{{MEDIA_URL}}js/jquery.tablesorter.min.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block meta %}
+    <meta property="og:title" content="The Bay Citizen Data App: Census 2010"/>
+    <meta property="og:image" content="http://media.baycitizen.org/uploaded/images/2011/3/census-data-app-lead-art-home-page/feature_3col/550x368-v1.0.1.jpg"/>
+{% endblock %}
+
+{% block facebook_js %}
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+{% endblock %}
+
+{% block facebook_initialize %}
+{% endblock %}
+
+{% block app_title %}
+	<a id="app-title" href="{% url census2010_index %}">Census 2010</a>
+{% endblock %}
+
+
+{% block content %}
+	<div id="census2010-base" class="clearfix">
+		{% block header_menu %}
+			{{block.super}}
+		{% endblock %}
+		
+		{% block main_column %}
+		{% endblock %}
+	</div>
+{% endblock %}
+
