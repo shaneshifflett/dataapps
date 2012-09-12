@@ -1,0 +1,86 @@
+.hasDatepicker .ui-datepicker
+{
+	width: auto;
+}
+
+.hasDatepicker  .ui-corner-all
+{
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+}
+
+.hasDatepicker  .ui-widget-header
+{
+	background: none;
+	border: none;
+}
+
+.hasDatepicker  .ui-datepicker .ui-datepicker-title .ui-datepicker-month,
+.hasDatepicker  .ui-datepicker .ui-datepicker-title .ui-datepicker-year
+{
+	font-size: 12px;
+	line-height: 12px;
+}
+
+.hasDatepicker  .ui-datepicker-prev,
+.hasDatepicker  .ui-datepicker-next
+{
+	display: none;
+}
+
+.hasDatepicker  .ui-widget-content
+{
+	background: none;
+	border: none;
+	color: #000;
+	font-size: 14px;
+}
+
+.hasDatepicker  .ui-widget-content a.ui-state-default
+{
+	color: #000;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+.hasDatepicker .ui-widget-content a.ui-state-default:hover
+{
+	text-decoration: none;
+}
+
+.hasDatepicker .ui-datepicker td span,
+.hasDatepicker .ui-datepicker td a
+{
+	text-align: center;
+	color: #000;
+}
+
+.hasDatepicker .ui-widget-content td a
+{
+	color: #000;
+}
+
+.hasDatepicker .ui-state-default,
+.hasDatepicker .ui-widget-content .ui-state-default
+{
+	border: none;
+	background: none;
+}
+
+
+.hasDatepicker a.ui-state-default.ui-state-highlight.ui-state-active
+{
+	font-weight: bolder;
+	background-color: #FFCC20;
+	text-decoration: none;
+}
+
+.datepicker_footnote
+{
+	font-size: 11px;
+	color: #333;
+	text-align: center;
+	padding-top: 2px;
+	margin-top: 4px;
+	border-top: solid 1px #999;
+}

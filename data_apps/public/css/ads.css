@@ -1,0 +1,267 @@
+/*********** ADVERTISEMENTS GENERAL STYLING ***********/
+
+.ad_300x250 {
+	text-align: center;
+	line-height: 0;
+	padding: 15px 0;
+	width: 334px;
+	margin: 0 5px 0 0;
+	background-color: #fff;
+	border: 1px solid #b4b4b4;
+	float: left;
+}
+
+.ad_300x250 img { 
+	display: inline; 
+}
+
+.ad_300x250 span.thanks { 
+	display: block;
+	margin: -10px 0 5px 0;
+	font-family: Helvetica, sans-serif; 
+	font-size: 11px; 
+	color: #666;
+	line-height: 11px;
+}
+
+/* Upper Right */
+.ad_300x250.ur {
+	background: white url('https://d1m7jskxfd7v6.cloudfront.net/images/layout/bg-content.gif') repeat-x;
+	border-top: none;
+}
+
+/*Middle Right & Lower Right */
+.ad_300x250.mr, .ad_300x250.lr {
+	margin: 20px 5px 0 0;
+}
+
+.ad_728x90 {
+	margin: 20px auto 0 auto;
+	width: 959px;
+	line-height: 0;
+	text-align: right;
+	background-color: transparent;
+	position: relative;
+}
+
+.ad_728x90 img {
+	display: inline;
+}
+
+.ad_728x90 .thanks {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: url(https://d1m7jskxfd7v6.cloudfront.net/images/ads/thanks-728x90.png) no-repeat top left;
+	width: 227px;
+	height: 90px;
+}
+
+/*********** HEADER ADVERTISEMENTS ***********/
+
+#header .fixed .ad175x50 {
+	width: 175px;
+	height: 50px;
+	display: block;
+	position: absolute;
+	top: 25px;
+}
+
+#header .fixed .ad175x50 a { border: none; }
+
+#header .fixed .ad175x50.r { right: 0; }
+
+#header .fixed .ad175x50.l { left: 0; }
+
+/* Special Roadblock Ads - customize as needed */
+
+/* Merger Ad */
+#header .fixed .ad175x50.l.tbcmerge {
+    width: 249px;
+    height: 59px;
+    top: 22px;
+}
+
+
+/*********** DATA LIBRARY ADVERTISEMENTS ***********/
+
+#data-app .ad_300x250 {
+	text-align: center;
+	line-height: 0;
+	padding: 20px 0;
+	width: 300px;
+	margin: 20px 0;
+	border: none;
+	background-color: transparent;
+	border-top: 1px dotted #b4b4b4;
+	border-bottom: 1px dotted #b4b4b4;
+}
+
+/*********** BLOG PAGE ADVERTISEMENTS ***********/
+
+.blogPage .ad_728x90 {
+	border: none;
+	border-top: 1px solid #b4b4b4;
+	border-bottom: 1px solid #b4b4b4;
+	margin: 0 0 20px -90px;
+	padding: 2px 0;
+	width: 733px;
+	line-height: 0;
+	text-align: center;
+	background-color: #f6f7f2;
+	color: #fff;
+	position: relative;
+}
+
+/* Special occasion ad at top */
+
+.blogPage .ad_175_134 {
+	text-align: center;
+	line-height: 0;
+	margin: 0 auto;
+}
+
+.blogPage .ad_175_134 a img {
+	display: inline;
+}
+
+.blogPage .b-mod span.thanks {
+	display: block;
+	text-align: center;
+	margin: -10px 0 5px 0;
+	font-family: Helvetica, sans-serif; 
+	font-size: 11px; 
+	color: #666;
+	line-height: 11px;
+}
+
+/*********** SF MAYOR PAGE ADVERTISEMENTS ***********/
+
+#sf-mayor .ad_300x250.ur {
+    background: none;
+    border-top: none;
+    padding-bottom: 20px;
+    border-bottom: 1px dotted #b4b4b4;
+    margin-bottom: 20px;
+}
+
+#sf-mayor .ad_300x250.lr {
+    background: none;
+    border-top: none;
+    padding-top: 20px;
+    border-top: 1px dotted #b4b4b4;
+    margin-top: 20px;
+}
+
+#sf-mayor .ad_300x250 {
+    background-color: inherit;
+    border: none;
+    float: none;
+    line-height: 0;
+    margin: 0;
+    padding: 15px 0;
+    text-align: center;
+    width: inherit;
+}
+
+/*********** NEWSLETTER SIGNUP ADVERTISEMENTS ***********/
+
+.ad_300x250.mr form.newsletter-signup {
+	background: url(https://d1m7jskxfd7v6.cloudfront.net/images/ads/newsletter/News-Briefing-signup-300x250-12-5-11.png) no-repeat top left;
+	width: 300px;
+	height: 250px;
+	position: relative;
+	margin: auto;
+}
+
+.ad_300x250.mr form.newsletter-signup .textinput {
+	position: absolute;
+	bottom: 10px;
+	left: 30px;
+	background: url(https://d1m7jskxfd7v6.cloudfront.net/images/ads/newsletter/text-input.png) top right no-repeat;
+	width: 158px;
+	height: 24px;
+	height: 18px\0/;
+	*height: 18px;
+	border: none;
+	margin: 0;
+	padding: 0 5px;
+	padding-top: 6px\0/;
+	*padding-top: 6px;
+	font-size: 11px;
+	line-height: 11px;
+}
+
+.ad_300x250.mr form.newsletter-signup .submit {
+	position: absolute;
+	bottom: 10px;
+	left: 198px;
+	background: url(https://d1m7jskxfd7v6.cloudfront.net/images/ads/newsletter/submit-btn.png) top left no-repeat;
+	width: 84px;
+	height: 24px;
+	border: none;
+	margin: 0;
+	padding: 0;
+	text-indent: -9999em;
+	cursor: pointer;
+}
+
+/* BEGIN MEERKAT POPUP */
+
+.meerkat.newsletter {
+    text-align: center;
+    background: url(https://d1m7jskxfd7v6.cloudfront.net/images/layout/bg-newsletter-popup.png) repeat-x;
+    height: 46px;
+    font-size: 90%;
+    color: #ffffff;
+    font-weight: bold;
+    padding-top: 8px;
+    display: none;
+    position: relative;
+	*position: absolute;
+	*left:0;
+	min-width: 500px;
+}
+.meerkat.newsletter input,
+.meerkat.newsletter label {
+    display: inline;
+    vertical-align: middle;
+    background: transparent;
+}
+.meerkat .emailaddress {
+    height: 12px;
+    margin: 0;
+    padding: 3px;
+    margin-right: 20px;
+    background-color: #ffffff !important;
+}
+.meerkat .buttonSignup {
+    background: url(https://d1m7jskxfd7v6.cloudfront.net/images/layout/button-newsletterSubmit-white1.png) top left no-repeat transparent;
+    width: 179px;
+    height: 20px;
+    float: left;
+    cursor: pointer;
+}
+.meerkat .buttonSignup:hover {
+    background-position: bottom
+}
+.meerkat.newsletter .wrap {
+    margin: 0 auto;
+    background: url(https://d1m7jskxfd7v6.cloudfront.net/images/layout/headline-newsletter-popup-3.png) top center no-repeat;
+    height: 38px;
+    padding: 9px 0 0 0px;
+    width: 735px;
+}
+.meerkat.newsletter .wrap>.padding {
+    padding: 0 0 0 280px
+}
+.meerkat.newsletter .close-meerkat {
+    background: url(https://d1m7jskxfd7v6.cloudfront.net/images/layout/icon-newsletter-close.png) no-repeat;
+    width: 51px;
+    height: 16px;
+    float: right;
+    margin: 10px 20px 0 20px;
+    text-indent: -999px;
+    cursor: pointer;
+}
+/* END MEERKAT POPUP */

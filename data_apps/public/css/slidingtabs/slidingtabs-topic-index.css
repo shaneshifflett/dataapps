@@ -1,0 +1,248 @@
+/* 
+ * Sliding Tabs - jQuery Plugin
+ * Copyright 2010, Christian Andre
+ *
+------------------------------------------------------------------------------------- */
+#loading-tabs {
+    background: url("../../images/datalibrary/ajax-loader.gif") no-repeat scroll 50% 50% #FFFFFF;
+    height: 340px;
+    left: 23px;
+    position: absolute;
+    top: 21px;
+    width: 915px;
+    z-index: 5;
+}
+
+div#tabs_vertical {	
+    background:url(../../images/topic-index/fet-top.png) 0 0 no-repeat;
+	position:relative;
+	z-index:4; 
+	float:left;
+	clear:both;
+	width:915px;
+	border:1px solid #d4d4d4;
+	margin:20px 0;
+	*overflow:hidden;
+}
+
+/* Control buttons
+------------------------------------------------------------------------------------- */
+div#tabs_vertical a.prev, 
+div#tabs_vertical a.next {	
+	display:none;
+	float:left;
+	position:relative;
+	z-index:100;	
+	height:39px;
+	width:83px;
+	border:1px solid #d4d4d4;
+	border-bottom:0;
+	border-top:1px;	
+	background:#fff url(../../images/slidingtabs/btn_arrows.gif) no-repeat;	
+	position:absolute;
+	bottom:0;
+	left:0;
+}
+
+div#tabs_vertical a.prev {
+	border-right:0 none;
+	background-position:35px -47px;
+	border-left:0 none;
+}
+
+div#tabs_vertical a.prev:hover {	
+	background-position:-28px -47px;
+	background-color:#f5f5f5;
+}
+
+div#tabs_vertical a.next {
+	background-position:34px -79px;
+	left:83px;
+}
+
+div#tabs_vertical a.next:hover {
+	background-position:-29px -79px;
+	background-color:#f5f5f5;
+}
+
+div#tabs_vertical a.prev.disabled,
+div#tabs_vertical a.next.disabled {
+	cursor:default;
+	background-color:#f7f7f7;
+}
+
+div#tabs_vertical a.prev.disabled {
+	background-position:-91px -47px;
+}
+
+div#tabs_vertical a.next.disabled {
+	background-position:-92px -79px;
+}
+
+/* Tabs
+------------------------------------------------------------------------------------- */
+div#tabs_vertical div#v_tabs_container {  	
+    margin-top:60px;
+	position:relative;
+	z-index:100;
+	float:left;
+	width:169px; /* +1px for the negative right margin */
+    /*  height:337px;*/
+    height:279px;
+	margin-right:-1px;
+	border-top:1px solid #d4d4d4;
+	overflow:hidden;
+}
+
+div#tabs_vertical div#v_tabs_container div.slide_container {
+	position:relative !important; /* The tabs position will be calculated from the ul.tabs first parent element with position:relative */
+	float:left;
+}
+
+div#tabs_vertical div#v_tabs_container ul.tabs {
+	width:168px;
+	margin-top:0px;
+	float:left;
+	padding:0 0 0 0;
+	background-color: none; 
+	border-bottom: 0; 
+	margin:0 0 0 0;
+}
+
+div#tabs_vertical div#v_tabs_container ul.tabs li {
+	float:left;
+	clear:both;
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+
+div#tabs_vertical ul.tabs li a {
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+	display:table-cell;
+	width:151px;
+	height:60px;
+	overflow:hidden;
+	padding:4px 8px;
+    position:relative;
+	font-size:11px;
+	color:#0063ae;
+	font-weight:bold;
+	line-height:normal;
+	border-left:0px solid #d4d4d4;
+	border-bottom:1px solid #d4d4d4;
+	background:#F4F4F4 url(../../images/topic-index/tabback.png) repeat-x 0px 0px;	
+	border-right:1px solid #d4d4d4;
+    vertical-align: middle;
+}
+
+div#tabs_vertical div#v_tabs_container ul.tabs li a span {
+    display:inline-block;
+}
+div#tabs_vertical div#v_tabs_container ul.tabs li a img {
+    vertical-align: middle;
+}
+
+div#tabs_vertical ul.tabs a:hover {
+	color:#333;
+}
+
+div#tabs_vertical ul.tabs a.active {
+	position:relative;
+	z-index:10;
+	color:#000000;
+	background:#fff;
+	border-right:1px solid #ffffff;
+}
+
+/* Content
+------------------------------------------------------------------------------------- */
+div#tabs_vertical div#v_content {
+	position:relative;
+	z-index:5;
+	float:left;	
+	width:747px;
+	height:340px;
+	padding:0px;
+	margin:0;
+	line-height:18px;
+	border-right:0px solid #d4d4d4;
+	background-color:#fff;
+	overflow:hidden;
+}
+
+div#tabs_vertical div#v_content div.view_container {
+	position:relative;
+	width:762px;
+	height:340px;
+}
+
+div#tabs_vertical div#v_content div.tab_view {	
+	width:741px;
+	height:340px;
+	margin:0px;
+	padding:5px;
+	background-color:#fff;
+	position:absolute;
+	z-index:1;
+	background:url(../../images/topic-index/featured-bg.png) 100% 100% no-repeat #fff;
+}
+
+/* slides */
+section.deck {
+    position:absolute;
+    width:300px;
+    top:16px;
+    right:10px;
+    overflow:hidden;
+    height:280px;
+    z-index:1;
+}
+
+#tabs_vertical .awesome {
+    position:absolute;
+    top:310px;
+    width:275px;
+    text-align:center;
+    right:15px;
+    font-size:12px;
+}
+
+div#tabs_vertical .lead-art {
+    overflow:hidden;
+    width:380px;
+    height:300px;
+    margin:15px;
+    border:1px solid #d6d6d6;
+}
+
+div#tabs_vertical .lead-art h2 {
+    text-align:center;
+    padding:10px 0;
+    margin:0;
+	background:url(../../images/topic-index/fet-hd.png) repeat-x #fff;
+}
+
+
+.listings h3 {
+    font-family: helvetica;
+    padding:0;
+    margin:0 0 15px 0;
+    font-weight:bold;
+    text-transform:uppercase;
+    font-size:12px;
+    color:#000000;
+    font-style:normal;
+}
+
+.listings article {
+    padding-bottom:7px;
+    margin-bottom:7px;
+}
+.listings article.last {
+    border-bottom:0;
+}
+
+
