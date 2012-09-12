@@ -293,9 +293,9 @@
 				<div id="map-display"></div>
 				<div id="map-legend">
                     {% if geo_type == "county" or geo_type == "congressional" or geo_type == "legislative_lower" or geo_type == "legislative_upper"  %}
-					    <img src="{{MEDIA_URL}}images/census2010/map-legend-county.png" alt="Population change 2000-2010" width="470" height="20"/>
+					    <img src="{{STATIC_URL}}images/census2010/map-legend-county.png" alt="Population change 2000-2010" width="470" height="20"/>
                     {% else %}
-					    <img src="{{MEDIA_URL}}images/census2010/map-legend-city.png" alt="Population change 2000-2010" width="513" height="20"/>
+					    <img src="{{STATIC_URL}}images/census2010/map-legend-city.png" alt="Population change 2000-2010" width="513" height="20"/>
                     {% endif %}
 				</div>
 			</div>

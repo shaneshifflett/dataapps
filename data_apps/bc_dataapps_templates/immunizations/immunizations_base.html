@@ -2,8 +2,8 @@
                                                                                                                                                              
 {% block internal_css_includes %}                                                                                                                            
     {{block.super}}                                                                                                                                          
-    <link rel="stylesheet" href="{{MEDIA_URL}}js/tweet/jquery.tweet.css" type="text/css"/>                                                                   
-    <link rel="stylesheet" href="{{MEDIA_URL}}css/dataapps/immunizations.css" type="text/css"/>
+    <link rel="stylesheet" href="{{STATIC_URL}}js/tweet/jquery.tweet.css" type="text/css"/>                                                                   
+    <link rel="stylesheet" href="{{STATIC_URL}}css/dataapps/immunizations.css" type="text/css"/>
 {% endblock %}                                                                                                                                               
 
 {% block external_css_includes %}
@@ -13,7 +13,7 @@
                                                                                                                                                              
 {% block internal_js_includes %}                                                                                                                             
     {{block.super}}                                                                                                                                          
-    <script src="{{ MEDIA_URL }}js/tweet/jquery.tweet.js"></script>                                                                                          
+    <script src="{{ STATIC_URL }}js/tweet/jquery.tweet.js"></script>                                                                                          
 {% endblock %}                                                                                                                                               
                                                                                                                                                              
 {% block app_title %}                                                                                                                                        
@@ -40,8 +40,8 @@ GA_googleAddSlot("ca-pub-5050647251544365", "RightRail_House_180x150");
 
 {% block js %}                                                                                                                                               
     {{block.super}}
-	<script src="{{MEDIA_URL}}js/highcharts2/highcharts.js" type="text/javascript"></script>
-	<script src="{{MEDIA_URL}}js/jquery/plugins/jcarousellite_1.0.1.min.js" type="text/javascript"></script>
+	<script src="{{STATIC_URL}}js/highcharts2/highcharts.js" type="text/javascript"></script>
+	<script src="{{STATIC_URL}}js/jquery/plugins/jcarousellite_1.0.1.min.js" type="text/javascript"></script>
     <script type="text/javascript">
 		$(document).ready(function(){
 			Highcharts.setOptions({

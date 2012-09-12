@@ -5,13 +5,13 @@
 
 {% block internal_css_includes %}
     {{block.super}}
-    <link rel="stylesheet" href="{{MEDIA_URL}}css/datepicker/redmond/jquery-ui-1.8.4.custom.css" type="text/css"  />
+    <link rel="stylesheet" href="{{STATIC_URL}}css/datepicker/redmond/jquery-ui-1.8.4.custom.css" type="text/css"  />
 {% endblock %}
 
 {% block js %}
     {{block.super}}
 
-	<script type='text/javascript' src='{{MEDIA_URL}}js/highcharts2/highcharts-2-1-4.js'></script>
+	<script type='text/javascript' src='{{STATIC_URL}}js/highcharts2/highcharts-2-1-4.js'></script>
     <script type="text/javascript" charset="utf-8">
 		var chart = null;
 		var vis_url = '{% url bike_accidents_index %}';
@@ -105,7 +105,7 @@
         $(function (){
              $("#id_date_from").datepicker({
     			showOn: "button",
-    			buttonImage: "{{MEDIA_URL}}images/icons/icon-calendar-bw-16x16.png",
+    			buttonImage: "{{STATIC_URL}}images/icons/icon-calendar-bw-16x16.png",
     			buttonImageOnly: true,
     			dateFormat: 'mm/dd/yy',
     			minDate: '01/01/09', 
@@ -115,7 +115,7 @@
     		});
             $("#id_date_to").datepicker({
     			showOn: "button",
-    			buttonImage: "{{MEDIA_URL}}images/icons/icon-calendar-bw-16x16.png",
+    			buttonImage: "{{STATIC_URL}}images/icons/icon-calendar-bw-16x16.png",
     			buttonImageOnly: true,
     			dateFormat: 'mm/dd/yy',
     			maxDate: '11/30/10',
@@ -194,7 +194,7 @@
     		</div>
         </div>
     </div>
-    <img id="lcfoot" src="{{MEDIA_URL}}images/bikeapp/lcfoot.jpg" alt="" height="10" width="201" />
+    <img id="lcfoot" src="{{STATIC_URL}}images/bikeapp/lcfoot.jpg" alt="" height="10" width="201" />
 </div>
 <div class="byline">By: Zusha Elinson, Sydney Lupkin, Shane Shifflett, David Suriano & Tasneem Raja. Published 5/31/2011.</div>
 {% endblock %}

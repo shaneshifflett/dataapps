@@ -4,8 +4,8 @@
 
 {% block internal_css_includes %}
     {{block.super}}
-    <link rel="stylesheet" href="{{MEDIA_URL}}css/common/forms.css" type="text/css"/>
-    <link rel="stylesheet" href="{{MEDIA_URL}}css/datepicker/redmond/jquery-ui-1.8.4.custom.css" type="text/css"  />
+    <link rel="stylesheet" href="{{STATIC_URL}}css/common/forms.css" type="text/css"/>
+    <link rel="stylesheet" href="{{STATIC_URL}}css/datepicker/redmond/jquery-ui-1.8.4.custom.css" type="text/css"  />
 {% endblock %}
 
 {% block js %}
@@ -103,7 +103,7 @@
                 </p>
             </div>
         </div><div class="col c2">
-            <img src="{{MEDIA_URL}}images/bikeapp/add2.jpg" alt=""/>
+            <img src="{{STATIC_URL}}images/bikeapp/add2.jpg" alt=""/>
         </div>
     </div>
 </div>

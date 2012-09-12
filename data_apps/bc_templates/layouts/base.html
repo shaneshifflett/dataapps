@@ -12,14 +12,14 @@
         <link rel="shortcut icon" href="https://citizen-media.s3.amazonaws.com/images/favicon.ico">
         
         
-            <link rel="stylesheet" charset="utf-8" type="text/css" media="screen, projection" href="{{MEDIA_URL}}js/fancybox/jquery.fancybox-1.3.1-v3.css" />
-            <link rel="stylesheet" href="{{MEDIA_URL}}css/baycitizen.css" type="text/css" media="screen, projection"/>
-            <link rel="stylesheet" href="{{MEDIA_URL}}css/baycitizen2.css" type="text/css" media="screen, projection"/>
-            <link rel="stylesheet" href="{{MEDIA_URL}}css/blueprint/print.css" type="text/css" media="print"/>
-            <link rel="stylesheet" href="{{MEDIA_URL}}css/common/forms.css" type="text/css" media="screen, projection"/>
-            <link rel="stylesheet" href="{{MEDIA_URL}}css/common/comments.css" type="text/css" media="screen, projection"/>
-            <link rel="stylesheet" href="{{MEDIA_URL}}css/ads.css" type="text/css" media="screen, projection"/>
-            <link rel="stylesheet" href="{{MEDIA_URL}}css/common/bc-panel.css" type="text/css" media="screen, projection"/>
+            <link rel="stylesheet" charset="utf-8" type="text/css" media="screen, projection" href="{{STATIC_URL}}js/fancybox/jquery.fancybox-1.3.1-v3.css" />
+            <link rel="stylesheet" href="{{STATIC_URL}}css/baycitizen.css" type="text/css" media="screen, projection"/>
+            <link rel="stylesheet" href="{{STATIC_URL}}css/baycitizen2.css" type="text/css" media="screen, projection"/>
+            <link rel="stylesheet" href="{{STATIC_URL}}css/blueprint/print.css" type="text/css" media="print"/>
+            <link rel="stylesheet" href="{{STATIC_URL}}css/common/forms.css" type="text/css" media="screen, projection"/>
+            <link rel="stylesheet" href="{{STATIC_URL}}css/common/comments.css" type="text/css" media="screen, projection"/>
+            <link rel="stylesheet" href="{{STATIC_URL}}css/ads.css" type="text/css" media="screen, projection"/>
+            <link rel="stylesheet" href="{{STATIC_URL}}css/common/bc-panel.css" type="text/css" media="screen, projection"/>
             {% block internal_css_includes %}
 			{% endblock %}
         {% block external_css_includes %}{% endblock %} 
@@ -31,9 +31,9 @@
         
         {% block extra_head %}
         {% endblock %}
-        <script type="text/javascript" src="{{MEDIA_URL}}js/jquery/jquery-1.6.4.min.js"></script>
-        <script type="text/javascript" src="{{MEDIA_URL}}js/jquery-ui-1.8.13.custom.min.js"></script>
-        <script type="text/javascript" src="{{MEDIA_URL}}js/html5shiv.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/jquery/jquery-1.6.4.min.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/jquery-ui-1.8.13.custom.min.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/html5shiv.js"></script>
 
 
         {% block head_js %}
@@ -55,7 +55,7 @@
         	{% endblock %}
         </script>
         <!-- Google Analytics Queue End -->        
-        <script type="text/javascript" src="{{MEDIA_URL}}js/ga_social_tracking.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/ga_social_tracking.js"></script>
     </head>
     {% block body_tag %}
     <body>
@@ -182,11 +182,11 @@
 
         <!-- Tracking End -->
 
-            <script src="{{MEDIA_URL}}js/fancybox/jquery.fancybox-1.3.1.js" type="text/javascript" charset="utf-8"></script>
-            <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.meerkat.1.3.js"></script>
-            <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.defaultvalue.js"></script>
-            <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.cookie.js"></script>
-            <script type="text/javascript" src="{{MEDIA_URL}}js/base.js"></script>
+            <script src="{{STATIC_URL}}js/fancybox/jquery.fancybox-1.3.1.js" type="text/javascript" charset="utf-8"></script>
+            <script type="text/javascript" src="{{STATIC_URL}}js/jquery.meerkat.1.3.js"></script>
+            <script type="text/javascript" src="{{STATIC_URL}}js/jquery.defaultvalue.js"></script>
+            <script type="text/javascript" src="{{STATIC_URL}}js/jquery.cookie.js"></script>
+            <script type="text/javascript" src="{{STATIC_URL}}js/base.js"></script>
             {% block internal_js_includes %}
             {% endblock %}
         {% block external_js %}

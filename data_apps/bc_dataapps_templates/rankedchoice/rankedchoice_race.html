@@ -13,9 +13,9 @@
 
 {% block internal_css_includes %}
     {{block.super}}
-    <link rel="stylesheet" href="{{MEDIA_URL}}css/dataapps/rankedchoice/BarChart2.css" type="text/css"  />
-    <link rel="stylesheet" href="{{MEDIA_URL}}css/mayor/mayor.css" type="text/css"/
-	<link rel="stylesheet" href="{{MEDIA_URL}}css/dataapps/polls.css" type="text/css"/>
+    <link rel="stylesheet" href="{{STATIC_URL}}css/dataapps/rankedchoice/BarChart2.css" type="text/css"  />
+    <link rel="stylesheet" href="{{STATIC_URL}}css/mayor/mayor.css" type="text/css"/
+	<link rel="stylesheet" href="{{STATIC_URL}}css/dataapps/polls.css" type="text/css"/>
 {% endblock %}
 
 {% block css %}
@@ -138,8 +138,8 @@
 {% block head_js %}
     {{block.super}}
 
-    <!--[if IE]><script language="javascript" type="text/javascript" src="{{MEDIA_URL}}js/dataapps/rankedchoice/excanvas.compiled.js"></script><![endif]-->
-    <script type="text/javascript" src="{{MEDIA_URL}}js/dataapps/rankedchoice/jit.compressed.js"></script>
+    <!--[if IE]><script language="javascript" type="text/javascript" src="{{STATIC_URL}}js/dataapps/rankedchoice/excanvas.compiled.js"></script><![endif]-->
+    <script type="text/javascript" src="{{STATIC_URL}}js/dataapps/rankedchoice/jit.compressed.js"></script>
     <script type="text/javascript" charset="utf-8">
         var labelType, useGradients, nativeTextSupport, animate, barChart;
         var round_num = 1;

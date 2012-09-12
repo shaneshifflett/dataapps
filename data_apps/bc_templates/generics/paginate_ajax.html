@@ -5,7 +5,7 @@
                 <form id="{{tab_div_id}}-form" action="" method="get">
                     <label for="gotoPage">Go to page:</label>
                     <input type="text" name="page" value="" id="gotoPage" class="text" />
-                    <input type="image" src="{{MEDIA_URL}}images/layout/button-submit-pagination.png" class="submit" />
+                    <input type="image" src="{{STATIC_URL}}images/layout/button-submit-pagination.png" class="submit" />
                 </form>
             </div>
     	{% endif %}
@@ -13,7 +13,7 @@
             {% ifnotequal current_page_num 1 %}
                 <div class="pageNumber prev">
                     <a href="#" class="pageLinkPrev">
-                        <img src="{{MEDIA_URL}}images/icons/pagination-prev.png" alt="" />
+                        <img src="{{STATIC_URL}}images/icons/pagination-prev.png" alt="" />
                     </a>
                 </div>
             {% endifnotequal %}
@@ -41,7 +41,7 @@
             {% ifnotequal current_page_num pages.num_pages %}
                 <div class="pageNumber next">
                     <a href="#" class="pageLinkNext">
-                        <img src="{{MEDIA_URL}}images/icons/pagination-next.png" alt="" />
+                        <img src="{{STATIC_URL}}images/icons/pagination-next.png" alt="" />
                     </a>
                 </div>
             {% endifnotequal %}

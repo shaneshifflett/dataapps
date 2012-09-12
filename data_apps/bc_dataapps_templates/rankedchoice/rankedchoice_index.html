@@ -3,13 +3,13 @@
 
 {% block internal_css_includes %}
     {{block.super}}
-    <link rel="stylesheet" href="{{MEDIA_URL}}css/dataapps/rankedchoice/BarChart.css" type="text/css"  />
+    <link rel="stylesheet" href="{{STATIC_URL}}css/dataapps/rankedchoice/BarChart.css" type="text/css"  />
 {% endblock %}
 
 {% block head_js %}
     {{block.super}}
-    <!--[if IE]><script language="javascript" type="text/javascript" src="{{MEDIA_URL}}js/dataapps/rankedchoice/excanvas.js"></script><![endif]-->
-    <script type="text/javascript" src="{{MEDIA_URL}}js/dataapps/rankedchoice/jit.uncompressed.js"></script>
+    <!--[if IE]><script language="javascript" type="text/javascript" src="{{STATIC_URL}}js/dataapps/rankedchoice/excanvas.js"></script><![endif]-->
+    <script type="text/javascript" src="{{STATIC_URL}}js/dataapps/rankedchoice/jit.uncompressed.js"></script>
     <script type="text/javascript" charset="utf-8">
         var labelType, useGradients, nativeTextSupport, animate;
 

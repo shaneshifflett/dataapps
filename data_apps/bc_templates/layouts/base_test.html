@@ -53,7 +53,7 @@
             
         {% block external_js %}
         {% endblock %}
-        {% compress js "" MEDIA_URL %}
+        {% compress js "" STATIC_URL %}
 	        
 			{% block internal_js_includes %}
 			{% endblock %}

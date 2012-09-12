@@ -7,19 +7,19 @@
 		{% block meta %}{% endblock %}
         <title>{% block page_title %}The Bay Citizen{% endblock %}</title>
         {% if not request.COOKIES.let_me_in %}
-            <!--script type="text/javascript" src="{{ MEDIA_URL }}js/ie6.js"></script-->
+            <!--script type="text/javascript" src="{{ STATIC_URL }}js/ie6.js"></script-->
         {% endif %}
 		
-        <link rel="stylesheet" charset="utf-8" type="text/css" media="screen, projection" href="{{ MEDIA_URL }}js/jquery.fancybox/jquery.fancybox.css" />
+        <link rel="stylesheet" charset="utf-8" type="text/css" media="screen, projection" href="{{ STATIC_URL }}js/jquery.fancybox/jquery.fancybox.css" />
         {% block css %}{% endblock %}
 
 		<link rel="shortcut icon" href="{{ s3_common_url }}images/favicon.ico" type="image/x-icon" />
 		<!--[if IE 8]>
-		<link rel="stylesheet" charset="utf-8" type="text/css" href="{{ MEDIA_URL }}css/ie8.css" />
+		<link rel="stylesheet" charset="utf-8" type="text/css" href="{{ STATIC_URL }}css/ie8.css" />
 		<![endif]-->
 
         <!--[if IE 7]>
-		<link rel="stylesheet" charset="utf-8" type="text/css" href="{{ MEDIA_URL }}css/ie7.css" />
+		<link rel="stylesheet" charset="utf-8" type="text/css" href="{{ STATIC_URL }}css/ie7.css" />
 		<![endif]-->
 		
 		<script src="http://www.google.com/jsapi" type="text/javascript" charset="utf-8"></script>
@@ -29,7 +29,7 @@
     
     <body>
         <div id="header">
-            <div class="logo"><a id="texas_tribune_logo" href="/"><img src="{{ MEDIA_URL }}images/citizen.jpg"></a></div>
+            <div class="logo"><a id="texas_tribune_logo" href="/"><img src="{{ STATIC_URL }}images/citizen.jpg"></a></div>
             {% block publish_date %}<p class="current_date">{% now "l, F j, Y" %}</p>{% endblock %}
         </div>
 	    
@@ -38,7 +38,7 @@
         </div>        
         
 		{% block external_js %}{% endblock %}                
-        <script type="text/javascript" src="{{ MEDIA_URL }}js/base.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/base.js"></script>
         {% block js %}{% endblock %}
     </body>
 </html>

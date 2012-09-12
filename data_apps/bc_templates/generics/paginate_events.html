@@ -8,7 +8,7 @@
                     <input type="hidden" name="{{k}}" value="{{v}}" />
                     {% endfor %}
                     <input type="text" name="page" value="" id="gotoPage" class="text" />
-                    <input type="image" src="{{MEDIA_URL}}images/layout/button-submit-pagination.png" class="submit" />
+                    <input type="image" src="{{STATIC_URL}}images/layout/button-submit-pagination.png" class="submit" />
                 </form>
             </div>
     	{% endif %}
@@ -16,7 +16,7 @@
             {% ifnotequal current_page_num 1 %}
                 <div class="pageNumber prev">
                     <a href="{{request.path}}?page={% if current_page.previous_page_number %}{{current_page.previous_page_number}}{% else %}{{current_page_num}}{% endif %}{% if qs %}&{{qs}}{% endif %}" class="pageLinkPrev">
-                        <img src="{{MEDIA_URL}}images/icons/pagination-prev.png" alt="" />
+                        <img src="{{STATIC_URL}}images/icons/pagination-prev.png" alt="" />
                     </a>
                 </div>
             {% endifnotequal %}
@@ -45,7 +45,7 @@
             {% ifnotequal current_page_num pages.num_pages %}
                 <div class="pageNumber next">
                     <a href="{{request.path}}?page={% if current_page.has_next %}{{current_page.next_page_number}}{% else %}{{current_page_num}}{% endif %}{% if qs %}&{{qs}}{% endif %}" class="pageLinkNext">
-                        <img src="{{MEDIA_URL}}images/icons/pagination-next.png" alt="" />
+                        <img src="{{STATIC_URL}}images/icons/pagination-next.png" alt="" />
                     </a>
                 </div>
             {% endifnotequal %}

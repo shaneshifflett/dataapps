@@ -2,13 +2,13 @@
 
 {% block internal_css_includes %}
     {{block.super}}
-    <link rel="stylesheet" href="{{MEDIA_URL}}css/dataapps/census2010.css" type="text/css"/>
+    <link rel="stylesheet" href="{{STATIC_URL}}css/dataapps/census2010.css" type="text/css"/>
 {% endblock %}
 
 {% block js %}
     {{block.super}}
-	<script src="{{MEDIA_URL}}js/highcharts2/highcharts-2-1-4.js" type="text/javascript"></script>
-	<script src="{{MEDIA_URL}}js/jquery.tablesorter.min.js" type="text/javascript"></script>
+	<script src="{{STATIC_URL}}js/highcharts2/highcharts-2-1-4.js" type="text/javascript"></script>
+	<script src="{{STATIC_URL}}js/jquery.tablesorter.min.js" type="text/javascript"></script>
 {% endblock %}
 
 {% block meta %}

@@ -34,12 +34,6 @@ DATABASES = {
     },
 }
 
-if not DEBUG:
-    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-    AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID', '')
-    AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', '') 
-    AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME', '')
-    STATIC_URL = env('STATIC_URL', '')
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -69,8 +63,13 @@ STATIC_ROOT         = map_path('public/static')
 MEDIA_URL = SSL_MEDIA_URL = '/public/'
 STATIC_URL = SSL_STATIC_URL = '%sstatic/' % MEDIA_URL
 
-#DEPRECATED in Django 1.4; remove this when we update
-ADMIN_MEDIA_PREFIX  = '%sadmin/' % STATIC_URL
+if not DEBUG:
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID', '')
+    AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', '') 
+    AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME', '')
+    STATIC_URL = env('STATIC_URL', '')
+
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -141,6 +140,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'data_apps.base',
     'data_apps.bc_apps.locations',
     'data_apps.bc_apps.schools',
     'data_apps.bc_apps.generics',
