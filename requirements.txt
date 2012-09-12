@@ -2,8 +2,8 @@ Django
 simplegeo==3.0.115
 django-extensions
 geopy
-google
 simplejson
 python-fusiontables
 django-tables
 boto
+dj_database_url
