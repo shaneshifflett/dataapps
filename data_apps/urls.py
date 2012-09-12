@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
     (r'^data/bike-accidents/',   include('data_apps.bc_data_apps.bike_accidents.urls')),
-    #(r'^immunizations/',    include('bc_data_apps.dataapps.immunizations.urls')),
+    (r'^data/immunizations/',    include('data_apps.bc_data_apps.immunizations.urls')),
     #(r'^census-2010/',      include('bc_data_apps.dataapps.census2010.urls')),
     #(r'^mayors-race-2011/', include('bc_data_apps.dataapps.sfmayor2011.urls')),
     #(r'^rankedchoice/',     include('bc_data_apps.dataapps.rankedchoice.urls')),

@@ -10,13 +10,13 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.views.decorators.cache import never_cache
 from django.http import Http404
-from generics.utils import paginate_list
-from immunizations import utils
-from immunizations.models import SchoolImmunization, Pertussis, IzCountyAggregate, IzCityAggregate, IzSchoolAggregate, IzDistrictAggregate, ImmunizationRaw
-from immunizations.queries import *
-from locations.models import City, County
-from schools.models import School, SchoolDistrict
-from schools.queries import school_county_cities_query
+from data_apps.bc_apps.generics.utils import paginate_list
+from data_apps.bc_data_apps.immunizations import utils
+from data_apps.bc_data_apps.immunizations.models import SchoolImmunization, Pertussis, IzCountyAggregate, IzCityAggregate, IzSchoolAggregate, IzDistrictAggregate, ImmunizationRaw
+from data_apps.bc_data_apps.immunizations.queries import *
+from data_apps.bc_apps.locations.models import City, County
+from data_apps.bc_apps.schools.models import School, SchoolDistrict
+from data_apps.bc_apps.schools.queries import school_county_cities_query
 
 def index(request):
     return counties(request)

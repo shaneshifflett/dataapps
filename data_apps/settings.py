@@ -132,6 +132,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -141,7 +142,7 @@ INSTALLED_APPS = (
     'data_apps.bc_apps.schools',
     'data_apps.bc_apps.generics',
     'data_apps.bc_data_apps.bike_accidents',
-    #'bc_data_apps.dataapps.immunizations',
+    'data_apps.bc_data_apps.immunizations',
     #'bc_data_apps.dataapps.census2010',
     #'bc_data_apps.dataapps.rankedvotes',
     #'bc_data_apps.dataapps.rankedchoice',

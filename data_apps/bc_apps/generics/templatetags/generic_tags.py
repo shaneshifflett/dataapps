@@ -5,6 +5,37 @@ from django.db.models import Q
 
 register = template.Library()
 
+@register.simple_tag
+def simple_sort(current_order, compare_to):
+    """
+    return a classname if compare_to is same as current_order
+    """
+    sort = 'asc' if '-' not in current_order else 'desc'
+    current_order = current_order.replace('-', '')
+    if compare_to == current_order:
+        return 'sort_%s' %sort
+    return ''
+
+@register.inclusion_tag('generics/simple_paginate.html', takes_context=True)
+def simple_paginate(context, pages):
+    request = context['request']
+    try:
+        page = int(request.GET.get('page', '1'))
+    except:
+        page = 1
+        
+    try:
+        current_page = pages.page(page)
+    except (EmptyPage, InvalidPage):
+        current_page = pages.page(pages.num_pages)
+    
+    context['pages'] = pages
+    context['current_page'] = current_page
+    context['current_page_num'] = page
+    context['total_pages'] = pages.num_pages
+    context['show_pages'] = pages.num_pages > 1
+    return context
+
 @register.inclusion_tag('generics/paginate_data.html', takes_context=True)
 def paginate_data(context, pages):
     request = context['request']

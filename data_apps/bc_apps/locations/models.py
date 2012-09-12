@@ -3,6 +3,16 @@ from django.db import models
 
 from django_extensions.db.fields import AutoSlugField, CreationDateTimeField, ModificationDateTimeField
 
+LOCAL_COUNTY_SLUGS = ('alameda',
+                      'contra-costa',
+                      'marin',
+                      'napa',
+                      'san-francisco',
+                      'san-mateo',
+                      'santa-clara',
+                      'solano',
+                      'sonoma',) 
+
 class State(models.Model):
     name = models.CharField(max_length=255, help_text=u'Maximum length of 255 characters')
     slug = AutoSlugField(populate_from=('name',))
@@ -17,7 +27,7 @@ class LocalCountyManager(models.Manager):
     """ Returns counties within the Bay Area"""
 
     def get_query_set(self):
-        return super(LocalCountyManager, self).get_query_set().filter(slug__in=settings.LOCAL_COUNTY_SLUGS)
+        return super(LocalCountyManager, self).get_query_set().filter(slug__in=LOCAL_COUNTY_SLUGS)
 
 class County(models.Model):
     name              = models.CharField(max_length=255, help_text=u'Maximum length of 255 characters')
@@ -48,7 +58,7 @@ class LocalCityManager(models.Manager):
     """ Returns counties within the Bay Area"""
 
     def get_query_set(self):
-        return super(LocalCityManager, self).get_query_set().filter(county__slug__in=settings.LOCAL_COUNTY_SLUGS)
+        return super(LocalCityManager, self).get_query_set().filter(county__slug__in=LOCAL_COUNTY_SLUGS)
 
 class City(models.Model):
     name   = models.CharField(max_length=255, help_text=u'Maximum length of 255 characters', db_index=True)

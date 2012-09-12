@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('bc_data_apps.dataapps.immunizations.views',
+urlpatterns = patterns('data_apps.bc_data_apps.immunizations.views',
     url('^stats-refresh/(?P<from_page>.*?)/$', 'stats_refresh', name='immunizations_stats_refresh'),
     url('^search/$',                           'search',        name='immunizations_search'),
     url('^districts/$',                        'districts',     name='immunizations_districts'),

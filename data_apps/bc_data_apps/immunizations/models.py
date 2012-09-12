@@ -1,5 +1,5 @@
 from django.db import models
-from bc_data_apps.apps.schools.models import School
+from data_apps.bc_apps.schools.models import School
 
 class ImmunizationRaw(models.Model):
     year = models.IntegerField(null=True, blank=True)

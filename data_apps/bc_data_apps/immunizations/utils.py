@@ -26,11 +26,8 @@ from django.core.urlresolvers import reverse
 from django.db import connection
 from django.template.loader import render_to_string
 
-from schools.models import SchoolDistrict, School
-from locations.models import County, City
-from settings import LOCAL_COUNTY_SLUGS
-
-    
+from data_apps.bc_apps.schools.models import SchoolDistrict, School
+from data_apps.bc_apps.locations.models import County, City, LOCAL_COUNTY_SLUGS
 
 quot = lambda e: "'%s'" %e
 county_template_name = 'immunizations/county_stats_sentance.html'
