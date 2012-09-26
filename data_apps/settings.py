@@ -2,7 +2,8 @@ import os
 import dj_database_url
 from os import environ
 
-env = lambda e, d: environ[e] if environ.has_key(e) else d# Django settings for bc_data_apps project.
+env = lambda e, d: environ[e] if environ.has_key(e) else d
+# Django settings for bc_data_apps project.
 
 PROJECT_ROOT = os.path.dirname(__file__)
 
@@ -21,7 +22,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.mysql',
-        'NAME':'citizen',
+        'NAME':'kickstart',
         'USER':'root',
         'PASSWORD':'',
         'HOST':'localhost',
