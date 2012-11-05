@@ -1,0 +1,1 @@
+mysqldump -u username -p database rankedchoice_candidateroundrank rankedchoice_candidateroundrank_roundovotes rankedchoice_rankedchoiceround rankedchoice_rankedchoiceround_candidate_rankings rankedchoice_rankedchoiceround_dropped_candidates rankedchoice_roundovotes > output.sql
