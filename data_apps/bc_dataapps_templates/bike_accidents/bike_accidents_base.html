@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block app_title %}
-<a id="baheader" href="{% url bike_accidents_index %}">Bike Accident Tracker 2.0</a>
+<a id="baheader" href="{% url 'bike_accidents_index' %}">Bike Accident Tracker 2.0</a>
 {% endblock %}
 
 {% block social_links %}
@@ -20,7 +20,7 @@
 		<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
 		<div>
 		  <a href="http://twitter.com/share" class="twitter-share-button"
-		     data-url="http://baycitizen.org{% url bike_accidents_index%}"
+		     data-url="http://baycitizen.org{% url 'bike_accidents_index' %}"
 		     data-via="thebaycitizen"
 		     data-text="I explored @TheBayCitizen's Bike Accident Tracker; check out accidents near you:"
 		     data-related="shaneshifflett"
@@ -81,22 +81,22 @@
 
     <div id="introCopy" {% ifequal request.COOKIES.ba_info_showhide "hidden" %}style="display:none;"{% endifequal %}>
         <h1 style="font-family: arial; font-weight: bold">Welcome to The Bay Citizen's Bike Accident Tracker!</h1>
-            <span style="font-size: 1.3em">We've expanded the app with all new data: five years of collision statistics covering the entire Bay Area.</span><br/> <span style="color: gray">Source: California Highway Patrol. Time period: Jan. 2005 through Dec. 2009 (the latest region-wide data available; see <a href="{% url bike_accidents_methodology %}" title="Learn how we built this project">Methodology</a> for details).</span><br/><br/>
+            <span style="font-size: 1.3em">We've expanded the app with all new data: five years of collision statistics covering the entire Bay Area.</span><br/> <span style="color: gray">Source: California Highway Patrol. Time period: Jan. 2005 through Dec. 2009 (the latest region-wide data available; see <a href="{% url 'bike_accidents_methodology' %}" title="Learn how we built this project">Methodology</a> for details).</span><br/><br/>
         <ul>
             <li class="acc-map">
-                <a href="{% url bike_accidents_index %}" title="Slice and dice the numbers" class="vis">
+                <a href="{% url 'bike_accidents_index' %}" title="Slice and dice the numbers" class="vis">
                     Accident Map
                     <span>Slice and dice the numbers</span>
                 </a>
             </li>
             <li class="charts">
-                <a href="{% url bike_accidents_charts %}" title="Compare stats by time and place">
+                <a href="{% url 'bike_accidents_charts' %}" title="Compare stats by time and place">
                     Charts
                     <span>Compare stats by time and place</span>
                 </a>
             </li>
             <li class="raw-data">
-                <a href="{% url bike_accidents_raw %}" title="Drill down to individual accidents">
+                <a href="{% url 'bike_accidents_raw' %}" title="Drill down to individual accidents">
                     Raw Data
                     <span>Drill down to individual accidents</span>
                 </a>
@@ -108,7 +108,7 @@
                 </a>
             </li>
             <li class="method">
-                <a href="{% url bike_accidents_methodology %}" title="Learn how we built this project">
+                <a href="{% url 'bike_accidents_methodology' %}" title="Learn how we built this project">
                     Methodology
                     <span>Learn how we built this project</span>
                 </a>

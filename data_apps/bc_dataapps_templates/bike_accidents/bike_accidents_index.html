@@ -23,9 +23,9 @@
 
     <script type="text/javascript" charset="utf-8">
 
-		var vis_url = '{% url bike_accidents_index %}';
-		var charts_url = '{% url bike_accidents_charts %}';
-		var raw_url = '{% url bike_accidents_raw %}';
+		var vis_url = '{% url 'bike_accidents_index' %}';
+		var charts_url = '{% url 'bike_accidents_charts' %}';
+		var raw_url = '{% url 'bike_accidents_raw' %}';
 		$(document).ready(function(){
 			$("#map_tab").attr('href', vis_url + '{{query_str|safe}}');
 			$("#raw_tab").attr('href', raw_url + '{{query_str|safe}}');
@@ -372,17 +372,17 @@
         
         <ul class="bike-tabs cf">
             <li class="current">
-                <a id="map_tab" href="{% url bike_accidents_index %}" title="Reported Accidents">
+                <a id="map_tab" href="{% url 'bike_accidents_index' %}" title="Reported Accidents">
                     Accident Map
                 </a>
             </li>
             <li class="">
-                <a id="charts_tab" href="{% url bike_accidents_charts %}" title="Reported Accidents">
+                <a id="charts_tab" href="{% url 'bike_accidents_charts' %}" title="Reported Accidents">
                     Charts
                 </a>
             </li>
             <li class="">
-                <a id="raw_tab" href="{% url bike_accidents_raw %}" title="Reported Accidents">
+                <a id="raw_tab" href="{% url 'bike_accidents_raw' %}" title="Reported Accidents">
                     Raw Data
                 </a>
             </li>
@@ -416,7 +416,7 @@
                 <div id='filter-results'>
                     <span style="color:#12487a;">NOW SHOWING: </span>{{accidents_count}} accidents
                     <span style="color:gray; font-size: .9em; font-style: normal;">| {{accidents_percent|floatformat:"-1"}}% of all cases</span><br />
-                    <span style="color:gray; font-size: .8em; font-weight: normal;">Locations with more than one accident display only the most recent one--see <a href="{% url bike_accidents_raw %}">Raw Data</a> for full list. Locations with 5+ crashes are marked as red Hotspots.</span>
+                    <span style="color:gray; font-size: .8em; font-weight: normal;">Locations with more than one accident display only the most recent one--see <a href="{% url 'bike_accidents_raw' %}">Raw Data</a> for full list. Locations with 5+ crashes are marked as red Hotspots.</span>
                 </div>
                 <div id="accident-map-wrap">
                     <div id="accident-map"></div>

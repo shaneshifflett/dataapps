@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 urlpatterns = patterns('data_apps.bc_data_apps.bike_accidents.views',
     url('^get-results/$',               'get_results',      name='bike_accidents_get_results'),

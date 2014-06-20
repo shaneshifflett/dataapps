@@ -1,8 +1,8 @@
-{% url bike_accidents_index as index_url %} 
-{% url bike_accidents_charts as charts_url %}
-{% url bike_accidents_raw as raw_url %}
+{% url 'bike_accidents_index' as index_url %} 
+{% url 'bike_accidents_charts' as charts_url %}
+{% url 'bike_accidents_raw' as raw_url %}
 {% if request.path == index_url %}
-<form id='filter-form' action='{% url bike_accidents_get_results %}' method='post'>
+<form id='filter-form' action='{% url 'bike_accidents_get_results' %}' method='post'>
 {% endif %}
 {% if request.path == charts_url %}
 <form id='filter-form' action='{{ charts_url }}' method='post'>

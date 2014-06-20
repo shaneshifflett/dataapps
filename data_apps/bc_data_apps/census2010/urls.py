@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 urlpatterns = patterns('data_apps.bc_data_apps.census2010.views',
 	url('^$', 'list', {'geography':'county'}, name='census2010_index'),

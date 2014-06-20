@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 urlpatterns = patterns('data_apps.bc_data_apps.immunizations.views',
     url('^stats-refresh/(?P<from_page>.*?)/$', 'stats_refresh', name='immunizations_stats_refresh'),
