@@ -2,10 +2,12 @@ import os
 import dj_database_url
 from os import environ
 
-env = lambda e, d: environ[e] if environ.has_key(e) else d
+env = lambda e, d: environ[e] if e in environ else d
 # Django settings for bc_data_apps project.
 
 PROJECT_ROOT = os.path.dirname(__file__)
+
+ALLOWED_HOSTS = ['127.0.0.1', 'secret-taiga-2483.herokuapp.com']
 
 DEBUG = not bool(env('DATAAPP_SITE_PROD', ''))
 TEMPLATE_DEBUG = DEBUG
