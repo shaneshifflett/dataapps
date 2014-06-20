@@ -14,6 +14,7 @@ ADMINS = (
     ('Shane Shifflett', 'sshifflett@cironline.org'),
 )
 
+
 def map_path(directory_name):
     return os.path.join(os.path.dirname(__file__), directory_name).replace('\\', '/')
 
@@ -21,11 +22,11 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE':'django.db.backends.mysql',
-        'NAME':'kickstart',
-        'USER':'root',
-        'PASSWORD':'',
-        'HOST':'localhost',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'kickstart',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
     },
 }
 if not DEBUG:
@@ -55,15 +56,15 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
-MEDIA_ROOT          = map_path('public')
-STATIC_ROOT         = map_path('public/static')
+MEDIA_ROOT = map_path('public')
+STATIC_ROOT = map_path('public/static')
 MEDIA_URL = SSL_MEDIA_URL = '/public/'
 STATIC_URL = SSL_STATIC_URL = '%sstatic/' % MEDIA_URL
 
 if not DEBUG:
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID', '')
-    AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', '') 
+    AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', '')
     AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME', '')
     STATIC_URL = env('STATIC_URL', '')
 
@@ -80,7 +81,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 SECRET_KEY = env('DATAAPPS_SITE_SECRET_KEY', '')
@@ -89,7 +90,7 @@ SECRET_KEY = env('DATAAPPS_SITE_SECRET_KEY', '')
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    # 'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -112,7 +113,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     map_path('bc_templates'),
-    map_path('bc_dataapps_templates'), 
+    map_path('bc_dataapps_templates'),
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
