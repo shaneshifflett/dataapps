@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.localflavor.us.models import PhoneNumberField
+from localflavor.us.models import PhoneNumberField
 from django_extensions.db.fields import AutoSlugField
 from data_apps.bc_apps.locations import utils as locationutils
 

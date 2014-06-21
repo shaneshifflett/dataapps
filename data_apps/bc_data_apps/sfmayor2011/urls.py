@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 urlpatterns = patterns('bc_data_apps.dataapps.sfmayor2011.views',
     url('^candidates/$', 'list_candidates', name='sfmayor_list_candidates'),

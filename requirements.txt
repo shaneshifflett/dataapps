@@ -1,13 +1,13 @@
-Django
+Django==1.6.5
 simplegeo==3.0.115
 django-extensions
 geopy
-simplejson
 python-fusiontables
 django-tables
 boto
 dj_database_url
 MySQL-python
 django-storages
+django-localflavor
 twilio
 gunicorn==0.14.2

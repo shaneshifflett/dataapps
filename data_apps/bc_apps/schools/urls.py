@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls import patterns, url
 
 urlpatterns = patterns('schools.views',
     url('^districts/district/(?P<slug>.*?)/(?P<show>.*?)/$',    'districts_view',   name='schools_districts_view_show'),
